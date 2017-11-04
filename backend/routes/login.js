@@ -8,7 +8,6 @@ var formidable = require('formidable');
 var multer = require('multer');
 var path = require('path');
 var uuid = require('uuid');
-var UserCreds  = require('../models/mongomodels');
 var FileData = require('../models/filedatamodel');
 var GroupData = require('../models/group_names');
 var GroupRawData = require('../models/group_rawdata');
@@ -28,15 +27,17 @@ var upload = multer({storage:storage});
 
 router.post('/register',(req,res,next)=>{
     console.log('entered');
-    let newUser = new UserCreds({
-        FIRSTNAME: req.body.firstname,
-        LASTNAME:  req.body.lastname,
-        PASSWORD:  req.body.password,
-        EMAIL:     req.body.email
-    });
-    UserCreds.addUser(newUser,(err,user)=>{
+    let newUser = {
+        username: req.body.username,
+        firstname: req.body.firstname,
+        lastname:  req.body.lastname,
+        password:  req.body.password,
+        email:     req.body.email
+    };
+    dbmodel.addUser(newUser,(err,user)=>{
         if(err)
         {
+            console.log(err);
             res.json({success:false,msg:'failed to register user'})
         }
         else
@@ -127,13 +128,14 @@ router.post('/login',(req,res,next)=>{
     const password = req.body.password;
    
 //dbmodel.getOneUser(email,(err,user)=>{
-    UserCreds.getUserByEmail(email,(err,user)=>{
+    dbmodel.getOneUser(email,(err,user)=>{
         if(err) throw err;
         if(!user){
             return res.json({success:false,msg:'user not found'});
         }
-       
-        UserCreds.passwordMatch(password,user.PASSWORD,(err,isMatch)=>{
+        console.log('mark4');
+        console.log(user);
+        dbmodel.passwordMatch(password,user[0].password,(err,isMatch)=>{
             if(err) throw err;
             if(isMatch){
                 const token = jwt.sign({user},'mySecret',{
@@ -143,11 +145,12 @@ router.post('/login',(req,res,next)=>{
                         success:true,
                         token: 'JWT '+token,
                         user:{
-                            id: user.id,
-                            firstname:user.FIRSTNAME,
-                            lastname:user.LASTNAME,
-                            password:user.PASSWORD,
-                            email:user.EMAIL
+                            id: user[0].id,
+                            username:user[0].username,
+                            firstname:user[0].firstname,
+                            lastname:user[0].lastname,
+                            password:user[0].password,
+                            email:user[0].email
                         }
                     });
             }
