@@ -1,1 +1,1 @@
-# kayakPrototype
+Kayak Prototype
