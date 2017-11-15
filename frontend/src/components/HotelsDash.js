@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 class HotelsDash extends Component {
   render() {
     return (
-      <div className="dashboard" style={{"width":"1100px","padding-right":"80px"}}>
+      <div className="dashboard" style={{"width":"1100px","paddingRight":"80px"}}>
         <input type="text" className="formFields" style={{"marginLeft":"15px"}}/>
        
      <input type="date" className="formFields" style={{}}/>
@@ -17,7 +17,7 @@ class HotelsDash extends Component {
         <option className="optionField">4 Room 8 Guests </option>
        
      </select>
-      <img src={require("../images/enter.png")} style={{"height":"55px","width":"55px","margin-top":"58px","margin-right":"10px","float":"right"}}/>
+      <img src={require("../images/enter.png")} style={{"height":"55px","width":"55px","marginTop":"58px","marginRight":"10px","float":"right"}}/>
        
       </div>
     );

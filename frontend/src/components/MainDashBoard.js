@@ -13,8 +13,8 @@ class MainDashBoard extends Component
 
     return(
             <div> 
-                 <div style={{"margin-left":"450px"}}>
-               <nav className="navbar dock" style={{"text-shadow":"none","font-size":"13px","color":"white"}}>
+                 <div style={{"marginLeft":"450px"}}>
+               <nav className="navbar dock" style={{"textShadow":"none","fontSize":"13px","color":"white"}}>
                <div className="container-fluid" style={{"backgroundColor":"none"}}>
                
                  <ul className="nav navbar-nav j" style={{"backgroundColor":"none"}}>

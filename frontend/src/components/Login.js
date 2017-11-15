@@ -16,20 +16,20 @@ class Login extends Component {
   render() {
     return (
      
-        <div style={{"display":"flex", "flexDirection":"row","min-width": "1000px"}}> 
+        <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
                      <div style={{"zIndex":"10","left":"0"}}>
                         <img src={require("../images/phoenix.jpg")}/>
                     </div>
                    
                     
                         <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}> 
-                       <div style={{"margin-left":"200px"}}>
+                       <div style={{"marginLeft":"200px"}}>
                         <Nav  />
                        </div>
-                        <div  style={{"marginLeft":"50px","color":"white","fontSize":"28px","fontWeight":"600","fontFamily":"HelveticaNeue-Bold,Helvetica,Arial,sans-serif","margin-left":"200px"}}>
+                        <div  style={{"marginLeft":"50px","color":"white","fontSize":"28px","fontWeight":"600","fontFamily":"HelveticaNeue-Bold,Helvetica,Arial,sans-serif","marginLeft":"200px"}}>
                             Search hundreds of travel sites at once.
                          </div>
-                         <div style={{"margin-left":"230px"}}>
+                         <div style={{"marginLeft":"230px"}}>
                              <form ref="loginForm" onSubmit={this.handleSubmit}>
                                     <input type="email" ref="email" placeholder="Email" style={{"height":"30px","width":"270px","margin":"10px"}}/>
                                     <input type="password" ref ="password" placeholder="Password" style={{"height":"30px","width":"270px","margin":"10px"}}/>
