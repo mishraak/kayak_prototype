@@ -17,12 +17,9 @@ class Login extends Component {
     return (
      
         <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
-                     <div style={{"zIndex":"10","left":"0"}}>
-                        <img src={require("../images/phoenix.jpg")}/>
-                    </div>
-                   
-                    
-                        <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}> 
+
+            <img src={require("../images/phoenix.png")}/>
+            <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
                        <div style={{"marginLeft":"200px"}}>
                         <Nav  />
                        </div>
@@ -50,7 +47,7 @@ class Login extends Component {
                         <HotelsDash/>
                         </div>
        
-      </div>
+            </div>
       </div>
     );
   }

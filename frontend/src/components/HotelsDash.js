@@ -17,7 +17,7 @@ class HotelsDash extends Component {
         <option className="optionField">4 Room 8 Guests </option>
        
      </select>
-      <img src={require("../images/enter.png")} style={{"height":"55px","width":"55px","marginTop":"58px","marginRight":"10px","float":"right"}}/>
+      <img src={require("../images/enter.png")}  style={{"height":"55px","width":"55px","marginTop":"58px","marginRight":"10px","float":"right"}}/>
        
       </div>
     );
