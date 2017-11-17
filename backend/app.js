@@ -5,6 +5,7 @@ var expressValidator = require('express-validator');
 var mysql = require('mysql');
 var mongoose = require('mongoose');
 var config = require('./config/mongoConfig');
+var flights=require('./routes/flights');
 var cors = require('cors');
 var passport = require('passport');
 
@@ -22,7 +23,7 @@ var app = express();
 const routes= require('./routes/login');
 
 //port initialization
-const port = 8080;
+const port = 3300;
 //middleware
 app.use(cors());
 //get static folder for front-end
@@ -37,6 +38,7 @@ require('./config/passport')(passport);
 
 
 app.use('/routes',routes);
+app.use('/flights',flights);
 app.get('/',(req,res)=>{
     res.send("Invalid end point");
 });

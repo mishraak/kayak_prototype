@@ -3,14 +3,7 @@ var login = require('./services/login');
 var mongoose = require('mongoose');
 var config = require('./config/mongoConfig');
 
-mongoose.connect(config.database);
-mongoose.connection.on('connected',()=>{
-    console.log('connected to db '+ config.database);
-})
 
-mongoose.connection.on('error',(err )=>{
-    console.log('error in db '+ err);
-})
 
 
 var topic_name = 'login_topic';

@@ -1,4 +1,6 @@
 var FileData = require('./filedatamodel');
+let mysql=require('../config/mysql');
+
 function handle_request(msg, callback){
 
     var res = {};
@@ -23,19 +25,27 @@ function handle_request(msg, callback){
          }
      });
        break;
-       case 'upload_files':
-       FileData.uploadfile(msg.data,(err,file)=>{
-        if(err){
-            console.log(err);
-            callback(null, err);
-            //res.json({success:false,msg:'failed to upload'});
-        }
-        else{
-            callback(null, file);
-            //res.json({success:true,msg:'upload successful',});
-        }
-    });
+       case 'getallflights':
 
+           console.log(msg.data);
+           var getFlights="select f.flight_id,date_format(arrival, '%h:%i') arrival,date_format(departure, '%h:%i') departure,class_name,prices,origin,destination from flights f join classes c on f.flight_id=c.flight_id where c.class_name='"+msg.data.class+"' and origin='"+msg.data.origin+"' and destination='"+msg.data.destination+"'";
+
+           try {
+
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       callback(null,results);
+                   }
+               }, getFlights);
+           }
+           catch (err){
+               console.log(err);
+           }
        break;
    }
     
