@@ -1,11 +1,12 @@
 const mysql = require('mysql');
 const bcrypt = require('bcryptjs');
-const db = mysql.createPool({
-    connectionLimit:50,
-    host:'localhost',
-    user:'root',
-    password:'root',
-    database:'kayak_userdb'
+var db = mysql.createPool({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'mysqlpassword',
+    database : 'kayak',
+    port	 : 3306,
+    connectionLimit:500
 });
 db.getConnection((err)=>{
     if(err){

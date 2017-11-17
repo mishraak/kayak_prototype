@@ -4,8 +4,33 @@ import {Link} from 'react-router';
 //import styles from './app.css';
 
 class Nav extends Component {
+
+    state={
+        email:'',
+        password:''
+    };
+
+    renderLogIn()
+    {
+        if(!this.props.isLoggedIn){
+            return(
+                <div>
+
+                        <input type="email" ref="email" placeholder="Email" onChange={e => this.setState({ email: e.target.value })} style={{"height":"30px","width":"270px","margin":"10px"}}/>
+                        <input type="password" ref ="password" placeholder="Password" onChange={e => this.setState({ password: e.target.value })} style={{"height":"30px","width":"270px","margin":"10px"}}/>
+                        <button onClick={()=>{this.props.handleLogin(this.state)}}  style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Login</button>
+
+                </div>
+            )
+        }
+        else
+        {
+            return(<button style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Logout</button>)
+        }
+    }
+
+
     render(){
-    
     return(
             <div>
                  
@@ -18,7 +43,11 @@ class Nav extends Component {
                      <li className="active"><a href="#" style={{"color":"white"}}>Flights</a></li>
                      <li ><a href="#" style={{"color":"white"}}>Hotels</a></li>
                      <li  className="nav-item" ><a href="#" style={{"color":"white"}}>Cars</a></li>
+                     <li>
+                         {this.renderLogIn()}
+                     </li>
                    </ul>
+
                  </div>
                </nav>
                

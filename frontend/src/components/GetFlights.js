@@ -24,7 +24,7 @@ class GetFlights extends Component {
                 <img src={require("../images/phoenix.png")}/>
                 <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
                     <div style={{"marginLeft":"200px"}}>
-                        <Nav  />
+                        <Nav  isLoggedIn={this.props.isLoggedIn} handleLogin={this.props.handleLogin}/>
                     </div>
                     <div className="row">
                         <div className="col-md-2">
@@ -86,7 +86,7 @@ class GetFlights extends Component {
                                                 </td>
                                                 <td >
                                                     <b>${flight.prices}</b>
-                                                     <button className="btn-danger">Book</button>
+                                                    {this.props.isLoggedIn?<button className="btn-danger">Book</button>:""}
 
                                                 </td>
                                             </tr>

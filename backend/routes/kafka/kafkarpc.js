@@ -59,7 +59,7 @@ KafkaRPC.prototype.makeRequest = function(topic_name, content, callback){
                 {                    
                     console.log(err);
                 }
-            console.log("yyuyuyu data dude !!!!!!");
+            //console.log("yyuyuyu data dude !!!!!!");
             console.log(data);
         });
     });

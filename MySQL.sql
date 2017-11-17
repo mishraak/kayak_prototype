@@ -124,8 +124,6 @@ DROP FOREIGN KEY classes_ibfk_1;
 
 ALTER TABLE flights
 change flight_id flight_id varchar(6),
-change arrival arrival time,
-change departure departure time,
 change detination destination varchar(50);
 
 Alter table classes
@@ -134,6 +132,8 @@ change flight_id flight_id varchar(6);
 ALTER TABLE CLASSES
 ADD FOREIGN KEY (flight_id) REFERENCES FLIGHTS(flight_id) 
 ON DELETE CASCADE;
+
+alter table users add column password varchar(300) not null
 
 
 
