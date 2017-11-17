@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Login from './components/Login';
+import {BrowserRouter} from 'react-router-dom';
 
 import './App.css';
 
@@ -54,7 +55,11 @@ dashUpdate(dash){
   render() {
     return (
       <div className="App" >
-       <Login dash={this.state.dashStatus} updateDash={this.dashUpdate.bind(this)} />
+          <BrowserRouter>
+              <Login dash={this.state.dashStatus} updateDash={this.dashUpdate.bind(this)} />
+          </BrowserRouter>
+
+
        
       </div>
     );

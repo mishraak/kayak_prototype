@@ -32,9 +32,9 @@ class MainDashBoard extends Component
                    <div className="listunit" style={{"display":"flex", "flexDirection":"row"}}>     
                                 <div className="icon" style={{"height":"30px","width":"30px"}}>
                                         <img src={require("../images/hotels.png")} style={{"height":"25px","width":"30px"}} />
-                                </div> 
-                       <a href="#" className="menuBlock" >Hotels</a>
-                       </div>
+                                </div>
+                                <a href="#" className="menuBlock" >Hotels</a>
+                   </div>
                    </li>
                    <li  className="smallMenu" onClick={this.changeDash.bind(this,"cars")}>
                    <div className="listunit" style={{"display":"flex", "flexDirection":"row"}}>     
@@ -42,8 +42,8 @@ class MainDashBoard extends Component
                                         <img src={require("../images/cars.png")}  style={{"height":"20px","width":"30px"}}/>
                                 </div> 
                        <a href="#" className="menuBlock">Cars</a>
-                      </div> 
-                       </li>
+                   </div>
+                   </li>
                  </ul>
                </div>
 
