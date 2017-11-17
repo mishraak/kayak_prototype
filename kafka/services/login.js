@@ -9,26 +9,30 @@ function handle_request(msg, callback){
    // res.json({"message":"harcoded hey"});
 
    switch(msg.type){
-       case 'get_files':
-       FileData.getfiles(msg.email,(err,data)=>{
-        console.log('hellow');
-         if(err){
-             console.log('error');
-             console.log(err);
-             res.json({success:false,msg:'Data is mismatched'});
-         }
-         else{
-             console.log('basmati chawal zindabad');
-             console.log("data"+ data);
-             //res.json(data);
-             callback(null, data);
-         }
-     });
+       case 'login':
+            console.log(msg.data);
+           try {
+
+               var user="select * from users where email='"+msg.data.email+"' and password='"+msg.data.password+"'";
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       console.log("adgad",results);
+                       callback(null,results);
+                   }
+               }, user);
+           }
+           catch (err){
+               console.log(err);
+           }
        break;
        case 'getallflights':
 
            console.log(msg.data);
-           var getFlights="select f.flight_id,date_format(arrival, '%h:%i') arrival,date_format(departure, '%h:%i') departure,class_name,prices,origin,destination from flights f join classes c on f.flight_id=c.flight_id where c.class_name='"+msg.data.class+"' and origin='"+msg.data.origin+"' and destination='"+msg.data.destination+"'";
+           var getFlights="select f.flight_id,date_format(arrival, '%h:%i') arrival,date_format(departure, '%h:%i') departure,class_name,prices,origin,destination from flights f join classes c on f.flight_id=c.flight_id where c.class_name='"+msg.data.class+"' and origin='"+msg.data.origin+"' and destination='"+msg.data.destination+"' and DATE(departure)='"+msg.data.fromDate+"'";
 
            try {
 

@@ -7,7 +7,7 @@ class FlightsDash extends Component {
         destination:'',
         fromDate:'',
         toDate:'',
-        class:'Economy'
+        class:'Economy',
     };
 
 

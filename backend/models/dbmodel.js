@@ -4,7 +4,7 @@ var db = mysql.createPool({
     host     : 'localhost',
     user     : 'root',
     password : 'mysqlpassword',
-    database : 'craftonelife',
+    database : 'kayak',
     port	 : 3306,
     connectionLimit:500
 });

@@ -17,6 +17,7 @@
     "bcryptjs": "*",
     "body-parser": "*",
     "connect-flash": "*",
+    "connect-mongo": "^1.3.2",
     "cookie-parser": "*",
     "cors": "^2.8.4",
     "ejs": "^2.5.7",

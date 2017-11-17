@@ -6,12 +6,28 @@ import FlightsDash from './FlightsDash'
 import CarsDash from './CarsDash'
 import HotelsDash from './HotelsDash'
 import GetFlights from './GetFlights'
+import * as API from '../api/API'
 
 class Login extends Component {
 
  state={
-     SearchCriteria:[]
+     SearchCriteria:[],
+     isLoggedIn:false
  };
+
+ handleLogin(credentials){
+
+     API.doLogin(credentials)
+         .then((res) => {
+             console.log("status",res.status)
+             if(res.status===201){
+                 this.setState({isLoggedIn:true});
+                 localStorage.setItem("username",credentials.email)
+             }
+
+
+         });
+ }
 
  handleDashBoard(dash){
      this.props.updateDash(dash);
@@ -32,18 +48,12 @@ class Login extends Component {
                         <img src={require("../images/phoenix.png")}/>
                         <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
                             <div style={{"marginLeft":"200px"}}>
-                                <Nav  />
+                                <Nav  isLoggedIn={this.state.isLoggedIn} handleLogin={this.handleLogin.bind(this)}/>
                             </div>
                             <div  style={{"marginLeft":"50px","color":"white","fontSize":"28px","fontWeight":"600","fontFamily":"HelveticaNeue-Bold,Helvetica,Arial,sans-serif","marginLeft":"200px"}}>
                                 Search hundreds of travel sites at once.
                             </div>
-                            <div style={{"marginLeft":"230px"}}>
-                                <form ref="loginForm" onSubmit={this.handleSubmit}>
-                                    <input type="email" ref="email" placeholder="Email" style={{"height":"30px","width":"270px","margin":"10px"}}/>
-                                    <input type="password" ref ="password" placeholder="Password" style={{"height":"30px","width":"270px","margin":"10px"}}/>
-                                    <input type="submit" value="login" style={{"height":"30px","width":"270px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}/>
-                                </form>
-                            </div>
+
 
                             <MainDashBoard dashboard={this.handleDashBoard.bind(this)}/>
 
@@ -63,7 +73,7 @@ class Login extends Component {
                 )}/>
 
                 <Route exact path="/GetFlights" render={() => (
-                    <GetFlights searchCriteria={this.state.SearchCriteria}/>
+                    <GetFlights isLoggedIn={this.state.isLoggedIn} handleLogin={this.handleLogin.bind(this)} searchCriteria={this.state.SearchCriteria}/>
                 )}/>
         </div>
 

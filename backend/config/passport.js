@@ -4,6 +4,8 @@ ExtractJwt = require('passport-jwt').ExtractJwt;
 const dbmodel = require('../models/dbmodel');
 const mysql = require('mysql');
 const passport = require('passport');
+var kafka = require('../routes/kafka/client');
+var LocalStrategy = require("passport-local").Strategy;
 
 
 const db = mysql.createPool({
@@ -23,28 +25,31 @@ db.getConnection((err)=>{
 });
 
 module.exports = function(passport){
-var opts = {}
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
-opts.secretOrKey = 'mySecret';
-console.log('inside');
-console.log(opts);
-passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
-    console.log('jwt is')
-    console.log(jwt_payload);
-    dbmodel.getOneUser(jwt_payload.user[0].FIRSTNAME, function(err, user) {
-        if (err) {
-            return done(err, false);
+    passport.use('login', new LocalStrategy({usernameField: 'email', passwordField: 'password'},function(email , password, done) {
+        try {
+            console.log("in passport",email,password);
+            kafka.make_request('login_topic',{data:{"email":email,"password":password,op:"login"},type:"login"}, function(err,results){
+                console.log('in result');
+                console.log(results);
+                if(err){
+                    done(err,{});
+                }
+                else
+                {
+                   done(null,results);
+                }
+            });
+
         }
-        if (user) {
-            console.log(user);
-            return done(null, user);
-        } else {
-            return done(null, false);
-            // or you could create a new account 
+        catch (e){
+            console.log(e);
+            done(e,{});
         }
-    });
-}));
-}
+    }));
+
+
+
+};
 
 
 
