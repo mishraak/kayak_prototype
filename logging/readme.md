@@ -32,6 +32,7 @@ Sr.No|Use Case|Description|Module
 
 1. User activity can be captured in the Kafka topic.
 2. This capture is realtime and can be used for further analysis directly or dumped to archival.
+3. It is easier to use the Winston MongoDB transport rather than the expressWinston one. 
 
 
 ### TODO.
