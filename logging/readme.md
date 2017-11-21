@@ -39,7 +39,7 @@ Sr.No|Use Case|Description|Module
 
 - [x] List down common uses cases.
 - [x] Create a logging lib for the required transport.
-- [ ] Create a logging schema for each module based on the use case.
+- [x] Create a logging schema for each module based on the use case.
 - [ ] Create schema for MongoDB collections based on modules.
 - [ ] Update the module code to use the logging lib and log data to the MongoDB transport.
 - [ ] Test the collection updates.
