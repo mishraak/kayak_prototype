@@ -9,7 +9,7 @@ The following are the logging and analytics use cases of our app.
 
 
 Sr.No|Use Case|Description|Module
----|--
+---|--|--|--|
 1|Clicks per page|Users clicks per day|All
 2|Reviews per item|Ability to report the items(hotels/flights wrt reviews)|<li>Flights</li><li>Hotels</li>
 4|Real time User activity<ul><li>Number of logged in users.</li><li>Region wise logged in users.</li></ul>|Ability to report currently logged in users based on location|User Management
