@@ -135,6 +135,8 @@ ON DELETE CASCADE;
 
 alter table users add column password varchar(300) not null
 
+alter table cars add column location varchar(300) not null
+
 
 
 
