@@ -6,6 +6,7 @@ import FlightsDash from './FlightsDash'
 import CarsDash from './CarsDash'
 import HotelsDash from './HotelsDash'
 import GetFlights from './GetFlights'
+import AddFlight from './AddFlight'
 import SignUp from './SignUp'
 import About from './About'
 import GetCars from './GetCars'
@@ -27,6 +28,7 @@ componentWillMount(){
 
  handleLogout(){
      localStorage.removeItem("username");
+     localStorage.removeItem("user_status");
      this.setState({isLoggedIn:false});
  }
 
@@ -36,11 +38,14 @@ componentWillMount(){
          .then((res) => {
              console.log("status",res.status)
              if(res.status===201){
+                console.log("res");
+                console.log(res);
                  this.setState({isLoggedIn:true});
-                 localStorage.setItem("username",credentials.email)
+                 //localStorage.setItem("username",credentials.email)
+                 localStorage.setItem("username",res.data.user[0].email);
+                 localStorage.setItem("user_status",res.data.user[0].user_status);
+
              }
-
-
          });
  }
 
@@ -57,6 +62,21 @@ handleSignup(payload) {
     //this.props.history.push("/"); 
 
 }
+
+handleAddFlight(payload) {            
+        
+     API.handleAddFlight(payload)
+            .then(function (response) {
+                console.log(response);                                                                                           
+            })
+            .catch(function (error) {
+              console.log(error);              
+            })
+    
+    //this.props.history.push("/"); 
+
+}
+
 
 /*
 handleAbout(payload) {            
@@ -124,6 +144,9 @@ handleAbout(payload) {
                 )}/>
                 <Route exact path="/about" render={() => (
                     <About route={this.props.history.push}/>
+                )}/>
+                <Route exact path="/AddFlight" render={() => (
+                    <AddFlight route={this.props.history.push} handleAddFlight={this.handleAddFlight.bind(this)} />
                 )}/>
         </div>
 

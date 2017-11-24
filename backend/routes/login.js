@@ -111,7 +111,7 @@ router.post('/doLogin',(req,res,next)=>{
             res.status(500).send({message: "error in authentication"});
         }
         else {
-            console.log("prinitng user",user)
+            
             if (user.length===0) {
                 console.log("no user found");
                 res.status(401).send({message: "no user found by given credentials"});
@@ -120,8 +120,9 @@ router.post('/doLogin',(req,res,next)=>{
                 req.session.user = user[0].email;
                 console.log(req.session.user);
                 console.log("session initilized");
-
-                res.status(201).send({username: req.session.user});
+                console.log("prinitng user", user[0])
+                //res.status(201).send({username: req.session.user});
+                res.status(201).send({user: user});
             }
         }
     })(req, res);
