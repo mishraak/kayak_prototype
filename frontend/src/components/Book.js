@@ -25,7 +25,7 @@ export default class FormDialog extends React.Component {
         console.log("action",event.target.innerHTML);
         if(event.target.innerHTML==="Confirm Booking"){
             console.log("book flight add",this.state.username);
-            API.book({amount:this.props.details.prices})
+            API.book({amount:this.props.details[0].prices,type:"Flight",email:window.localStorage.getItem("username")})
         }
         //console.log(this.state.textFieldValue);
     };

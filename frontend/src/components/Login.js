@@ -39,7 +39,7 @@ class Login extends Component {
  }
 
  handleLogout(){
-     localStorage.removeItem("uname");
+     localStorage.removeItem("username");
      this.setState({isLoggedIn:false});
  }
 
@@ -50,7 +50,7 @@ class Login extends Component {
  getSearchResults(criteria) {
 
      this.setState({SearchCriteria:criteria});
-     alert("abc");
+     //alert("abc");
      //var searchType=this.state.SearchCriteria.searchType;
      if(criteria.searchType==="Flights"){
          this.props.history.push("/GetFlights");

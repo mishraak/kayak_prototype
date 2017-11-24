@@ -57,7 +57,7 @@ export const getHotels = (searchCriteria) =>
             return error;
         });
 export const book = (payload) =>
-    axios.post(api + '/search/hotels/',payload,{withCredentials:true})
+    axios.post(api + '/search/book/',payload,{withCredentials:true})
         .then(res => {
             console.log('response from server chck', res.data);
             return res;

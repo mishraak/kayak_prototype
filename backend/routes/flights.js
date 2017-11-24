@@ -56,4 +56,22 @@ router.post('/hotels',(req,res,next)=>{
 
 });
 
+router.post('/book',(req,res,next)=>{
+    kafka.make_request('login_topic',{"type":"book",data:req.body}, function(err,results){
+
+
+        console.log(results);
+        if(err){
+            res.json({success:false,msg:'Data is mismatched'});
+            console.log(err);
+            res.status(201).send("there is error");
+        }
+        else{
+            res.status(201).send(results);
+        }
+
+    });
+
+});
+
 module.exports = router;

@@ -95,6 +95,34 @@ function handle_request(msg, callback){
                console.log(err);
            }
            break;
+       case 'book':
+
+           console.log(msg.data);
+           var book="INSERT INTO billing (" +
+               "booking_type," +
+               "amount," +
+               "user_id)" +
+               "VALUES " +
+               "('" + msg.data.type+"',"+msg.data.amount+",(select user_id from users where email='"+msg.data.email+"')"+
+               ")";
+
+           try {
+
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       callback(null,results);
+                   }
+               }, book);
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
    }
     
     //just call the file data model
