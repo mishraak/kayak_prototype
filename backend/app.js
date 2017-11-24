@@ -59,7 +59,11 @@ app.use(passport.session());
 
 
 app.use('/routes',routes);
+<<<<<<< HEAD
+app.use('/search',flights);
+=======
 app.use('/flights',flights);
+>>>>>>> master
 app.use('/users',login);
 app.get('/',(req,res)=>{
     res.send("Invalid end point");

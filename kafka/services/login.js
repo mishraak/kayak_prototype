@@ -28,6 +28,18 @@ function handle_request(msg, callback){
            catch (err){
                console.log(err);
            }
+<<<<<<< HEAD
+       break;
+       case 'getallflights':
+
+           console.log(msg.data);
+           var getFlights="select f.flight_id,date_format(arrival, '%h:%i') arrival,date_format(departure, '%h:%i') departure,class_name,prices,origin,destination from flights f join classes c on f.flight_id=c.flight_id where c.class_name='"+msg.data.class+"' and origin='"+msg.data.origin+"' and destination='"+msg.data.destination+"' and DATE(departure)='"+msg.data.fromDate+"'";
+
+           try {
+
+
+               mysql.fetchData(function (err, results) {
+=======
        break;
        case 'getallflights':
            console.log(msg.data);
@@ -92,20 +104,99 @@ function handle_request(msg, callback){
               console.log(user);                                                          
               
               mysql.fetchData(function (err, results) {
+>>>>>>> master
                    if (err) {
                        console.log(err);
                        res.status(500).json({message: "An error occured"});
                    }
                    else {
+<<<<<<< HEAD
+                       callback(null,results);
+                   }
+               }, getFlights);
+=======
                        console.log("adgad",results);
                        callback(null,results);
                    }
                }, user);              
+>>>>>>> master
            }
            catch (err){
                console.log(err);
            }
        break;
+       case 'getallcars':
+
+           console.log(msg.data);
+           var getFlights="select * from cars where location='"+msg.data.Location+"'";
+
+           try {
+
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       callback(null,results);
+                   }
+               }, getFlights);
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
+       case 'getallhotels':
+
+           console.log(msg.data);
+           var getHotels="select * from hotels h join rooms r where r.hotel_id=h.hotel_id and city='"+msg.data.Location+"'";
+
+           try {
+
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       callback(null,results);
+                   }
+               }, getHotels);
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
+       case 'book':
+
+           console.log(msg.data);
+           var book="INSERT INTO billing (" +
+               "booking_type," +
+               "amount," +
+               "user_id)" +
+               "VALUES " +
+               "('" + msg.data.type+"',"+msg.data.amount+",(select user_id from users where email='"+msg.data.email+"')"+
+               ")";
+
+           try {
+
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       callback(null,results);
+                   }
+               }, book);
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
    }
     
     //just call the file data model

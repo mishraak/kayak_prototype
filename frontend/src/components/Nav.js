@@ -17,14 +17,23 @@ class Nav extends Component {
 
                         <input type="email" ref="email" placeholder="Email" onChange={e => this.setState({ email: e.target.value })} style={{"height":"30px","width":"270px","margin":"10px"}}/>
                         <input type="password" ref ="password" placeholder="Password" onChange={e => this.setState({ password: e.target.value })} style={{"height":"30px","width":"270px","margin":"10px"}}/>
+<<<<<<< HEAD
+                        <button onClick={()=>{this.props.handleLogin(this.state)}}  style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Login</button>
+
+=======
                         <button onClick={()=>{this.props.handleLogin(this.state)}}  style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Login</button>                        
                         <button onClick={()=>this.props.route("/signup")} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Signup</button>
+>>>>>>> master
                 </div>
             )
         }
         else
         {
+<<<<<<< HEAD
+            return(<button onClick={()=>{this.props.handleLogout()}}  style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Logout</button>)
+=======
             return(<button style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Logout</button>)
+>>>>>>> master
         }
     }
 
