@@ -7,6 +7,7 @@ import CarsDash from './CarsDash'
 import HotelsDash from './HotelsDash'
 import GetFlights from './GetFlights'
 import SignUp from './SignUp'
+import About from './About'
 import * as API from '../api/API'
 
 class Login extends Component {
@@ -42,8 +43,20 @@ handleSignup(payload) {
     
     //this.props.history.push("/"); 
 
-    }
+}
 
+/*
+handleAbout(payload) {            
+        
+     API.handleAbout(payload)
+            .then(function (response) {
+                console.log(response);                                                                                           
+            })
+            .catch(function (error) {
+              console.log(error);              
+            })
+}    
+*/
  handleDashBoard(dash){
      this.props.updateDash(dash);
  }
@@ -89,6 +102,9 @@ handleSignup(payload) {
                 )}/>
                 <Route exact path="/signup" render={() => (
                     <SignUp route={this.props.history.push} handleSignup={this.handleSignup.bind(this)}/>
+                )}/>
+                <Route exact path="/about" render={() => (
+                    <About route={this.props.history.push}/>
                 )}/>
         </div>
 
