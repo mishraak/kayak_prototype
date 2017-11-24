@@ -25,15 +25,29 @@ var storage = multer.diskStorage({
 
 var upload = multer({storage:storage});
 
-router.post('/register',(req,res,next)=>{
-    console.log('entered');
-    let newUser = {
-        username: req.body.username,
-        firstname: req.body.firstname,
-        lastname:  req.body.lastname,
-        password:  req.body.password,
-        email:     req.body.email
-    };
+router.post('/signup',(req,res,next)=>{
+    console.log('entered');    
+    
+    try {
+            
+            kafka.make_request('login_topic',{data: req.body, type:"signup"}, function(err,results){                
+                console.log(results);
+                if(err){
+                    res.status(404);
+                }
+                else
+                {
+                   res.status(200);                    
+                }
+            });
+
+        }
+        catch (e){
+            console.log(e);            
+        }
+
+
+    /*
     dbmodel.addUser(newUser,(err,user)=>{
         if(err)
         {
@@ -45,6 +59,7 @@ router.post('/register',(req,res,next)=>{
             res.json({success:true,msg:'registered'});
         }
     });
+    */
 });
 
 

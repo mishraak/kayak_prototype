@@ -28,6 +28,7 @@ function handle_request(msg, callback){
            catch (err){
                console.log(err);
            }
+<<<<<<< HEAD
        break;
        case 'getallflights':
 
@@ -38,6 +39,14 @@ function handle_request(msg, callback){
 
 
                mysql.fetchData(function (err, results) {
+=======
+       break;
+       case 'getallflights':
+           console.log(msg.data);
+           var getFlights="select f.flight_id,date_format(arrival, '%h:%i') arrival,date_format(departure, '%h:%i') departure,class_name,prices,origin,destination from flights f join classes c on f.flight_id=c.flight_id where c.class_name='"+msg.data.class+"' and origin='"+msg.data.origin+"' and destination='"+msg.data.destination+"' and DATE(departure)='"+msg.data.fromDate+"'";
+
+           try {
+               mysql.fetchData(function (err, results) {
                    if (err) {
                        console.log(err);
                        res.status(500).json({message: "An error occured"});
@@ -46,6 +55,71 @@ function handle_request(msg, callback){
                        callback(null,results);
                    }
                }, getFlights);
+           }
+           catch (err){
+               console.log(err);
+           }
+       break;
+       case 'signup':
+            console.log("msg data is" + msg.data);
+           try {
+               //var user="select * from users where email='"+msg.data.email+"' and password='"+msg.data.password+"'";
+
+                
+                  var  first_name=   msg.data.first_name,
+                       last_name=    msg.data.last_name,
+                       password=     msg.data.password,
+                       email=        msg.data.email,
+                       city=         msg.data.city,
+                       address=      msg.data.address,
+                       state=        msg.data.state,
+                       zip_code=     msg.data.zip_code,
+                       phone=        msg.data.phone,
+                       trip_id=      msg.data.trip_id,
+                       image=        msg.data.image,
+                       credit_card=  msg.data.credit_card,
+                       user_status=  msg.data.user_status;
+
+                  console.log("first_name " + first_name );              
+                  console.log("last_name " + last_name );
+                  console.log("password " + password );
+
+
+                  var user = "INSERT INTO KAYAK.USERS ( first_name, last_name, email, address, city, state, zip_code, phone," +
+                                                        "trip_id, image, credit_card, user_status, password) VALUES (" +                                                      
+                                                        "\"" + first_name + "\"," + 
+                                                        "\"" + last_name + "\"," + 
+                                                        "\"" + email + "\"," + 
+                                                        "\"" + address + "\"," + 
+                                                        "\"" + city + "\"," + 
+                                                        "\"" + state + "\"," + 
+                                                               zip_code + "," +
+                                                               phone + "," +
+                                                               trip_id + "," +
+                                                        "\"" + image + "\"," + 
+                                                               credit_card + "," +
+                                                               user_status +  "," +
+                                                        "\"" + password + "\");";
+
+              console.log(user);                                                          
+              
+              mysql.fetchData(function (err, results) {
+>>>>>>> master
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+<<<<<<< HEAD
+                       callback(null,results);
+                   }
+               }, getFlights);
+=======
+                       console.log("adgad",results);
+                       callback(null,results);
+                   }
+               }, user);              
+>>>>>>> master
            }
            catch (err){
                console.log(err);

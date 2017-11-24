@@ -54,8 +54,6 @@
   background-color:White !important;
   color: #ff690f;
   text-decoration: none;
- 
-
 }
 .smallMenu :focus{
  color: #ff690f;
@@ -74,7 +72,7 @@
       height:195px;
       width:1100px;
       background-color:#e4e5ea;
-     margin-left:100px;
+     margin-left:200px;
      margin-top:-21px;
      padding-right: 50px;
   }
