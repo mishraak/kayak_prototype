@@ -132,7 +132,7 @@ ALTER TABLE CLASSES
 ADD FOREIGN KEY (flight_id) REFERENCES FLIGHTS(flight_id) 
 ON DELETE CASCADE;
 
-alter table users add column password varchar(300) not null
+ALTER TABLE USERS ADD COLUMN PASSWORD VARCHAR(300) NOT NULL
 
 
 
