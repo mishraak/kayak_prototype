@@ -134,7 +134,37 @@ ON DELETE CASCADE;
 
 alter table users add column password varchar(300) not null
 
+alter table cars add column location varchar(300) not null
 
+INSERT INTO `KAYAK`.`USERS`
+(
+`first_name`,
+`last_name`,
+`email`,
+`address`,
+`city`,
+`state`,
+`zip_code`,
+`phone`,
+`trip_id`,
+`image`,
+`credit_card`,
+`user_status`,
+`password`)
+VALUES
+("Akshay",
+"Mishra",
+"a@gmail.com",
+"3rd Street",
+"San Jose",
+"CA",
+95113,
+6696699,
+273,
+"https://r3.whistleout.com.au/public/images/articles/2016/01/traveller.jpg",
+1234567890,
+1,
+"password");
 
 
 
