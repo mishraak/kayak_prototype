@@ -80,6 +80,61 @@ function handle_request(msg, callback){
                console.log(err);
            }
        break;
+       case 'addflights':
+            console.log("airline" + msg.data.flight_id);
+            var  flight_id=    msg.data.flight_id,
+                 class_name=   msg.data.class_name,
+                 prices=       msg.data.prices,
+                 airline=      msg.data.airline,
+                 departure=    msg.data.departure,
+                 arrival=      msg.data.arrival,
+                 origin=       msg.data.origin,
+                 destination=  msg.data.destination
+
+
+           var addToFlight = "INSERT INTO KAYAK.FLIGHTS (flight_id, airline, departure, arrival, origin, destination) VALUES (" +                                                      
+                                                        "\"" + flight_id + "\"," + 
+                                                        "\"" + airline + "\"," + 
+                                                        "\"" + departure + "\"," + 
+                                                        "\"" + arrival + "\"," + 
+                                                        "\"" + origin + "\"," + 
+                                                        "\"" + destination + "\");";
+
+            var addToClass = "INSERT INTO KAYAK.CLASSES (flight_id, class_name, prices) VALUES (" +                                                      
+                                              "\"" + flight_id + "\"," + 
+                                              "\"" + class_name + "\"," + 
+                                              "\"" + prices + "\");";                                                        
+
+           try {
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                        try {
+                               mysql.fetchData(function (err, results) {
+                                   if (err) {
+                                       console.log(err);
+                                       res.status(500).json({message: "An error occured"});
+                                   }
+                                   else {
+                                       callback(null,results);
+                                       
+                                   }
+                               }, addToClass);
+                           }
+                           catch (err){
+                               console.log(err);
+                           }
+                       callback(null,results);
+                   }
+               }, addToFlight);
+           }
+           catch (err){
+               console.log(err);
+           }
+       break;
        case 'getallflights':
            console.log(msg.data);
            var getFlights="select f.flight_id,date_format(arrival, '%h:%i') arrival,date_format(departure, '%h:%i') departure,class_name,prices,origin,destination from flights f join classes c on f.flight_id=c.flight_id where c.class_name='"+msg.data.class+"' and origin='"+msg.data.origin+"' and destination='"+msg.data.destination+"' and DATE(departure)='"+msg.data.fromDate+"'";
