@@ -67,7 +67,10 @@ class About extends Component {
 
   render(){
       return(
-                <div>
+          <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
+
+              <img src={require("../images/phoenix.png")}/>
+              <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
                     <div>
                       <img src={this.state.image} alt="Profile" />
                     </div>
@@ -98,6 +101,8 @@ class About extends Component {
                         </div>
                     </div>
                 </div>
+          </div>
+
       )
   }
 }

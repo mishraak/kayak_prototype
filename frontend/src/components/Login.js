@@ -6,12 +6,12 @@ import FlightsDash from './FlightsDash'
 import CarsDash from './CarsDash'
 import HotelsDash from './HotelsDash'
 import GetFlights from './GetFlights'
-import AddFlight from './AddFlight'
 import SignUp from './SignUp'
 import About from './About'
 import GetCars from './GetCars'
 import GetHotels from './GetHotels'
 import * as API from '../api/API'
+import MyBookings from './MyBookings'
 
 class Login extends Component {
 
@@ -28,7 +28,6 @@ componentWillMount(){
 
  handleLogout(){
      localStorage.removeItem("username");
-     localStorage.removeItem("user_status");
      this.setState({isLoggedIn:false});
  }
 
@@ -38,14 +37,11 @@ componentWillMount(){
          .then((res) => {
              console.log("status",res.status)
              if(res.status===201){
-                console.log("res");
-                console.log(res);
                  this.setState({isLoggedIn:true});
-                 //localStorage.setItem("username",credentials.email)
-                 localStorage.setItem("username",res.data.user[0].email);
-                 localStorage.setItem("user_status",res.data.user[0].user_status);
-
+                 localStorage.setItem("username",credentials.email)
              }
+
+
          });
  }
 
@@ -63,21 +59,6 @@ handleSignup(payload) {
 
 }
 
-handleAddFlight(payload) {            
-        
-     API.handleAddFlight(payload)
-            .then(function (response) {
-                console.log(response);                                                                                           
-            })
-            .catch(function (error) {
-              console.log(error);              
-            })
-    
-    //this.props.history.push("/"); 
-
-}
-
-
 /*
 handleAbout(payload) {            
         
@@ -93,12 +74,23 @@ handleAbout(payload) {
  handleDashBoard(dash){
      this.props.updateDash(dash);
  }
-
  getSearchResults(criteria) {
 
-     this.setState({SearchCriteria:criteria});
-     this.props.history.push("/GetFlights");
- }
+        this.setState({SearchCriteria:criteria});
+        //alert("abc");
+        //var searchType=this.state.SearchCriteria.searchType;
+        if(criteria.searchType==="Flights"){
+            this.props.history.push("/GetFlights");
+        }
+        else if(criteria.searchType==="Cars"){
+            alert("no ");
+            this.props.history.push("/GetCars");
+        }
+        else if(criteria.searchType==="Hotels"){
+            this.props.history.push("/GetHotels");
+        }
+
+    }
 
   render() {
     return (
@@ -120,10 +112,10 @@ handleAbout(payload) {
                                 <FlightsDash getSearchResults={this.getSearchResults.bind(this)} />
                             </div>
                             <div style={{"display":(this.props.dash[0].cars)? "block":"none"}}>
-                                <CarsDash/>
+                                <CarsDash getSearchResults={this.getSearchResults.bind(this)} />
                             </div>
                             <div style={{"display":(this.props.dash[0].hotels)? "block":"none"}}>
-                                <HotelsDash/>
+                                <HotelsDash getSearchResults={this.getSearchResults.bind(this)}/>
                             </div>
 
                         </div>
@@ -131,13 +123,13 @@ handleAbout(payload) {
                 )}/>
 
                 <Route exact path="/GetFlights" render={() => (
-                    <GetFlights isLoggedIn={this.state.isLoggedIn} handleLogout={this.handleLogout.bind(this)} handleLogin={this.handleLogin.bind(this)} searchCriteria={this.state.SearchCriteria}/>
+                    <GetFlights route={this.props.history.push} isLoggedIn={this.state.isLoggedIn} handleLogout={this.handleLogout.bind(this)} handleLogin={this.handleLogin.bind(this)} searchCriteria={this.state.SearchCriteria}/>
                 )}/>
                 <Route exact path="/GetCars" render={() => (
-                    <GetCars isLoggedIn={this.state.isLoggedIn} handleLogout={this.handleLogout.bind(this)} handleLogin={this.handleLogin.bind(this)} searchCriteria={this.state.SearchCriteria}/>
+                    <GetCars route={this.props.history.push} isLoggedIn={this.state.isLoggedIn} handleLogout={this.handleLogout.bind(this)} handleLogin={this.handleLogin.bind(this)} searchCriteria={this.state.SearchCriteria}/>
                 )}/>
                 <Route exact path="/GetHotels" render={() => (
-                    <GetHotels isLoggedIn={this.state.isLoggedIn} handleLogout={this.handleLogout.bind(this)} handleLogin={this.handleLogin.bind(this)} searchCriteria={this.state.SearchCriteria}/>
+                    <GetHotels route={this.props.history.push} isLoggedIn={this.state.isLoggedIn} handleLogout={this.handleLogout.bind(this)} handleLogin={this.handleLogin.bind(this)} searchCriteria={this.state.SearchCriteria}/>
                 )}/>
                 <Route exact path="/signup" render={() => (
                     <SignUp route={this.props.history.push} handleSignup={this.handleSignup.bind(this)}/>
@@ -145,9 +137,9 @@ handleAbout(payload) {
                 <Route exact path="/about" render={() => (
                     <About route={this.props.history.push}/>
                 )}/>
-                <Route exact path="/AddFlight" render={() => (
-                    <AddFlight route={this.props.history.push} handleAddFlight={this.handleAddFlight.bind(this)} />
-                )}/>
+            <Route exact path="/myBookings" render={() => (
+                <MyBookings route={this.props.history.push}/>
+            )}/>
         </div>
 
 

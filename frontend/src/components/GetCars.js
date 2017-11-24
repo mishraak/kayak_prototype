@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Nav from './Nav';
 import * as API from '../api/API';
+import BookCar from './BookCar';
 
 
 class GetCars extends Component {
@@ -24,7 +25,7 @@ class GetCars extends Component {
                 <img src={require("../images/phoenix.png")}/>
                 <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
                     <div style={{"marginLeft":"200px"}}>
-                        <Nav  isLoggedIn={this.props.isLoggedIn} handleLogin={this.props.handleLogin}/>
+                        <Nav  isLoggedIn={this.props.isLoggedIn} route={this.props.route} handleLogin={this.props.handleLogin}/>
                     </div>
                     <div className="row">
                         <div className="col-md-2">
@@ -70,7 +71,7 @@ class GetCars extends Component {
 
                                             <td >
                                                 <b>${car.price}</b>
-                                                {this.props.isLoggedIn?<button className="btn-danger">Book</button>:""}
+                                                {this.props.isLoggedIn?<BookCar details={[car]}/>:""}
 
                                             </td>
                                         </tr>
