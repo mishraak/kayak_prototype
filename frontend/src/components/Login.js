@@ -98,7 +98,7 @@ handleAbout(payload) {
                 )}/>
 
                 <Route exact path="/GetFlights" render={() => (
-                    <GetFlights isLoggedIn={this.state.isLoggedIn} handleLogin={this.handleLogin.bind(this)} searchCriteria={this.state.SearchCriteria}/>
+                    <GetFlights isLoggedIn={this.state.isLoggedIn} handleLogin={this.handleLogin.bind(this)} route={this.props.history.push}  searchCriteria={this.state.SearchCriteria}/>
                 )}/>
                 <Route exact path="/signup" render={() => (
                     <SignUp route={this.props.history.push} handleSignup={this.handleSignup.bind(this)}/>
