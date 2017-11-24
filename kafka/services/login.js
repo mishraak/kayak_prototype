@@ -10,10 +10,61 @@ function handle_request(msg, callback){
 
    switch(msg.type){
        case 'login':
+         console.log(msg.data);
+         try {
+             var user="select * from users where email='"+msg.data.email+"' and password='"+msg.data.password+"'";
+             mysql.fetchData(function (err, results) {
+                 if (err) {
+                     console.log(err);
+                     res.status(500).json({message: "An error occured"});
+                 }
+                 else {
+                     console.log("adgad",results);
+                     callback(null,results);
+                 }
+             }, user);
+         }
+         catch (err){
+             console.log(err);
+         }
+        break;
+        case 'about':
             console.log(msg.data);
            try {
+               var user="select email, image, password, first_name, last_name, address, city, state from USERS where email='"+msg.data+"'";
+               console.log(msg.data);
+               
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       console.log("adgad",results);
+                       callback(null,results);
+                   }
+               }, user);
+           }
+           catch (err){
+               console.log(err);
+           }
+          break;
+               case 'aboutChange':
+            console.log(msg.data);
+           try {
+               var user="UPDATE USERS" + 
+                            " SET " +
+                              "password=\"" + msg.data.password + "\", "+
+                              "first_name=\"" + msg.data.first_name + "\", "+
+                              "last_name=\"" + msg.data.last_name + "\", "+
+                              "address=\"" + msg.data.address + "\", "+
+                              "city=\"" + msg.data.city + "\", "+
+                              "state=\"" + msg.data.state + "\" "+                             
+                            "WHERE email = \"" + msg.data.email + "\";";
 
-               var user="select * from users where email='"+msg.data.email+"' and password='"+msg.data.password+"'";
+
+               console.log(msg.user);
+               
                mysql.fetchData(function (err, results) {
                    if (err) {
                        console.log(err);
@@ -50,9 +101,7 @@ function handle_request(msg, callback){
        break;
        case 'signup':
             console.log("msg data is" + msg.data);
-           try {
-               //var user="select * from users where email='"+msg.data.email+"' and password='"+msg.data.password+"'";
-
+           try {               
                 
                   var  first_name=   msg.data.first_name,
                        last_name=    msg.data.last_name,
@@ -107,10 +156,6 @@ function handle_request(msg, callback){
            }
        break;
    }
-    
-    //just call the file data model
-
-   // callback(null, res);
 }
 
 exports.handle_request = handle_request;

@@ -48,6 +48,30 @@ export const handleSignup = (payload) =>
         });
 
 
+export const handleAbout = (payload) =>    
+    axios.post(api + '/users/about',{email:payload})
+        .then(res => {
+            console.log('response from server chck', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const handleAboutChange = (payload) =>
+    
+    axios.post(api + '/users/aboutChange',{payload:payload})
+        .then(res => {
+            console.log('response from server chck', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
 // export const getmyfiles = () =>
 //     fetch(`${api}/files/myfiles`, {
 //         method: 'get',
