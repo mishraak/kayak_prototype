@@ -2,11 +2,8 @@ const express = require('express');
 const router = express.Router();
 var kafka = require('./kafka/client');
 
-<<<<<<< HEAD
+
 router.post('/flights',(req,res,next)=>{
-=======
-router.post('/',(req,res,next)=>{
->>>>>>> master
     kafka.make_request('login_topic',{"type":"getallflights",data:req.body}, function(err,results){
 
         console.log('in kafka callback flights/ from flights.js line 8');
@@ -24,7 +21,7 @@ router.post('/',(req,res,next)=>{
 
 });
 
-<<<<<<< HEAD
+
 router.post('/cars',(req,res,next)=>{
     kafka.make_request('login_topic',{"type":"getallcars",data:req.body}, function(err,results){
 
@@ -79,6 +76,5 @@ router.post('/book',(req,res,next)=>{
 
 });
 
-=======
->>>>>>> master
+
 module.exports = router;

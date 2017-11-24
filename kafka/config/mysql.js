@@ -6,11 +6,7 @@ var mysql = require('mysql');
     var pool = mysql.createPool({
         host     : 'localhost',
         user     : 'root',
-<<<<<<< HEAD
-        password : 'mysqlpassword',
-=======
         password : 'root',
->>>>>>> master
         database : 'Kayak',
         port	 : 3306,
         connectionLimit:500

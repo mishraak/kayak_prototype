@@ -12,11 +12,7 @@ const db = mysql.createPool({
     connectionLimit:50,
     host:'localhost',
     user:'root',
-<<<<<<< HEAD
-    password:'mysqlpassword',
-=======
     password:'root',
->>>>>>> master
     database:'kayak'
 });
 db.getConnection((err)=>{

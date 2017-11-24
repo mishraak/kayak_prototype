@@ -40,8 +40,6 @@ export default class FormDialog extends React.Component {
                     <DialogTitle><i className="fa fa-user" aria-hidden="true"> Book</i></DialogTitle>
                     <DialogContent>
                         <table className="table table-striped">
-
-
                             <tbody>
                             <tr className="row"   >
                                 <td >

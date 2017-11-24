@@ -8,10 +8,7 @@ class FlightsDash extends Component {
         fromDate:'',
         toDate:'',
         class:'Economy',
-<<<<<<< HEAD
         searchType:'Flights'
-=======
->>>>>>> master
     };
 
 
@@ -28,12 +25,7 @@ class FlightsDash extends Component {
               <option className="optionField">Economy</option>
               <option className="optionField">Business</option>
         </select>
-<<<<<<< HEAD
-        <img src={require("../images/enter.png")} onClick={()=>this.props.getSearchResults(this.state)} style={{"height":"55px","width":"55px","marginTop":"58px","marginRight":"0px","float":"right"}}/>
-=======
         <img src={require("../images/enter.png")} alt="Flights" onClick={()=>this.props.getSearchResults(this.state)} style={{"height":"55px","width":"55px","marginTop":"58px","marginRight":"0px","float":"right"}}/>
->>>>>>> master
-
       </div>
     );
   }

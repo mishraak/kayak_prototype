@@ -31,11 +31,7 @@ class MainDashBoard extends Component
                    <li className="smallMenu" onClick={this.changeDash.bind(this,"hotels")}>
                    <div className="listunit" style={{"display":"flex", "flexDirection":"row"}}>     
                                 <div className="icon" style={{"height":"30px","width":"30px"}}>
-<<<<<<< HEAD
-                                        <img src={require("../images/hotels.png")} style={{"height":"25px","width":"30px"}} />
-=======
                                         <img src={require("../images/hotels.png")} alt="Hotels" style={{"height":"25px","width":"30px"}} />
->>>>>>> master
                                 </div>
                                 <a href="#" className="menuBlock" >Hotels</a>
                    </div>

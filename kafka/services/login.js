@@ -10,10 +10,30 @@ function handle_request(msg, callback){
 
    switch(msg.type){
        case 'login':
+         console.log(msg.data);
+         try {
+             var user="select * from users where email='"+msg.data.email+"' and password='"+msg.data.password+"'";
+             mysql.fetchData(function (err, results) {
+                 if (err) {
+                     console.log(err);
+                     res.status(500).json({message: "An error occured"});
+                 }
+                 else {
+                     console.log("adgad",results);
+                     callback(null,results);
+                 }
+             }, user);
+         }
+         catch (err){
+             console.log(err);
+         }
+        break;
+        case 'about':
             console.log(msg.data);
            try {
-
-               var user="select * from users where email='"+msg.data.email+"' and password='"+msg.data.password+"'";
+               var user="select email, image, password, first_name, last_name, address, city, state from USERS where email='"+msg.data+"'";
+               console.log(msg.data);
+               
                mysql.fetchData(function (err, results) {
                    if (err) {
                        console.log(err);
@@ -28,18 +48,37 @@ function handle_request(msg, callback){
            catch (err){
                console.log(err);
            }
-<<<<<<< HEAD
-       break;
-       case 'getallflights':
-
-           console.log(msg.data);
-           var getFlights="select f.flight_id,date_format(arrival, '%h:%i') arrival,date_format(departure, '%h:%i') departure,class_name,prices,origin,destination from flights f join classes c on f.flight_id=c.flight_id where c.class_name='"+msg.data.class+"' and origin='"+msg.data.origin+"' and destination='"+msg.data.destination+"' and DATE(departure)='"+msg.data.fromDate+"'";
-
+          break;
+               case 'aboutChange':
+            console.log(msg.data);
            try {
+               var user="UPDATE USERS" + 
+                            " SET " +
+                              "password=\"" + msg.data.password + "\", "+
+                              "first_name=\"" + msg.data.first_name + "\", "+
+                              "last_name=\"" + msg.data.last_name + "\", "+
+                              "address=\"" + msg.data.address + "\", "+
+                              "city=\"" + msg.data.city + "\", "+
+                              "state=\"" + msg.data.state + "\" "+                             
+                            "WHERE email = \"" + msg.data.email + "\";";
 
 
+               console.log(msg.user);
+               
                mysql.fetchData(function (err, results) {
-=======
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       console.log("adgad",results);
+                       callback(null,results);
+                   }
+               }, user);
+           }
+           catch (err){
+               console.log(err);
+           }
        break;
        case 'getallflights':
            console.log(msg.data);
@@ -62,9 +101,7 @@ function handle_request(msg, callback){
        break;
        case 'signup':
             console.log("msg data is" + msg.data);
-           try {
-               //var user="select * from users where email='"+msg.data.email+"' and password='"+msg.data.password+"'";
-
+           try {               
                 
                   var  first_name=   msg.data.first_name,
                        last_name=    msg.data.last_name,
@@ -104,28 +141,21 @@ function handle_request(msg, callback){
               console.log(user);                                                          
               
               mysql.fetchData(function (err, results) {
->>>>>>> master
                    if (err) {
                        console.log(err);
                        res.status(500).json({message: "An error occured"});
                    }
                    else {
-<<<<<<< HEAD
-                       callback(null,results);
-                   }
-               }, getFlights);
-=======
                        console.log("adgad",results);
                        callback(null,results);
                    }
                }, user);              
->>>>>>> master
            }
            catch (err){
                console.log(err);
            }
        break;
-       case 'getallcars':
+      case 'getallcars':
 
            console.log(msg.data);
            var getFlights="select * from cars where location='"+msg.data.Location+"'";
@@ -197,11 +227,12 @@ function handle_request(msg, callback){
                console.log(err);
            }
            break;
-   }
-    
-    //just call the file data model
 
-   // callback(null, res);
+
+
+
+
+   }
 }
 
 exports.handle_request = handle_request;
