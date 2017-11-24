@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const api = process.env.REACT_APP_CONTACTS_API_URL || 'http://localhost:3300';
 
+
 const headers = {
     'Accept': 'application/json'
 };
@@ -25,9 +26,7 @@ export const doLogin = (payload) =>
         });
 
 export const getflights = (searchCriteria) =>
-
     axios.post(api + '/search/flights/',searchCriteria)
-
         .then(res => {
             console.log('response from server chck', res.data);
             return res;
@@ -36,7 +35,6 @@ export const getflights = (searchCriteria) =>
             console.log("This is error");
             return error;
         });
-
 
 export const getCars = (searchCriteria) =>
     axios.post(api + '/search/cars/',searchCriteria)
@@ -48,23 +46,8 @@ export const getCars = (searchCriteria) =>
             console.log("This is error");
             return error;
         });
-
 export const getHotels = (searchCriteria) =>
-     axios.post(api + '/search/hotels/',searchCriteria)
-         .then(res => {
-             console.log('response from server chck', res.data);
-             return res;
-         })
-         .catch(error => {
-             console.log("This is error");
-             return error;
-         });
-
-
-
-export const handleSignup = (payload) =>
-    
-    axios.post(api + '/users/signup',payload)
+    axios.post(api + '/search/hotels/',searchCriteria)
         .then(res => {
             console.log('response from server chck', res.data);
             return res;
@@ -73,46 +56,10 @@ export const handleSignup = (payload) =>
             console.log("This is error");
             return error;
         });
-
 export const book = (payload) =>
     axios.post(api + '/search/book/',payload,{withCredentials:true})
         .then(res => {
             console.log('response from server chck', res.data);
-            return res;
-        })
-        .catch(error => {
-            console.log("This is error");
-            return error;
-        });
-
-export const handleAbout = (payload) =>    
-    axios.post(api + '/users/about',{email:payload})
-        .then(res => {
-            console.log('response from server chck', res.data);
-            return res;
-        })
-        .catch(error => {
-            console.log("This is error");
-            return error;
-        });
-
-export const handleAboutChange = (payload) =>
-    
-    axios.post(api + '/users/aboutChange',{payload:payload})
-        .then(res => {
-            console.log('response from server chck', res.data);
-            return res;
-        })
-        .catch(error => {
-            console.log("This is error");
-            return error;
-        });
-
-export const getUserBookings = () =>
-
-    axios.post(api + '/search/userBookings',{email:localStorage.getItem("username")})
-        .then(res => {
-            console.log('response from getUserBookings', res.data);
             return res;
         })
         .catch(error => {

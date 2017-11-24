@@ -2,7 +2,7 @@ const mysql = require('mysql');
 const bcrypt = require('bcryptjs');
 var db = mysql.createPool({
     host     : 'localhost',
-    user     : 'root',
+    user     : 'root',    
     password : 'mysqlpassword',
     database : 'kayak',
     port	 : 3306,

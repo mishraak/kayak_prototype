@@ -25,7 +25,7 @@ export default class FormDialog extends React.Component {
         console.log("action",event.target.innerHTML);
         if(event.target.innerHTML==="Confirm Booking"){
             console.log("book flight add",this.state.username);
-            API.book({amount:this.props.details[0].prices,type:"Flight",email:window.localStorage.getItem("username")})
+            API.book({amount:this.props.details[0].price,type:"Flight",email:window.localStorage.getItem("username")})
         }
         //console.log(this.state.textFieldValue);
     };
@@ -40,25 +40,19 @@ export default class FormDialog extends React.Component {
                     <DialogTitle><i className="fa fa-user" aria-hidden="true"> Book</i></DialogTitle>
                     <DialogContent>
                         <table className="table table-striped">
+
+
                             <tbody>
                             <tr className="row"   >
+
                                 <td >
-                                    Flight
+                                    Name
                                 </td>
                                 <td >
-                                    Departure time
+                                    Type
                                 </td>
                                 <td >
-                                    Arrival time
-                                </td>
-                                <td >
-                                    Origin
-                                </td>
-                                <td >
-                                    Destination
-                                </td>
-                                <td >
-                                    Class
+                                    Specifications
                                 </td>
                                 <td >
                                     Price
@@ -66,31 +60,22 @@ export default class FormDialog extends React.Component {
 
                             </tr>
 
-                            {this.props.details.map((flight,index) =>
+                            {this.props.details.map((car,index) =>
 
-                                <tr className="row" key={flight}  >
+                                <tr className="row" key={car}  >
 
                                     <td >
-                                        {flight.flight_id}
+                                        {car.car_name}
                                     </td>
                                     <td >
-                                        {flight.arrival}
+                                        {car.car_type}
                                     </td>
                                     <td >
-                                        {flight.departure}
+                                        {car.details}
                                     </td>
-                                    <td >
-                                        {flight.origin}
-                                    </td>
-                                    <td >
-                                        {flight.destination}
-                                    </td>
-                                    <td >
-                                        {flight.class_name}
-                                    </td>
-                                    <td >
-                                        <b>${flight.prices}</b>
 
+                                    <td >
+                                        <b>${car.price}</b>
 
                                     </td>
                                 </tr>

@@ -13,7 +13,7 @@
   },
   "author": "Huzaifa Aejaz",
   "license": "ISC",
-  "dependencies": {
+  "dependencies": {    
     "bcryptjs": "*",
     "body-parser": "*",
     "connect-flash": "*",

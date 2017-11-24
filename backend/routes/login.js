@@ -25,27 +25,73 @@ var storage = multer.diskStorage({
 
 var upload = multer({storage:storage});
 
-router.post('/register',(req,res,next)=>{
-    console.log('entered');
-    let newUser = {
-        username: req.body.username,
-        firstname: req.body.firstname,
-        lastname:  req.body.lastname,
-        password:  req.body.password,
-        email:     req.body.email
-    };
-    dbmodel.addUser(newUser,(err,user)=>{
-        if(err)
-        {
-            console.log(err);
-            res.json({success:false,msg:'failed to register user'})
+router.post('/signup',(req,res,next)=>{
+    console.log('signup');    
+    
+    try {
+            
+            kafka.make_request('login_topic',{data: req.body, type:"signup"}, function(err,results){                
+                console.log(results);
+                if(err){
+                    res.status(404);
+                }
+                else
+                {
+                   res.status(200);                    
+                }
+            });
+
         }
-        else
-        {
-            res.json({success:true,msg:'registered'});
+        catch (e){
+            console.log(e);            
         }
-    });
 });
+
+router.post('/about',(req,res,next)=>{
+    console.log('about');    
+    
+    try {
+            
+            kafka.make_request('login_topic',{data: req.body.email, type:"about"}, function(err,results){                
+                console.log(results);
+                if(err){
+                    res.status(404);
+                }
+                else
+                {
+                   res.status(200).send(results);                    
+                }
+            });
+
+        }
+        catch (e){
+            console.log(e);            
+        }
+});
+
+router.post('/aboutChange',(req,res,next)=>{
+    console.log('aboutChange');    
+    
+    try {            
+            kafka.make_request('login_topic',{data: req.body.payload, type:"aboutChange"}, function(err,results){                
+                console.log(results);
+                if(err){
+                    res.status(404);
+                }
+                else
+                {
+                   res.status(200);                    
+                }
+            });
+
+        }
+        catch (e){
+            console.log(e);            
+        }
+});
+
+
+
 
 
 

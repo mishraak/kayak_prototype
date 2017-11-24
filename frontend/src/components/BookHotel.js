@@ -9,6 +9,7 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import * as API from '../api/API';
 
+
 export default class FormDialog extends React.Component {
     state = {
         open: false,
@@ -25,7 +26,7 @@ export default class FormDialog extends React.Component {
         console.log("action",event.target.innerHTML);
         if(event.target.innerHTML==="Confirm Booking"){
             console.log("book flight add",this.state.username);
-            API.book({amount:this.props.details[0].prices,type:"Flight",email:window.localStorage.getItem("username")})
+            API.book({amount:this.props.details[0].price,type:"Hotel",email:window.localStorage.getItem("username")})
         }
         //console.log(this.state.textFieldValue);
     };
@@ -40,25 +41,19 @@ export default class FormDialog extends React.Component {
                     <DialogTitle><i className="fa fa-user" aria-hidden="true"> Book</i></DialogTitle>
                     <DialogContent>
                         <table className="table table-striped">
+
+
                             <tbody>
                             <tr className="row"   >
+
                                 <td >
-                                    Flight
+                                    Name
                                 </td>
                                 <td >
-                                    Departure time
+                                    Stars
                                 </td>
                                 <td >
-                                    Arrival time
-                                </td>
-                                <td >
-                                    Origin
-                                </td>
-                                <td >
-                                    Destination
-                                </td>
-                                <td >
-                                    Class
+                                    RoomType
                                 </td>
                                 <td >
                                     Price
@@ -66,31 +61,22 @@ export default class FormDialog extends React.Component {
 
                             </tr>
 
-                            {this.props.details.map((flight,index) =>
+                            {this.props.details.map((hotel,index) =>
 
-                                <tr className="row" key={flight}  >
+                                <tr className="row" key={hotel}  >
 
                                     <td >
-                                        {flight.flight_id}
+                                        {hotel.hotel_name}
                                     </td>
                                     <td >
-                                        {flight.arrival}
+                                        {hotel.stars}
                                     </td>
                                     <td >
-                                        {flight.departure}
+                                        {hotel.room_type}
                                     </td>
-                                    <td >
-                                        {flight.origin}
-                                    </td>
-                                    <td >
-                                        {flight.destination}
-                                    </td>
-                                    <td >
-                                        {flight.class_name}
-                                    </td>
-                                    <td >
-                                        <b>${flight.prices}</b>
 
+                                    <td >
+                                        <b>${hotel.price}</b>
 
                                     </td>
                                 </tr>
