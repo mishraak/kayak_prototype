@@ -114,7 +114,6 @@ CREATE TABLE ADMINS (
     city VARCHAR(50) NOT NULL,
     state VARCHAR(50) NOT NULL,
     zip_code INT(6) NOT NULL
-   
 );
 
 

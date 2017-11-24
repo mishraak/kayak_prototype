@@ -12,7 +12,7 @@ const db = mysql.createPool({
     connectionLimit:50,
     host:'localhost',
     user:'root',
-    password:'mysqlpassword',
+    password:'root',
     database:'kayak'
 });
 db.getConnection((err)=>{

@@ -21,7 +21,7 @@ class GetFlights extends Component {
 
             <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
 
-                <img src={require("../images/phoenix.png")}/>
+                <img src={require("../images/phoenix.png")} alt="GetFlights" />
                 <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
                     <div style={{"marginLeft":"200px"}}>
                         <Nav  isLoggedIn={this.props.isLoggedIn} handleLogin={this.props.handleLogin}/>

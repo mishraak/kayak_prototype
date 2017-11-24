@@ -2,10 +2,6 @@ var connection =  new require('./kafka/Connection');
 var login = require('./services/login');
 var mongoose = require('mongoose');
 var config = require('./config/mongoConfig');
-
-
-
-
 var topic_name = 'login_topic';
 
 

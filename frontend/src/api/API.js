@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const api = process.env.REACT_APP_CONTACTS_API_URL || 'http://localhost:3300';
 
-
 const headers = {
     'Accept': 'application/json'
 };
@@ -36,6 +35,17 @@ export const getflights = (searchCriteria) =>
             return error;
         });
 
+export const handleSignup = (payload) =>
+    
+    axios.post(api + '/users/signup',payload)
+        .then(res => {
+            console.log('response from server chck', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
 
 
 // export const getmyfiles = () =>

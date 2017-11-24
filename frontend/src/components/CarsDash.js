@@ -9,7 +9,7 @@ class CarsDash extends Component {
      <input type="text" className="formFields" style={{"marginLeft":"100px"}}/>
      <input type="date" className="formFields"/>
      <input type="date" className="formFields"/>
-    <img src={require("../images/enter.png")} style={{"height":"55px","width":"55px","float":"right","marginTop":"58px","marginRight":"120px"}}/>
+    <img src={require("../images/enter.png")} alt="Cars" style={{"height":"55px","width":"55px","float":"right","marginTop":"58px","marginRight":"120px"}}/>
       </div>
     );
   }
