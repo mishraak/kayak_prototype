@@ -1,3 +1,10 @@
+#####TODO
+
+- Add static page for hotel profile just for the screenshot
+
+
+
+
 ##### Description
 
 The repository contains all code related to the Kayak prototype.
