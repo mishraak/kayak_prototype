@@ -10,6 +10,7 @@ import SignUp from './SignUp'
 import About from './About'
 import GetCars from './GetCars'
 import GetHotels from './GetHotels'
+import AddFlight from './AddFlight'
 import * as API from '../api/API'
 import MyBookings from './MyBookings'
 

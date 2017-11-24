@@ -10,6 +10,7 @@ function handle_request(msg, callback){
 
    switch(msg.type){
        case 'login':
+          console.log("msg.data");
          console.log(msg.data);
          try {
              var user="select * from users where email='"+msg.data.email+"' and password='"+msg.data.password+"'";

@@ -6,7 +6,9 @@ const headers = {
     'Accept': 'application/json'
 };
 
+/*
 export const doLogin = (payload) =>
+    
     fetch(`${api}/users/dologin`, {
         method: 'POST',
         headers: {
@@ -23,6 +25,20 @@ export const doLogin = (payload) =>
             console.log("This is error");
             return error;
         });
+
+*/
+
+export const doLogin = (payload) =>    
+    axios.post(api + '/users/dologin',payload)
+        .then(res => {
+            console.log('response from server chck', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        }); 
+
 
 export const handleAddFlight = (payload) =>    
     axios.post(api + '/search/addflights',{data : payload})
