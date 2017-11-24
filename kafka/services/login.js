@@ -51,6 +51,50 @@ function handle_request(msg, callback){
                console.log(err);
            }
        break;
+       case 'getallcars':
+
+           console.log(msg.data);
+           var getFlights="select * from cars where location='"+msg.data.Location+"'";
+
+           try {
+
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       callback(null,results);
+                   }
+               }, getFlights);
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
+       case 'getallhotels':
+
+           console.log(msg.data);
+           var getHotels="select * from hotels h join rooms r where r.hotel_id=h.hotel_id and city='"+msg.data.Location+"'";
+
+           try {
+
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       callback(null,results);
+                   }
+               }, getHotels);
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
    }
     
     //just call the file data model

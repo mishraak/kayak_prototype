@@ -8,6 +8,7 @@ class FlightsDash extends Component {
         fromDate:'',
         toDate:'',
         class:'Economy',
+        searchType:'Flights'
     };
 
 

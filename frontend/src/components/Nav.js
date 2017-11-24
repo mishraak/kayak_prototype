@@ -25,7 +25,7 @@ class Nav extends Component {
         }
         else
         {
-            return(<button style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Logout</button>)
+            return(<button onClick={()=>{this.props.handleLogout()}}  style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Logout</button>)
         }
     }
 

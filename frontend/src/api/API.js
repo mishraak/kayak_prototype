@@ -26,7 +26,38 @@ export const doLogin = (payload) =>
         });
 
 export const getflights = (searchCriteria) =>
-    axios.post(api + '/flights/',searchCriteria)
+    axios.post(api + '/search/flights/',searchCriteria)
+        .then(res => {
+            console.log('response from server chck', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const getCars = (searchCriteria) =>
+    axios.post(api + '/search/cars/',searchCriteria)
+        .then(res => {
+            console.log('response from server chck', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+export const getHotels = (searchCriteria) =>
+    axios.post(api + '/search/hotels/',searchCriteria)
+        .then(res => {
+            console.log('response from server chck', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+export const book = (payload) =>
+    axios.post(api + '/search/hotels/',payload,{withCredentials:true})
         .then(res => {
             console.log('response from server chck', res.data);
             return res;
