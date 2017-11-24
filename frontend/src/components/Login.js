@@ -43,8 +43,20 @@ handleSignup(payload) {
     
     //this.props.history.push("/"); 
 
-    }
+}
 
+/*
+handleAbout(payload) {            
+        
+     API.handleAbout(payload)
+            .then(function (response) {
+                console.log(response);                                                                                           
+            })
+            .catch(function (error) {
+              console.log(error);              
+            })
+}    
+*/
  handleDashBoard(dash){
      this.props.updateDash(dash);
  }

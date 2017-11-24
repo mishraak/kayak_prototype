@@ -155,6 +155,7 @@ function handle_request(msg, callback){
                console.log(err);
            }
        break;
+
       case 'getallcars':
 
            console.log(msg.data);
@@ -227,11 +228,6 @@ function handle_request(msg, callback){
                console.log(err);
            }
            break;
-
-
-
-
-
    }
 }
 
