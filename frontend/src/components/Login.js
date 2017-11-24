@@ -8,6 +8,8 @@ import HotelsDash from './HotelsDash'
 import GetFlights from './GetFlights'
 import SignUp from './SignUp'
 import About from './About'
+import GetCars from './GetCars'
+import GetHotels from './GetHotels'
 import * as API from '../api/API'
 
 class Login extends Component {
@@ -16,6 +18,17 @@ class Login extends Component {
      SearchCriteria:[],
      isLoggedIn:false
  };
+
+componentWillMount(){
+     if(window.localStorage.getItem("username") ){
+         this.setState({isLoggedIn:true});
+     }
+ }
+
+ handleLogout(){
+     localStorage.removeItem("username");
+     this.setState({isLoggedIn:false});
+ }
 
  handleLogin(credentials){
 
@@ -76,7 +89,7 @@ handleAbout(payload) {
                         <img src={require("../images/phoenix.png")} alt="Login" />
                         <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
                             <div style={{"marginLeft":"200px"}}>
-                                <Nav isLoggedIn={this.state.isLoggedIn} route={this.props.history.push} handleLogin={this.handleLogin.bind(this)}/>
+                                <Nav isLoggedIn={this.state.isLoggedIn} route={this.props.history.push} handleLogout={this.handleLogout.bind(this)} handleLogin={this.handleLogin.bind(this)}/>
                             </div>
                             <div  style={{"color":"white","fontSize":"28px","fontWeight":"600","fontFamily":"HelveticaNeue-Bold,Helvetica,Arial,sans-serif","marginLeft":"10px"}}>
                                 Search hundreds of travel sites at once.
@@ -98,7 +111,13 @@ handleAbout(payload) {
                 )}/>
 
                 <Route exact path="/GetFlights" render={() => (
-                    <GetFlights isLoggedIn={this.state.isLoggedIn} handleLogin={this.handleLogin.bind(this)} route={this.props.history.push}  searchCriteria={this.state.SearchCriteria}/>
+                    <GetFlights isLoggedIn={this.state.isLoggedIn} handleLogout={this.handleLogout.bind(this)} handleLogin={this.handleLogin.bind(this)} searchCriteria={this.state.SearchCriteria}/>
+                )}/>
+                <Route exact path="/GetCars" render={() => (
+                    <GetCars isLoggedIn={this.state.isLoggedIn} handleLogout={this.handleLogout.bind(this)} handleLogin={this.handleLogin.bind(this)} searchCriteria={this.state.SearchCriteria}/>
+                )}/>
+                <Route exact path="/GetHotels" render={() => (
+                    <GetHotels isLoggedIn={this.state.isLoggedIn} handleLogout={this.handleLogout.bind(this)} handleLogin={this.handleLogin.bind(this)} searchCriteria={this.state.SearchCriteria}/>
                 )}/>
                 <Route exact path="/signup" render={() => (
                     <SignUp route={this.props.history.push} handleSignup={this.handleSignup.bind(this)}/>

@@ -38,7 +38,7 @@ class SignUp extends Component{
                     <label>Credit Card</label><input type="number" ref ="credit_card" value="1234567890" onChange={e => this.setState({ credit_card: e.target.value })} style={{"height":"30px","width":"270px","margin":"10px"}}/><br/>
                     <input type="hidden" ref ="user_status" value="1" onChange={e => this.setState({ trip_id: e.target.value })} style={{"height":"30px","width":"270px","margin":"10px"}}/><br/>
                     <button onClick={()=>{this.props.handleSignup(this.state)}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Signup</button><br/>                                                   
-                    <button onClick={()=>{this.props.routes("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Back</button>                                                   
+                    <button onClick={()=>{this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>                                                   
                 </div>
             )
         }

@@ -28,7 +28,7 @@ class Nav extends Component {
         {
             return(
                 <div>
-                    <button style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Logout</button>
+                    <button onClick={()=>{this.props.handleLogout()}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Logout</button>
                     <button onClick={()=>this.props.route("/about")} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>About</button>
             </div>
             )

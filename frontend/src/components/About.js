@@ -93,6 +93,7 @@ class About extends Component {
                             <div className='row'>
                               <button className='update-info' onClick={this.updateInfo}>Update Information</button>
                               <button className='cancel-update-info' onClick={()=>{this.props.history.push('/about');}}>Cancel</button>
+                              <button onClick={()=>{this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>
                             </div>
                         </div>
                     </div>
