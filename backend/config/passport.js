@@ -7,12 +7,11 @@ const passport = require('passport');
 var kafka = require('../routes/kafka/client');
 var LocalStrategy = require("passport-local").Strategy;
 
-
 const db = mysql.createPool({
     connectionLimit:50,
     host:'localhost',
     user:'root',
-    password:'root',
+    password:'admin',
     database:'kayak'
 });
 db.getConnection((err)=>{
@@ -46,8 +45,6 @@ module.exports = function(passport){
             done(e,{});
         }
     }));
-
-
 
 };
 
