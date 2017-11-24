@@ -26,6 +26,20 @@ componentWillMount(){
      }
  }
 
+handleAddFlight(payload) {            
+        
+     API.handleAddFlight(payload)
+            .then(function (response) {
+                console.log(response);                                                                                           
+            })
+            .catch(function (error) {
+              console.log(error);              
+            })
+    
+    //this.props.history.push("/"); 
+
+}
+
  handleLogout(){
      localStorage.removeItem("username");
      this.setState({isLoggedIn:false});
@@ -137,9 +151,12 @@ handleAbout(payload) {
                 <Route exact path="/about" render={() => (
                     <About route={this.props.history.push}/>
                 )}/>
-            <Route exact path="/myBookings" render={() => (
-                <MyBookings route={this.props.history.push}/>
-            )}/>
+                <Route exact path="/myBookings" render={() => (
+                   <MyBookings route={this.props.history.push}/>
+                )}/>
+                <Route exact path="/AddFlight" render={() => (
+                    <AddFlight route={this.props.history.push} handleAddFlight={this.handleAddFlight.bind(this)} />
+                )}/>
         </div>
 
 
