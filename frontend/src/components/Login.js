@@ -14,7 +14,7 @@ import AddFlight from './AddFlight'
 import AddHotel from './AddHotel'
 import * as API from '../api/API'
 import MyBookings from './MyBookings'
-import AddFlight from './AddFlight'
+
 
 class Login extends Component {
 
@@ -57,6 +57,7 @@ handleAddHotel(payload) {
 
  handleLogout(){
      localStorage.removeItem("username");
+     localStorage.removeItem("user_status");
      this.setState({isLoggedIn:false});
  }
 
@@ -66,9 +67,10 @@ handleAddHotel(payload) {
          .then((res) => {
              console.log("status",res.status);
              if(res.status===201){
+                console.log("username" + res.data.email);                
                  this.setState({isLoggedIn:true});
-                 localStorage.setItem("username",credentials.email);
-                 //localStorage.setItem("user_status",res.)
+                 localStorage.setItem("username",res.data.email);
+                 localStorage.setItem("user_status",res.data.user_status);                 
              }
 
 
