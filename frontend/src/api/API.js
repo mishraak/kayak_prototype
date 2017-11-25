@@ -51,6 +51,19 @@ export const handleAddFlight = (payload) =>
             return error;
         }); 
 
+
+export const handleAddHotel = (payload) =>    
+    axios.post(api + '/search/addhotels',{data : payload})
+        .then(res => {
+            console.log('response from server chck', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        }); 
+
+
 export const getflights = (searchCriteria) =>
 
     axios.post(api + '/search/flights/',searchCriteria)
