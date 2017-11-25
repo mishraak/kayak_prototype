@@ -135,7 +135,7 @@ ON DELETE CASCADE;
 
 ALTER TABLE USERS ADD COLUMN PASSWORD VARCHAR(300) NOT NULL;
 
-<<<<<<< HEAD
+
 alter table cars add column location varchar(300) not null
 
 
@@ -155,6 +155,6 @@ ALTER TABLE ROOMS
 ADD FOREIGN KEY (hotel_id) REFERENCES HOTELS(hotel_id) 
 ON DELETE CASCADE;
 
-=======
+
 ALTER TABLE CARS ADD COLUMN LOCATION VARCHAR(300) NOT NULL;
->>>>>>> origin/master
+
