@@ -15,6 +15,7 @@ import AddHotel from './AddHotel'
 import AddCar from './AddCar'
 import * as API from '../api/API'
 import MyBookings from './MyBookings'
+import AdminProfile from './AdminProfile'
 
 
 class Login extends Component {
@@ -42,6 +43,10 @@ handleAddFlight(payload) {
             })
     
     //this.props.history.push("/"); 
+}
+
+handleAdminProfile() {                  
+  this.props.history.push("/AdminProfile");
 }
 
 handleAddHotel(payload) {            
@@ -180,6 +185,9 @@ handleSignup(payload) {
                 )}/>
                 <Route exact path="/AddCar" render={() => (
                     <AddCar route={this.props.history.push} handleAddCar={this.handleAddCar.bind(this)} />
+                )}/>
+                <Route exact path="/AdminProfile" render={() => (
+                    <AdminProfile route={this.props.history.push} handleAdminProfile={this.handleAdminProfile.bind(this)} />
                 )}/>
         </div>
 
