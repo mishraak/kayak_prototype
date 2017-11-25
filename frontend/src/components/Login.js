@@ -10,6 +10,8 @@ import SignUp from './SignUp'
 import About from './About'
 import GetCars from './GetCars'
 import GetHotels from './GetHotels'
+import AddFlight from './AddFlight'
+import AddHotel from './AddHotel'
 import * as API from '../api/API'
 import MyBookings from './MyBookings'
 import AddFlight from './AddFlight'
@@ -20,6 +22,7 @@ class Login extends Component {
      SearchCriteria:[],
      isLoggedIn:false
  };
+
 
 componentWillMount(){
      if(window.localStorage.getItem("username") ){
@@ -38,8 +41,19 @@ handleAddFlight(payload) {
             })
     
     //this.props.history.push("/"); 
-
 }
+
+handleAddHotel(payload) {            
+        
+     API.handleAddHotel(payload)
+        .then(function (response) {
+            console.log(response);                                                                                           
+        })
+        .catch(function (error) {
+          console.log(error);              
+        })
+}
+
 
  handleLogout(){
      localStorage.removeItem("username");
@@ -158,6 +172,9 @@ handleAbout(payload) {
                 )}/>
                 <Route exact path="/AddFlight" render={() => (
                     <AddFlight route={this.props.history.push} handleAddFlight={this.handleAddFlight.bind(this)} />
+                )}/>
+                <Route exact path="/AddHotel" render={() => (
+                    <AddHotel route={this.props.history.push} handleAddHotel={this.handleAddHotel.bind(this)} />
                 )}/>
         </div>
 

@@ -10,6 +10,7 @@ function handle_request(msg, callback){
 
    switch(msg.type){
        case 'login':
+          console.log("msg.data");
          console.log(msg.data);
          try {
              var user="select * from users where email='"+msg.data.email+"' and password='"+msg.data.password+"'";
@@ -130,6 +131,69 @@ function handle_request(msg, callback){
                        callback(null,results);
                    }
                }, addToFlight);
+           }
+           catch (err){
+               console.log(err);
+           }
+       break;
+       case 'addhotels':
+            console.log("hotel" + msg.data.hotel_name);
+
+            var  hotel_id=    msg.data.hotel_id,
+                 hotel_name=    msg.data.hotel_name,
+                 address=   msg.data.address,
+                 city=       msg.data.city,
+                 state=      msg.data.state,
+                 zip_code=    msg.data.zip_code,
+                 stars=      msg.data.stars,
+                 rooms=       msg.data.rooms,
+                 ratings=  msg.data.ratings
+                 reviews=    msg.data.reviews,
+                 room_type=      msg.data.room_type,
+                 price=       msg.data.price;
+
+
+           var addToHotel = "INSERT INTO KAYAK.HOTELS ( hotel_id, hotel_name, address, city, state, zip_code, stars, rooms, ratings, reviews) VALUES (" +                                                      
+                                                        "\"" + hotel_id + "\"," + 
+                                                        "\"" + hotel_name + "\"," + 
+                                                        "\"" + address + "\"," + 
+                                                        "\"" + city + "\"," +   
+                                                        "\"" + state + "\"," + 
+                                                        "\"" + zip_code + "\"," +
+                                                        "\"" + stars + "\"," + 
+                                                        "\"" + rooms + "\"," + 
+                                                        "\"" + ratings + "\"," + 
+                                                        "\"" + reviews + "\");";                                                        
+
+            var addToRoom = "INSERT INTO KAYAK.ROOMS (room_type, price, hotel_id) VALUES (" +                                                                                                    
+                                              "\"" + room_type + "\"," + 
+                                              "\"" + price + "\"," + 
+                                              "\"" + hotel_id + "\");";                                                        
+         
+           try {
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                        try {
+                               mysql.fetchData(function (err, results) {
+                                   if (err) {
+                                       console.log(err);
+                                       res.status(500).json({message: "An error occured"});
+                                   }
+                                   else {
+                                       callback(null,results);  
+                                   }
+                               }, addToRoom);
+                           }
+                           catch (err){
+                               console.log(err);
+                           }
+                       callback(null,results);
+                   }
+               }, addToHotel);
            }
            catch (err){
                console.log(err);

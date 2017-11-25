@@ -1,8 +1,7 @@
-#####TODO
+##### TODO
 
 - Add static page for hotel profile just for the screenshot
-
-
+- Encrypt password while saving in the database
 
 
 ##### Description

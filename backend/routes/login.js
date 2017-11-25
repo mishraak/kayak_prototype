@@ -28,8 +28,7 @@ var upload = multer({storage:storage});
 router.post('/signup',(req,res,next)=>{
     console.log('signup');    
     
-    try {
-            
+    try {   
             kafka.make_request('login_topic',{data: req.body, type:"signup"}, function(err,results){                
                 console.log(results);
                 if(err){
@@ -104,6 +103,7 @@ router.get('/getsessiondata',(req,res,next)=>{
 
 
 router.post('/doLogin',(req,res,next)=>{
+    console.log("printing body");
     console.log(req.body);
     passport.authenticate("login", function (err, user) {
         if (err) {
@@ -111,7 +111,7 @@ router.post('/doLogin',(req,res,next)=>{
             res.status(500).send({message: "error in authentication"});
         }
         else {
-            console.log("prinitng user",user)
+            console.log("prinitng user", user)
             if (user.length===0) {
                 console.log("no user found");
                 res.status(401).send({message: "no user found by given credentials"});
@@ -125,9 +125,6 @@ router.post('/doLogin',(req,res,next)=>{
             }
         }
     })(req, res);
-   
-
-
 });
 
 
