@@ -8,14 +8,89 @@ import Book from './Book';
 class GetFlights extends Component {
 
     state= {
-        flights: []
+        flights: [],
+        returnFlights:[]
     };
 
     componentWillMount(){
         API.getflights(this.props.searchCriteria)
             .then(res => {
                 this.setState({flights:res.data});
-            })
+            });
+        if(this.props.searchCriteria.toDate!==''){
+            API.getReturnFlights(this.props.searchCriteria)
+                .then(res => {
+                    this.setState({returnFlights:res.data});
+                });
+        }
+    }
+
+    returnWayFlights(){
+        return(
+            <table className="table table-striped">
+
+
+                <tbody>
+                <tr className="row">
+                    <td>
+                        Flight
+                    </td>
+                    <td>
+                        Departure time
+                    </td>
+                    <td>
+                        Arrival time
+                    </td>
+                    <td>
+                        Origin
+                    </td>
+                    <td>
+                        Destination
+                    </td>
+                    <td>
+                        Class
+                    </td>
+                    <td>
+                        Price
+                    </td>
+
+                </tr>
+
+                {this.state.returnFlights.map((flight, index) =>
+
+                    <tr className="row" key={flight}>
+
+                        <td>
+                            {flight.flight_id}
+                        </td>
+                        <td>
+                            {flight.arrival}
+                        </td>
+                        <td>
+                            {flight.departure}
+                        </td>
+                        <td>
+                            {flight.origin}
+                        </td>
+                        <td>
+                            {flight.destination}
+                        </td>
+                        <td>
+                            {flight.class_name}
+                        </td>
+                        <td>
+                            <b>${flight.prices}</b>
+                            {this.props.isLoggedIn ? <Book details={[flight]}/> : ""}
+
+                        </td>
+                    </tr>
+                )}
+
+
+                </tbody>
+            </table>
+        )
+
     }
 
     render() {
@@ -98,6 +173,8 @@ class GetFlights extends Component {
 
                                     </tbody>
                                 </table>
+                                Return flights
+                                {this.props.searchCriteria.toDate!==''?this.returnWayFlights():''}
 
                             </div>
 

@@ -48,6 +48,19 @@ export const getflights = (searchCriteria) =>
             return error;
         });
 
+export const getReturnFlights = (searchCriteria) =>
+
+    axios.post(api + '/search/returnflights/',searchCriteria)
+
+        .then(res => {
+            console.log('response from server chck', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
 
 export const getCars = (searchCriteria) =>
     axios.post(api + '/search/cars/',searchCriteria)

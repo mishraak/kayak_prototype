@@ -121,7 +121,7 @@ router.post('/doLogin',(req,res,next)=>{
                 console.log(req.session.user);
                 console.log("session initilized");
 
-                res.status(201).send({username: req.session.user});
+                res.status(201).send(user[0]);
             }
         }
     })(req, res);

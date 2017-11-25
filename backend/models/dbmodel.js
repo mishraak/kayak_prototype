@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 var db = mysql.createPool({
     host     : 'localhost',
     user     : 'root',    
-    password : 'admin',
+    password : 'mysqlpassword',
     database : 'kayak',
     port	 : 3306,
     connectionLimit:500

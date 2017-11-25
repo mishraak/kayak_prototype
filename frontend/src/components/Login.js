@@ -12,6 +12,7 @@ import GetCars from './GetCars'
 import GetHotels from './GetHotels'
 import * as API from '../api/API'
 import MyBookings from './MyBookings'
+import AddFlight from './AddFlight'
 
 class Login extends Component {
 
@@ -49,10 +50,11 @@ handleAddFlight(payload) {
 
      API.doLogin(credentials)
          .then((res) => {
-             console.log("status",res.status)
+             console.log("status",res.status);
              if(res.status===201){
                  this.setState({isLoggedIn:true});
-                 localStorage.setItem("username",credentials.email)
+                 localStorage.setItem("username",credentials.email);
+                 //localStorage.setItem("user_status",res.)
              }
 
 
@@ -97,7 +99,7 @@ handleAbout(payload) {
             this.props.history.push("/GetFlights");
         }
         else if(criteria.searchType==="Cars"){
-            alert("no ");
+            //alert("no ");
             this.props.history.push("/GetCars");
         }
         else if(criteria.searchType==="Hotels"){

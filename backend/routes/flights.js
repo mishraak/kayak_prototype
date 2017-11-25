@@ -21,6 +21,24 @@ router.post('/flights',(req,res,next)=>{
 
 });
 
+router.post('/returnflights',(req,res,next)=>{
+    kafka.make_request('login_topic',{"type":"getReturnFlights",data:req.body}, function(err,results){
+
+        console.log('in kafka callback flights/ from flights.js line 8');
+        console.log(results);
+        if(err){
+            res.json({success:false,msg:'Data is mismatched'});
+            console.log(err);
+            res.status(201).send("there is error");
+        }
+        else{
+            res.status(201).send(results);
+        }
+
+    });
+
+});
+
 router.post('/addflights',(req,res,next)=>{
     kafka.make_request('login_topic',{"type":"addflights", data:req.body.data}, function(err,results){
 
@@ -90,6 +108,8 @@ router.post('/book',(req,res,next)=>{
     });
 
 });
+
+
 
 router.post('/userBookings',(req,res,next)=>{
     kafka.make_request('login_topic',{"type":"userBookings",data:req.body}, function(err,results){
