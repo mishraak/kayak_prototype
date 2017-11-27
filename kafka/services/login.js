@@ -151,6 +151,7 @@ function handle_request(msg, callback){
                                        res.status(500).json({message: "An error occured"});
                                    }
                                    else {
+
                                        callback(null,results);
                                        
                                    }
@@ -242,12 +243,10 @@ function handle_request(msg, callback){
                        console.log("fetched from resCache");
                        return callback(null, resCache);
                    }
-
                    /*
                    At this point, we know that the data we want does not exist in the cache
                    So, we query it from our database
                    */
-
                    mysql.fetchData(function (err, results) {
                        if (err) {
                            console.log(err);
@@ -255,12 +254,13 @@ function handle_request(msg, callback){
                        }
                        else {
 
-                           cache.set(getFlights, JSON.stringify(results), () => {
+                           cache.setex(getFlights, 10,JSON.stringify(results), () => {
 
                                //At this point, our data is successfully stored in the redis cache
                                // We now return the results through the callback
                                callback(null, results);
-                           })
+                           });
+                           //cache.setex('getFlights', 5);
                        }
 
 

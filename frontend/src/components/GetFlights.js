@@ -3,6 +3,7 @@ import Nav from './Nav';
 import * as API from '../api/API';
 
 import Book from './Book';
+import FilterFlight from './FilterFlight'
 
 
 class GetFlights extends Component {
@@ -15,6 +16,9 @@ class GetFlights extends Component {
     componentWillMount(){
         API.getflights(this.props.searchCriteria)
             .then(res => {
+                res.data.map((val)=> {
+                    val.display=true; //for filter
+                });
                 this.setState({flights:res.data});
             });
         if(this.props.searchCriteria.toDate!==''){
@@ -22,6 +26,27 @@ class GetFlights extends Component {
                 .then(res => {
                     this.setState({returnFlights:res.data});
                 });
+        }
+    }
+
+    handleTimeFilter(timeRange){
+        let modifySearch = this.state.flights;
+        console.log(timeRange);
+        let tempStore=[];
+        if(modifySearch!=null){
+            let index = modifySearch.findIndex((res)=>{
+                //alert(res.departure.split(":")[0]);
+                if(parseInt(res.departure.split(":")[0])>= timeRange[0] && parseInt(res.arrival.split(":")[0])<timeRange[1]){
+                    res.display=true;
+                    tempStore.push(res);
+                }else{
+                    res.display=false;
+                    tempStore.push(res);
+                }
+
+
+            });
+            this.setState({flights:tempStore});
         }
     }
 
@@ -93,9 +118,47 @@ class GetFlights extends Component {
 
     }
 
-    render() {
-        return (
 
+    render() {
+        let searchRes;
+        console.log('display the state');
+        console.log(this.state.flights);
+        if(this.state.flights!=null) {
+            searchRes = this.state.flights.map((flight) => {
+                if (flight.display === true) {
+                    return (
+
+                        <tr className="row" key={flight}  >
+
+                            <td >
+                                {flight.flight_id}
+                            </td>
+                            <td >
+                                {flight.arrival}
+                            </td>
+                            <td >
+                                {flight.departure}
+                            </td>
+                            <td >
+                                {flight.origin}
+                            </td>
+                            <td >
+                                {flight.destination}
+                            </td>
+                            <td >
+                                {flight.class_name}
+                            </td>
+                            <td >
+                                <b>${flight.prices}</b>
+                                {this.props.isLoggedIn?<Book details={[flight]}/>:""}
+
+                            </td>
+                        </tr>
+                    )
+                }
+            });
+        }
+return(
             <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
 
                 <img src={require("../images/phoenix.png")}/>
@@ -103,13 +166,19 @@ class GetFlights extends Component {
                     <div style={{"marginLeft":"200px"}}>
                         <Nav  isLoggedIn={this.props.isLoggedIn} route={this.props.route} handleLogout={this.props.handleLogout} handleLogin={this.props.handleLogin}/>
                     </div>
+                    <div>
+
+                    </div>
+
                     <div className="row">
                         <div className="col-md-2">
-                            This is left column for adding filter criterias
+                            Time
+                            <FilterFlight rangeVal={this.handleTimeFilter.bind(this)} />
                         </div>
                         <div className="col-md-10">
                             <div className="table-responsive">
-                                <h4 className="text-center">{this.state.flights.length} flight(s) found</h4>
+                                <h4 className="text-center">Total {this.state.flights.length} flight(s) found</h4>
+
                                 <table className="table table-striped">
 
 
@@ -138,42 +207,15 @@ class GetFlights extends Component {
                                         </td>
 
                                     </tr>
+                                    {searchRes}
 
-                                        {this.state.flights.map((flight,index) =>
-
-                                            <tr className="row" key={flight}  >
-
-                                                <td >
-                                                    {flight.flight_id}
-                                                </td>
-                                                <td >
-                                                    {flight.arrival}
-                                                </td>
-                                                <td >
-                                                    {flight.departure}
-                                                </td>
-                                                <td >
-                                                    {flight.origin}
-                                                </td>
-                                                <td >
-                                                    {flight.destination}
-                                                </td>
-                                                <td >
-                                                    {flight.class_name}
-                                                </td>
-                                                <td >
-                                                    <b>${flight.prices}</b>
-                                                    {this.props.isLoggedIn?<Book details={[flight]}/>:""}
-
-                                                </td>
-                                            </tr>
-                                        )}
 
 
 
                                     </tbody>
                                 </table>
-                                Return flights
+
+                                {this.props.searchCriteria.toDate!==''?'Return flights':''}
                                 {this.props.searchCriteria.toDate!==''?this.returnWayFlights():''}
 
                             </div>
