@@ -2,22 +2,188 @@ import React, {Component} from 'react';
 import Nav from './Nav';
 import * as API from '../api/API';
 import BookHotel from './BookHotel';
+import FilterHotels from './FilterHotels';
+
 
 
 class GetHotels extends Component {
 
     state= {
-        Hotels: []
+        Hotels: [],
+        displayResults:[]
     };
 
     componentWillMount(){
         API.getHotels(this.props.searchCriteria)
             .then(res => {
+                res.data.map((val)=> {
+                val.display=true; //for filter
+                });
                 this.setState({Hotels:res.data});
-            })
+                this.setState({displayResults:res.data});
+                console.log("this is the result");
+                console.log(this.state.Hotels);
+                localStorage.setItem("hotels", JSON.stringify(this.state.Hotels));
+            });
+
+        //console.log(this.state.Hotels);
+
+    }
+
+
+
+    handleRating(stars){
+        localStorage.removeItem("stars");
+        localStorage.setItem("stars",stars);
+        console.log(stars);
+
+        let modifySearch = JSON.parse(localStorage.getItem("hotels"));//this.state.displayResults;
+
+        let tempStore=[];
+        if(modifySearch!=null){
+            let index = modifySearch.findIndex((res)=>{
+                if(stars==='Any' ){
+
+
+                    res.display = true;
+                    tempStore.push(res);
+                }
+                else
+                if(res.stars!=stars && stars!=='Any'){
+
+                    res.display = false;
+                    tempStore.push(res);
+                }
+
+                else{
+
+                    res.display = true;
+                    tempStore.push(res);
+                }
+
+            });
+        }
+
+        this.setState({displayResults:tempStore});
+        tempStore=[];
+
+    }
+
+    handleRange(range){
+        let modifySearch =this.state.displayResults;// this.state.displayResults;
+        let tempStore=[];
+        localStorage.removeItem("range");
+        localStorage.setItem("range",range);
+        if(modifySearch!=null){
+            let index = modifySearch.findIndex((res)=>{
+                switch(range){
+                    case 'Any':
+                        res.display=true;
+                        tempStore.push(res);
+                        break;
+                    case '0-50':
+                        if(res.price >=0 && res.price<=50 && res.stars===parseInt(localStorage.getItem("stars"))){
+                            res.display=true;
+                            tempStore.push(res);
+                        }
+                        else{
+                            res.display=false;
+                            tempStore.push(res);
+                        }
+                        break;
+                    case '0-100':
+                        if(res.price >=0 && res.price<=100 && res.stars===parseInt(localStorage.getItem("stars"))){
+                            res.display=true;
+                            tempStore.push(res);
+                        }
+                        else{
+                            res.display=false;
+                            tempStore.push(res);
+                        }
+                        break;
+                    case '100-200':
+                        if(res.price >=100 && res.price<=200 && res.stars===parseInt(localStorage.getItem("stars"))){
+                            res.display=true;
+                            tempStore.push(res);
+                        }
+                        else{
+                            res.display=false;
+                            tempStore.push(res);
+                        }
+                        break;
+                    case '200-300':
+                        if(res.price >=200 && res.price<=300 && res.stars===parseInt(localStorage.getItem("stars"))){
+                            res.display=true;
+                            tempStore.push(res);
+                        }
+                        else{
+                            res.display=false;
+                            tempStore.push(res);
+                        }
+                        break;
+                    case '300-400':
+                        if(res.price >=300 && res.price<=400 && res.stars===parseInt(localStorage.getItem("stars")) ){
+                            res.display=true;
+                            tempStore.push(res);
+                        }
+                        else{
+                            res.display=false;
+                            tempStore.push(res);
+                        }
+                        break;
+                    case '400-500':
+                        if(res.price >=400 && res.price<=500 && res.stars===parseInt(localStorage.getItem("stars"))){
+                            res.display=true;
+                            tempStore.push(res);
+                        }
+                        else{
+                            res.display=false;
+                            tempStore.push(res);
+                        }
+                        break;
+
+                }
+            });
+            this.setState({displayResults:tempStore});
+
+            tempStore=[];
+
+        }
     }
 
     render() {
+        let searchRes;
+        console.log('display the state');
+        console.log(this.state.displayResults);
+        if(this.state.displayResults!=null){
+            searchRes=this.state.displayResults.map((hotel)=>{
+                if(hotel.display===true){
+                    console.log("i was called because hotel.display is true");
+return(
+                    <tr className="row" key={hotel.hotel_name+hotel.room_type}  >
+
+                        <td >
+                            {hotel.hotel_name}
+                        </td>
+                        <td >
+                            {hotel.stars}
+                        </td>
+                        <td >
+                            {hotel.room_type}
+                        </td>
+
+                        <td >
+                            <b>${hotel.price}</b>
+                            {this.props.isLoggedIn?<BookHotel details={[hotel]}/>:""}
+
+                        </td>
+                    </tr>)
+                }
+            });
+
+
+        }
+
         return (
 
             <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
@@ -29,7 +195,7 @@ class GetHotels extends Component {
                     </div>
                     <div className="row">
                         <div className="col-md-2">
-                            This is left column for adding CAR filter criterias
+                            <FilterHotels ratingsFilter={this.handleRating.bind(this)} priceFilter={this.handleRange.bind(this)}/>
                         </div>
                         <div className="col-md-10">
                             <div className="table-responsive">
@@ -53,29 +219,11 @@ class GetHotels extends Component {
                                             Price
                                         </td>
 
-                                    </tr>
-
-                                    {this.state.Hotels.map((hotel,index) =>
-
-                                        <tr className="row" key={hotel}  >
-
-                                            <td >
-                                                {hotel.hotel_name}
-                                            </td>
-                                            <td >
-                                                {hotel.stars}
-                                            </td>
-                                            <td >
-                                                {hotel.room_type}
-                                            </td>
-
-                                            <td >
-                                                <b>${hotel.price}</b>
-                                                {this.props.isLoggedIn?<BookHotel details={[hotel]}/>:""}
-
-                                            </td>
                                         </tr>
-                                    )}
+                                    {searchRes}
+                                    {/*{this.state.Hotels.map((hotel,index) =>*/}
+
+                                    {/*)}*/}
 
 
 

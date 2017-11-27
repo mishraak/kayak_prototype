@@ -1,5 +1,6 @@
 var FileData = require('./filedatamodel');
 let mysql=require('../config/mysql');
+const cache = require('./Redis');
 
 function handle_request(msg, callback){
 
@@ -204,23 +205,46 @@ function handle_request(msg, callback){
            var getFlights="select f.flight_id,date_format(arrival, '%h:%i') arrival,date_format(departure, '%h:%i') departure,class_name,prices,origin,destination from flights f join classes c on f.flight_id=c.flight_id where c.class_name='"+msg.data.class+"' and origin='"+msg.data.origin+"' and destination='"+msg.data.destination+"' and DATE(departure)='"+msg.data.fromDate+"'";
 
            try {
-               mysql.fetchData(function (err, results) {
-                   if (err) {
-                       console.log(err);
-                       res.status(500).json({message: "An error occured"});
+
+               cache.get(getFlights, (err, resCache) => {
+                   if (resCache !== null) {
+                       //If it does, return it in the callback
+                       console.log("fetched from resCache");
+                       return callback(null, resCache);
                    }
-                   else {
-                       callback(null,results);
-                   }
-               }, getFlights);
+
+                   /*
+                   At this point, we know that the data we want does not exist in the cache
+                   So, we query it from our database
+                   */
+
+                   mysql.fetchData(function (err, results) {
+                       if (err) {
+                           console.log(err);
+                           res.status(500).json({message: "An error occured"});
+                       }
+                       else {
+
+                           cache.set(getFlights, JSON.stringify(results), () => {
+
+                               //At this point, our data is successfully stored in the redis cache
+                               // We now return the results through the callback
+                               callback(null, results);
+                           })
+                       }
+
+
+                   }, getFlights);
+               });
            }
+
            catch (err){
                console.log(err);
            }
        break;
        case 'getReturnFlights':
            console.log(msg.data);
-           var getFlights="select f.flight_id,date_format(arrival, '%h:%i') arrival,date_format(departure, '%h:%i') departure,class_name,prices,origin,destination from flights f join classes c on f.flight_id=c.flight_id where c.class_name='"+msg.data.class+"' and origin='"+msg.data.destination+"' and destination='"+msg.data.origin+"' and DATE(departure)='"+msg.data.toDate+"'";
+           var getReturnFlights="select f.flight_id,date_format(arrival, '%h:%i') arrival,date_format(departure, '%h:%i') departure,class_name,prices,origin,destination from flights f join classes c on f.flight_id=c.flight_id where c.class_name='"+msg.data.class+"' and origin='"+msg.data.destination+"' and destination='"+msg.data.origin+"' and DATE(departure)='"+msg.data.toDate+"'";
 
            try {
                mysql.fetchData(function (err, results) {
@@ -231,7 +255,7 @@ function handle_request(msg, callback){
                    else {
                        callback(null,results);
                    }
-               }, getFlights);
+               }, getReturnFlights);
            }
            catch (err){
                console.log(err);
@@ -297,7 +321,7 @@ function handle_request(msg, callback){
       case 'getallcars':
 
            console.log(msg.data);
-           var getFlights="select * from cars where location='"+msg.data.Location+"'";
+           var getCars="select * from cars where location='"+msg.data.Location+"'";
 
            try {
 
@@ -310,7 +334,7 @@ function handle_request(msg, callback){
                    else {
                        callback(null,results);
                    }
-               }, getFlights);
+               }, getCars);
            }
            catch (err){
                console.log(err);
