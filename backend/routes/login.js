@@ -120,7 +120,8 @@ router.post('/doLogin',(req,res,next)=>{
                 req.session.user = user[0].email;
                 console.log(req.session.user);
                 console.log("session initilized");
-
+                console.log("user");
+                console.log(user[0]);
                 res.status(201).send(user[0]);
             }
         }

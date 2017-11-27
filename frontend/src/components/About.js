@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import * as API from '../api/API'
-  
+import AdminProfile from './AdminProfile'  
 
 var data=[];
 
@@ -31,6 +31,92 @@ class About extends Component {
             window.alert("Something went wrong while updating your Personal Information!!")
         }
       });
+  }
+
+
+  renderAbout(){
+    console.log("user status : " + localStorage.getItem("user_status"));
+    if (localStorage.getItem("user_status")==0) {
+      return(
+              <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
+
+              <img src={require("../images/phoenix.png")}/>                            
+              
+              <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
+                    <div>
+                      <img src={this.state.image} alt="Profile" />
+                    </div>
+                    <div className="row about1">
+                        <div className="center-block">
+                            <pre>
+                                <br/>
+                                Email Address           : <input type='text' id='username' value={localStorage.getItem("username")} onChange={e => this.setState({ username: e.target.value })} />
+                                <br/>
+                                Password                : <input type='text' id='password' value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
+                                <br/>
+                                First Name              : <input type='text' id='first_name' value={this.state.first_name} onChange={e => this.setState({ first_name: e.target.value })}/>
+                                <br/>
+                                Last Name               : <input type='text' id='last_name' value={this.state.last_name} onChange={e => this.setState({ last_name: e.target.value })}/>
+                                <br/>
+                                Address                 : <input type='text' id='address' value={this.state.address} onChange={e => this.setState({ address: e.target.value })}/>
+                                <br/>
+                                City                    : <input type='text' id='city' value={this.state.city} onChange={e => this.setState({ city: e.target.value })}/>
+                                <br/>
+                                State                   : <input type='text' id='state' value={this.state.state} onChange={e => this.setState({ state: e.target.value })}/>
+                                <br/>                      
+                            </pre>
+                            <div className='row'>
+                              <button className='update-info' onClick={this.updateInfo}>Update Information</button>
+                              <button className='cancel-update-info' onClick={()=>{this.props.history.push('/about');}}>Cancel</button><br/>
+                              <button onClick={()=>{this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>
+                              <button onClick={()=>{this.props.route("/AdminProfile")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Admin Profile</button>              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+      );
+    }
+    else {
+            return(
+              <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
+
+              <img src={require("../images/phoenix.png")}/>                            
+              
+              <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
+                    <div>
+                      <img src={this.state.image} alt="Profile" />
+                    </div>
+                    <div className="row about1">
+                        <div className="center-block">
+                            <pre>
+                                <br/>
+                                Email Address           : <input type='text' id='username' value={localStorage.getItem("username")} onChange={e => this.setState({ username: e.target.value })} />
+                                <br/>
+                                Password                : <input type='text' id='password' value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
+                                <br/>
+                                First Name              : <input type='text' id='first_name' value={this.state.first_name} onChange={e => this.setState({ first_name: e.target.value })}/>
+                                <br/>
+                                Last Name               : <input type='text' id='last_name' value={this.state.last_name} onChange={e => this.setState({ last_name: e.target.value })}/>
+                                <br/>
+                                Address                 : <input type='text' id='address' value={this.state.address} onChange={e => this.setState({ address: e.target.value })}/>
+                                <br/>
+                                City                    : <input type='text' id='city' value={this.state.city} onChange={e => this.setState({ city: e.target.value })}/>
+                                <br/>
+                                State                   : <input type='text' id='state' value={this.state.state} onChange={e => this.setState({ state: e.target.value })}/>
+                                <br/>                      
+                            </pre>
+                            <div className='row'>
+                              <button className='update-info' onClick={this.updateInfo}>Update Information</button>
+                              <button className='cancel-update-info' onClick={()=>{this.props.history.push('/about');}}>Cancel</button>
+                              <button onClick={()=>{this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+      );
+    }
   }
 
     state = {
@@ -66,43 +152,10 @@ class About extends Component {
 
 
   render(){
-      return(
-          <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
-
-              <img src={require("../images/phoenix.png")}/>
-              <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
-                    <div>
-                      <img src={this.state.image} alt="Profile" />
-                    </div>
-                    <div className="row about1">
-                        <div className="center-block">
-                            <pre>
-                                <br/>
-                                Email Address           : <input type='text' id='username' value={localStorage.getItem("username")} onChange={e => this.setState({ username: e.target.value })} />
-                                <br/>
-                                Password                : <input type='text' id='password' value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
-                                <br/>
-                                First Name              : <input type='text' id='first_name' value={this.state.first_name} onChange={e => this.setState({ first_name: e.target.value })}/>
-                                <br/>
-                                Last Name               : <input type='text' id='last_name' value={this.state.last_name} onChange={e => this.setState({ last_name: e.target.value })}/>
-                                <br/>
-                                Address                 : <input type='text' id='address' value={this.state.address} onChange={e => this.setState({ address: e.target.value })}/>
-                                <br/>
-                                City                    : <input type='text' id='city' value={this.state.city} onChange={e => this.setState({ city: e.target.value })}/>
-                                <br/>
-                                State                   : <input type='text' id='state' value={this.state.state} onChange={e => this.setState({ state: e.target.value })}/>
-                                <br/>                      
-                            </pre>
-                            <div className='row'>
-                              <button className='update-info' onClick={this.updateInfo}>Update Information</button>
-                              <button className='cancel-update-info' onClick={()=>{this.props.history.push('/about');}}>Cancel</button>
-                              <button onClick={()=>{this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      return(         
+          <div>
+            {this.renderAbout()}
           </div>
-
       )
   }
 }

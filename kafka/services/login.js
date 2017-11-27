@@ -82,6 +82,36 @@ function handle_request(msg, callback){
                console.log(err);
            }
        break;
+       case 'addcars':
+            console.log("car_name" + msg.data.car_name);
+            var  car_name=    msg.data.car_name,
+                 car_type=   msg.data.car_type,
+                 price=       msg.data.price,
+                 details=      msg.data.details;
+
+           var addCars = "INSERT INTO KAYAK.CARS ( car_name, car_type, price, details) VALUES (" +                                                      
+                                                        "\"" + car_name + "\"," + 
+                                                        "\"" + car_type + "\"," + 
+                                                        "\"" + price + "\"," + 
+                                                        "\"" + details + "\");";
+                                                  
+
+           try {
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       callback(null,results);
+                   }
+               }, addCars);
+           }
+           catch (err){
+               console.log(err);
+           }
+           
+       break;       
        case 'addflights':
             console.log("airline" + msg.data.flight_id);
             var  flight_id=    msg.data.flight_id,

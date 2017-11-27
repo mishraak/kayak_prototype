@@ -12,8 +12,10 @@ import GetCars from './GetCars'
 import GetHotels from './GetHotels'
 import AddFlight from './AddFlight'
 import AddHotel from './AddHotel'
+import AddCar from './AddCar'
 import * as API from '../api/API'
 import MyBookings from './MyBookings'
+import AdminProfile from './AdminProfile'
 
 
 class Login extends Component {
@@ -34,13 +36,17 @@ handleAddFlight(payload) {
         
      API.handleAddFlight(payload)
             .then(function (response) {
-                console.log(response);                                                                                           
+                console.log(response);                                                                                       
             })
             .catch(function (error) {
               console.log(error);              
             })
     
     //this.props.history.push("/"); 
+}
+
+handleAdminProfile() {                  
+  this.props.history.push("/AdminProfile");
 }
 
 handleAddHotel(payload) {            
@@ -54,6 +60,17 @@ handleAddHotel(payload) {
         })
 }
 
+
+handleAddCar(payload) {            
+        
+     API.handleAddCar(payload)
+        .then(function (response) {
+            console.log(response);                                                                                           
+        })
+        .catch(function (error) {
+          console.log(error);              
+        })
+} 
 
  handleLogout(){
      localStorage.removeItem("username");
@@ -91,18 +108,6 @@ handleSignup(payload) {
 
 }
 
-/*
-handleAbout(payload) {            
-        
-     API.handleAbout(payload)
-            .then(function (response) {
-                console.log(response);                                                                                           
-            })
-            .catch(function (error) {
-              console.log(error);              
-            })
-}    
-*/
  handleDashBoard(dash){
      this.props.updateDash(dash);
  }
@@ -177,6 +182,12 @@ handleAbout(payload) {
                 )}/>
                 <Route exact path="/AddHotel" render={() => (
                     <AddHotel route={this.props.history.push} handleAddHotel={this.handleAddHotel.bind(this)} />
+                )}/>
+                <Route exact path="/AddCar" render={() => (
+                    <AddCar route={this.props.history.push} handleAddCar={this.handleAddCar.bind(this)} />
+                )}/>
+                <Route exact path="/AdminProfile" render={() => (
+                    <AdminProfile route={this.props.history.push} handleAdminProfile={this.handleAdminProfile.bind(this)} />
                 )}/>
         </div>
 

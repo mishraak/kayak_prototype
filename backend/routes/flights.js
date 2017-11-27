@@ -55,6 +55,24 @@ router.post('/addflights',(req,res,next)=>{
     });
 });
 
+
+router.post('/addcars',(req,res,next)=>{
+    kafka.make_request('login_topic',{"type":"addcars", data:req.body.data}, function(err,results){
+
+        console.log('in kafka callback flights/ from flights.js line 27');
+        console.log(results);
+        if(err){
+            res.json({success:false,msg:'Data is mismatched'});
+            console.log(err);
+            res.status(201).send("there is error");
+        }
+        else{
+            res.status(201).send(results);
+        }
+    });
+});
+
+
 router.post('/addhotels',(req,res,next)=>{
     kafka.make_request('login_topic',{"type":"addhotels", data:req.body.data}, function(err,results){
 

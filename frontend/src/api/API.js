@@ -6,30 +6,19 @@ const headers = {
     'Accept': 'application/json'
 };
 
-/*
-export const doLogin = (payload) =>
-    
-    fetch(`${api}/users/dologin`, {
-        method: 'POST',
-        headers: {
-            ...headers,
-            'Content-Type': 'application/json'
-        },
-        credentials:'include',
-        body: JSON.stringify(payload)
-    }).then(res => {
-        console.log(res);
-        return res;
-    })
+export const doLogin = (payload) =>    
+    axios.post(api + '/users/dologin',payload)
+        .then(res => {
+            console.log('response from server chck', res.data);
+            return res;
+        })
         .catch(error => {
             console.log("This is error");
             return error;
-        });
+        }); 
 
-*/
-
-export const doLogin = (payload) =>    
-    axios.post(api + '/users/dologin',payload)
+export const handleAddCar = (payload) =>    
+    axios.post(api + '/search/addcars',{data : payload})
         .then(res => {
             console.log('response from server chck', res.data);
             return res;
