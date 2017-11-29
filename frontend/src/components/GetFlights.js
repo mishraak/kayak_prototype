@@ -178,7 +178,7 @@ return(
                         <div className="col-md-10">
                             <div className="table-responsive">
                                 <h4 className="text-center">Total {this.state.flights.length} flight(s) found</h4>
-
+                                {this.props.searchCriteria.toDate!==''?<button>Return Flight</button>:''}
                                 <table className="table table-striped">
 
 
@@ -215,8 +215,8 @@ return(
                                     </tbody>
                                 </table>
 
-                                {this.props.searchCriteria.toDate!==''?'Return flights':''}
-                                {this.props.searchCriteria.toDate!==''?this.returnWayFlights():''}
+
+                                {/*{this.props.searchCriteria.toDate!==''?this.returnWayFlights():''}*/}
 
                             </div>
 

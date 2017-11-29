@@ -16,6 +16,7 @@ import AddCar from './AddCar'
 import * as API from '../api/API'
 import MyBookings from './MyBookings'
 import AdminProfile from './AdminProfile'
+import Analytics from './Analytics'
 
 
 class Login extends Component {
@@ -188,6 +189,9 @@ handleSignup(payload) {
                 )}/>
                 <Route exact path="/AdminProfile" render={() => (
                     <AdminProfile route={this.props.history.push} handleAdminProfile={this.handleAdminProfile.bind(this)} />
+                )}/>
+                <Route exact path="/Analytics" render={() => (
+                <Analytics route={this.props.history.push} handleAdminProfile={this.handleAdminProfile.bind(this)} />
                 )}/>
         </div>
 
