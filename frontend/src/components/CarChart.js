@@ -63,7 +63,8 @@ class CarChart extends Component{
             <div className="col-sm-2"></div>
           </div>
           <div className="row">
-            <div className="col-sm-6">
+            <div className="col-sm-2"></div>
+            <div className="col-sm-4">
               <Bar
                 data={this.state.carCompanyData}
                 width={40}
@@ -81,7 +82,8 @@ class CarChart extends Component{
                 }}
               />
             </div>
-            <div className="col-sm-6">
+            
+            <div className="col-sm-4">
               <Pie
                 data={this.state.revenueCarRental}
                 width={40}
@@ -99,7 +101,7 @@ class CarChart extends Component{
                 }}
               />
             </div>
-          
+            <div className="col-sm-2"></div>
           </div>
         </div>
       </div>

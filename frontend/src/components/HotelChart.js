@@ -23,7 +23,8 @@ class HotelChart extends Component{
       <div className="chart">
         <div className="container">
           <div className="row">
-            <div className="col-lg-6">
+            <div className="col-sm-2"></div>
+            <div className="col-sm-4">
               <Bar
                 data={this.state.hotelData}
                 width={70}
@@ -41,7 +42,7 @@ class HotelChart extends Component{
                 }}
               />
             </div>
-            <div className="col-lg-6">
+            <div className="col-sm-4">
               <Line
                 data={this.state.novHotelBookings}
                 width={70}
@@ -61,7 +62,8 @@ class HotelChart extends Component{
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-6">
+            <div className="col-sm-2"></div>
+            <div className="col-sm-4">
               <Bar
                 data={this.state.hotelCompanyData}
                 width={70}
@@ -79,7 +81,7 @@ class HotelChart extends Component{
                 }}
               />
             </div>
-            <div className="col-lg-6">
+            <div className="col-sm-4">
               <Pie
                 data={this.state.revenueHotel}
                 width={70}
@@ -97,6 +99,7 @@ class HotelChart extends Component{
                 }}
               />
             </div>
+            <div className="col-sm-2"></div>
           </div>
         </div>
       </div>
