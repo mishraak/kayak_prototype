@@ -21,6 +21,10 @@ class GetCars extends Component {
             });
     }
 
+    componentDidMount(){
+        API.log({page:"SearchCars"});
+    };
+
     handleRange(range){
         let modifySearch =this.state.Cars;// this.state.displayResults;
         let tempStore=[];

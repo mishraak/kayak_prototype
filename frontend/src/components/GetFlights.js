@@ -37,6 +37,10 @@ class GetFlights extends Component {
         }
     }
 
+    componentDidMount(){
+        API.log({page:"SearchFlights"});
+    }
+
     handleTimeFilter(timeRange){
         let modifySearch = this.state.flights;
         console.log(timeRange);

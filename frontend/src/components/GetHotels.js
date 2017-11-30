@@ -30,7 +30,9 @@ class GetHotels extends Component {
 
     }
 
-
+    componentDidMount(){
+        API.log({page:"SearchHotels"});
+    }
 
     handleRating(stars){
         localStorage.removeItem("stars");

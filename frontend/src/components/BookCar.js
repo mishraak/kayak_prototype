@@ -30,7 +30,9 @@ export default class FormDialog extends React.Component {
         //console.log(this.state.textFieldValue);
     };
 
-
+    componentDidMount(){
+        API.log({page:"BookCar"});
+    }
 
     render() {
         return (

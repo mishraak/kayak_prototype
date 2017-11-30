@@ -484,6 +484,18 @@ function handle_request(msg, callback){
                    callback(null,"done");
                })
            });
+           break;
+       case 'getPageClick':
+
+           console.log(msg);
+           mongo.connect(mongoURL,function (){
+               mongo.collection("pageClicks").find({}).toArray(function(err, result) {
+                   if (err) throw err;
+                   console.log(result);
+                   callback(null,result);
+               });
+           });
+           break;
 
 
    }

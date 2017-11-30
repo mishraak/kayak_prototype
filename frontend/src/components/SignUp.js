@@ -1,4 +1,5 @@
-import React,  {Component} from 'react'
+import React,  {Component} from 'react';
+import * as API from '../api/API'
 
 import request from 'axios';
 
@@ -19,6 +20,10 @@ class SignUp extends Component{
             credit_card:1234567890,
             user_status:1        
     };
+
+    componentDidMount(){
+        API.log({page:"SignUp"});
+    }
 
     renderSignup() {
         if(!this.props.isLoggedIn){

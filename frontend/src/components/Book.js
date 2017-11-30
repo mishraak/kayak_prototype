@@ -20,6 +20,9 @@ export default class FormDialog extends React.Component {
         this.setState({ open: true });
     };
 
+    componentDidMount(){
+        API.log({page:"BookFlight"});
+    }
     handleRequestClose = (event) => {
         this.setState({ open: false });
         console.log("action",event.target.innerHTML);

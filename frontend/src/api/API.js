@@ -174,6 +174,17 @@ export const log = (payload) =>
             return error;
         });
 
+export const getPageClicks = () =>
+
+    axios.get(api + '/users/getPageClick')
+        .then(res => {
+            console.log('response from getPageClick', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
 
 
 // export const getmyfiles = () =>

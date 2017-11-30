@@ -4,6 +4,9 @@ import Chart from './Chart';
 import CarChart from './CarChart';
 import FlightChart from './FlightChart';
 import HotelChart from './HotelChart';
+import UserChart from './UserChart';
+import * as API from '../api/API';
+
 import Nav from './Nav';
 
 class Analytics extends Component {
@@ -24,12 +27,52 @@ class Analytics extends Component {
             novHotelBookings:{},
             hotelCompanyData:{},
             revenueHotel:{},
-            selectChart:0 //Added by Divyank
+            selectChart:0 ,//Added by Divyank
+            pageClicksData:{}
         }
     }
 
     componentWillMount(){
         this.getChartData();
+        this.getPageClicks();
+    }
+
+    getPageClicks(){
+        var labels=[];
+        var data=[];
+        API.getPageClicks()
+            .then(res => {
+                res.data.map((val)=> {
+                    labels.push(val.page);
+                    data.push(val.clicks);
+                });
+            })
+            .then(
+                this.setState({
+                    // The Main Chart Data Goes here.
+                    pageClicksData: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Page clicks',
+                                data: data,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)',
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)',
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)'
+                                ]
+                            }
+                        ]
+                    }
+                })
+
+            );
     }
 
     getChartData(){
@@ -482,6 +525,13 @@ class Analytics extends Component {
             </div>
         )
     }
+    showUserChart(){
+        return(
+            <div>
+                <UserChart pageClicksData={this.state.pageClicksData}/>
+            </div>
+        )
+    }
 
 
 
@@ -510,7 +560,7 @@ class Analytics extends Component {
                     <hr style={{"opacity":"100%","width":"1000px"}}/>
                 </div>
 
-
+                <button onClick={()=>this.setState({selectChart:5})} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>User chart</button>
                 <button onClick={()=>this.setState({selectChart:1})} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>General chart</button>
                 <button onClick={()=>this.setState({selectChart:2})} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}} >Flight chart</button>
                 <button onClick={()=>this.setState({selectChart:3})} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Car chart</button>
@@ -519,6 +569,7 @@ class Analytics extends Component {
                 {this.state.selectChart===2?this.showFlightChart():""}
                 {this.state.selectChart===3?this.showCarChart():""}
                 {this.state.selectChart===4?this.showHotelChart():""}
+                {this.state.selectChart===5?this.showUserChart():""}
             </div>
         );
     }

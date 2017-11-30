@@ -165,10 +165,6 @@ handleSignup(payload) {
 
     }
 
-    check(page){
-        alert(page);
-    }
-
   render() {
     return (
         <div>

@@ -119,7 +119,26 @@ router.post('/logPageClick',(req,res,next)=>{
 
 });
 
+router.get('/getPageClick',(req,res,next)=>{
+    try {
+        console.log(req.body);
+        kafka.make_request('login_topic',{ type:"getPageClick"}, function(err,results){
+            console.log(results);
+            if(err){
+                res.status(404);
+            }
+            else
+            {
+                res.status(200).send(results);
+            }
+        });
 
+    }
+    catch (e){
+        console.log(e);
+    }
+
+});
 
 
 
