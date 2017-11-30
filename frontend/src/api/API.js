@@ -162,6 +162,18 @@ export const getUserBookings = () =>
             return error;
         });
 
+export const log = (payload) =>
+
+    axios.post(api + '/users/logPageClick',payload)
+        .then(res => {
+            console.log('response from logs', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
 
 
 // export const getmyfiles = () =>

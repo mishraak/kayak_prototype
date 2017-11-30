@@ -58,9 +58,6 @@ dashUpdate(dash){
           <BrowserRouter>
               <Login dash={this.state.dashStatus} updateDash={this.dashUpdate.bind(this)} />
           </BrowserRouter>
-
-
-       
       </div>
     );
   }

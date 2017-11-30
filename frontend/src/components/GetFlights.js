@@ -5,7 +5,8 @@ import * as API from '../api/API';
 import Book from './Book';
 import FilterFlight from './FilterFlight'
 
-
+var flights;
+var returnFlights;
 class GetFlights extends Component {
 
     state= {
@@ -19,13 +20,20 @@ class GetFlights extends Component {
                 res.data.map((val)=> {
                     val.display=true; //for filter
                 });
+                flights=res.data;
                 this.setState({flights:res.data});
             });
         if(this.props.searchCriteria.toDate!==''){
             API.getReturnFlights(this.props.searchCriteria)
                 .then(res => {
+                    res.data.map((val)=> {
+                        val.display=true; //for filter
+                    });
                     this.setState({returnFlights:res.data});
+                    returnFlights=res.data;
                 });
+
+
         }
     }
 
@@ -50,72 +58,89 @@ class GetFlights extends Component {
         }
     }
 
-    returnWayFlights(){
-        return(
-            <table className="table table-striped">
+    handleRange(range){
+        let modifySearch =this.state.flights;// this.state.displayResults;
+        let tempStore=[];
+        if(modifySearch!=null){
+            let index = modifySearch.findIndex((res)=>{
+                switch(range){
+                    case 'Any':
+                        res.display=true;
+                        tempStore.push(res);
+                        break;
+                    case '0-50':
+                        if(res.prices >=0 && res.prices<=50 ){
+                            res.display=true;
+                            tempStore.push(res);
+                        }
+                        else{
+                            res.display=false;
+                            tempStore.push(res);
+                        }
+                        break;
+                    case '0-100':
+                        if(res.prices >=0 && res.prices<=100 ){
+                            res.display=true;
+                            tempStore.push(res);
+                        }
+                        else{
+                            res.display=false;
+                            tempStore.push(res);
+                        }
+                        break;
+                    case '100-200':
+                        if(res.prices >=100 && res.prices<=200 ){
+                            res.display=true;
+                            tempStore.push(res);
+                        }
+                        else{
+                            res.display=false;
+                            tempStore.push(res);
+                        }
+                        break;
+                    case '200-300':
+                        if(res.prices >=200 && res.prices<=300 ){
+                            res.display=true;
+                            tempStore.push(res);
+                        }
+                        else{
+                            res.display=false;
+                            tempStore.push(res);
+                        }
+                        break;
+                    case '300-400':
+                        if(res.prices >=300 && res.prices<=400  ){
+                            res.display=true;
+                            tempStore.push(res);
+                        }
+                        else{
+                            res.display=false;
+                            tempStore.push(res);
+                        }
+                        break;
+                    case '400-500':
+                        if(res.prices >=400 && res.prices<=500 ){
+                            res.display=true;
+                            tempStore.push(res);
+                        }
+                        else{
+                            res.display=false;
+                            tempStore.push(res);
+                        }
+                        break;
 
+                }
+            });
+            this.setState({flights:tempStore});
 
-                <tbody>
-                <tr className="row">
-                    <td>
-                        Flight
-                    </td>
-                    <td>
-                        Departure time
-                    </td>
-                    <td>
-                        Arrival time
-                    </td>
-                    <td>
-                        Origin
-                    </td>
-                    <td>
-                        Destination
-                    </td>
-                    <td>
-                        Class
-                    </td>
-                    <td>
-                        Price
-                    </td>
+            tempStore=[];
 
-                </tr>
+        }
+    }
 
-                {this.state.returnFlights.map((flight, index) =>
-
-                    <tr className="row" key={flight}>
-
-                        <td>
-                            {flight.flight_id}
-                        </td>
-                        <td>
-                            {flight.arrival}
-                        </td>
-                        <td>
-                            {flight.departure}
-                        </td>
-                        <td>
-                            {flight.origin}
-                        </td>
-                        <td>
-                            {flight.destination}
-                        </td>
-                        <td>
-                            {flight.class_name}
-                        </td>
-                        <td>
-                            <b>${flight.prices}</b>
-                            {this.props.isLoggedIn ? <Book details={[flight]}/> : ""}
-
-                        </td>
-                    </tr>
-                )}
-
-
-                </tbody>
-            </table>
-        )
-
+    setReturn(){
+        alert(JSON.stringify(returnFlights));
+        this.setState({flights:returnFlights});
     }
 
 
@@ -172,13 +197,12 @@ return(
 
                     <div className="row">
                         <div className="col-md-2">
-                            Time
-                            <FilterFlight rangeVal={this.handleTimeFilter.bind(this)} />
+                            <FilterFlight priceFilter={this.handleRange.bind(this)} rangeVal={this.handleTimeFilter.bind(this)} />
                         </div>
                         <div className="col-md-10">
                             <div className="table-responsive">
                                 <h4 className="text-center">Total {this.state.flights.length} flight(s) found</h4>
-                                {this.props.searchCriteria.toDate!==''?<button>Return Flight</button>:''}
+                                {this.props.searchCriteria.toDate!==''?<button onClick={()=>this.setReturn()}>Return Flight</button>:''}
                                 <table className="table table-striped">
 
 

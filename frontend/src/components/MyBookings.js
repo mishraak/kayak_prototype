@@ -14,9 +14,18 @@ class GetCars extends Component {
         API.getUserBookings()
             .then(res => {
                 this.setState({bookings:res.data});
-            })
+            });
+
+
 
     }
+    componentDidMount(){
+
+        this.totalTime=(new Date).getTime();
+        API.log({page:"MyBookings"});
+    }
+
+
 
     render() {
         return (
@@ -25,10 +34,9 @@ class GetCars extends Component {
 
                 <img src={require("../images/phoenix.png")}/>
                 <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
+                    <button onClick={()=>{this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>
                     <h3>My past bookings</h3>
                     <table className="table table-striped">
-
-
                         <tbody>
                         <tr className="row"   >
 
@@ -58,12 +66,8 @@ class GetCars extends Component {
                                 <td >
                                     ${b.amount}
                                 </td>
-
-
                             </tr>
                         )}
-
-
 
                         </tbody>
                     </table>

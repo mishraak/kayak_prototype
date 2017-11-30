@@ -117,8 +117,43 @@ handleSignup(payload) {
         this.setState({SearchCriteria:criteria});
         //alert("abc");
         //var searchType=this.state.SearchCriteria.searchType;
+        if(this.validate(criteria)){
+            if(criteria.searchType==="Flights"){
+                this.props.history.push("/GetFlights");
+            }
+            else if(criteria.searchType==="Cars"){
+                //alert("no ");
+                this.props.history.push("/GetCars");
+            }
+            else if(criteria.searchType==="Hotels"){
+                this.props.history.push("/GetHotels");
+            }
+        }
+
+    }
+
+    validate(criteria){
         if(criteria.searchType==="Flights"){
-            this.props.history.push("/GetFlights");
+            if(criteria.origin===''){
+                alert("Source cannot be blank");
+                return false;
+            }
+            if(criteria.destination===''){
+                alert("Destination cannot be blank");
+                return false;
+            }
+            if(new Date(criteria.fromDate)>new Date(criteria.toDate)){
+                alert("Arrival date cannot be before departure date");
+                return false;
+            }
+            var today = new Date(Date.now());
+            today.toISOString().substring(0, 10);
+            alert(new Date(today));
+            if(new Date(criteria.fromDate+" 23:59:59")<new Date(today)){
+                alert("you cannot book for past");
+                return false;
+            }
+            return true;
         }
         else if(criteria.searchType==="Cars"){
             //alert("no ");
@@ -130,11 +165,15 @@ handleSignup(payload) {
 
     }
 
+    check(page){
+        alert(page);
+    }
+
   render() {
     return (
         <div>
 
-                <Route exact path="/" render={() => (
+                <Route exact path="/"  render={() => (
                     <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
                         <img src={require("../images/phoenix.png")} alt="Login" />
                         <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
@@ -175,7 +214,7 @@ handleSignup(payload) {
                 <Route exact path="/about" render={() => (
                     <About route={this.props.history.push}/>
                 )}/>
-                <Route exact path="/myBookings" render={() => (
+                <Route exact path="/myBookings"  render={() => (
                    <MyBookings route={this.props.history.push}/>
                 )}/>
                 <Route exact path="/AddFlight" render={() => (

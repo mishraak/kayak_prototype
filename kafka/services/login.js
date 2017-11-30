@@ -1,6 +1,18 @@
 var FileData = require('./filedatamodel');
 let mysql=require('../config/mysql');
 const cache = require('./Redis');
+const winston = require('winston');
+require('winston-mongodb').MongoDB;
+var mongo = require("./mongo");
+var mongoURL = "mongodb://localhost:27017/logSystem";
+
+const reqLogger = new (winston.Logger)({
+      transports: [
+        new(winston.transports.MongoDB)({
+                     db : 'mongodb://localhost:27017/logSystem',
+                 collection: 'useractivitylogs'
+                 })],
+    });
 
 function handle_request(msg, callback){
 
@@ -443,6 +455,37 @@ function handle_request(msg, callback){
                console.log(err);
            }
            break;
+       case 'log_login':
+
+           console.log(msg.data);
+
+           try {
+               reqLogger.info(`${msg.data.username} has logged in`,{
+                       httpRequest:{
+                          status: msg.data.status,
+                           requestUrl: msg.data.requestUrl,
+                           requestMethod: msg.data.requestMethod,
+                           remoteIp: msg.data.remoteIp,
+                       }
+               });
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
+       case 'logPageClick':
+
+           console.log(msg);
+           mongo.connect(mongoURL,function (){
+               let conn=mongo.collection("pageClicks");
+               conn.findOneAndUpdate({page:msg.data.page}, {$inc: {clicks: 1}}, function (err, doc) {
+                   if (err) console.log("error-",err);
+                   console.log("doc-",doc);
+                   callback(null,"done");
+               })
+           });
+
+
    }
 }
 
