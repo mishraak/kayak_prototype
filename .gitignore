@@ -3,6 +3,8 @@ backend/node_modules
 frontend/node_modules
 kafka/node_modules
 .idea
-backend/.idea
-frontend/.idea
+backend/.idea/**/workspace.xml
+backend/.idea/**/tasks.xml
+backend/.idea/dictionaries
+frontend/.idea/workspace.xml
 kafka/.idea
