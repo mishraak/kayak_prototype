@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import * as API from '../api/API'
-import AdminProfile from './AdminProfile'  
+import AdminProfile from './AdminProfile'
+import Nav from './Nav'
 
 var data=[];
 
@@ -38,83 +39,100 @@ class About extends Component {
     console.log("user status : " + localStorage.getItem("user_status"));
     if (localStorage.getItem("user_status")==0) {
       return(
-              <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
+          <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
 
-              <img src={require("../images/phoenix.png")}/>                            
-              
+              <img src={require("../images/phoenix.png")}/>
+
               <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
-                    <div>
-                      <img src={this.state.image} alt="Profile" />
-                    </div>
-                    <div className="row about1">
-                        <div className="center-block">
-                            <pre>
-                                <br/>
-                                Email Address           : <input type='text' id='username' value={localStorage.getItem("username")} onChange={e => this.setState({ username: e.target.value })} />
-                                <br/>
-                                Password                : <input type='text' id='password' value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
-                                <br/>
-                                First Name              : <input type='text' id='first_name' value={this.state.first_name} onChange={e => this.setState({ first_name: e.target.value })}/>
-                                <br/>
-                                Last Name               : <input type='text' id='last_name' value={this.state.last_name} onChange={e => this.setState({ last_name: e.target.value })}/>
-                                <br/>
-                                Address                 : <input type='text' id='address' value={this.state.address} onChange={e => this.setState({ address: e.target.value })}/>
-                                <br/>
-                                City                    : <input type='text' id='city' value={this.state.city} onChange={e => this.setState({ city: e.target.value })}/>
-                                <br/>
-                                State                   : <input type='text' id='state' value={this.state.state} onChange={e => this.setState({ state: e.target.value })}/>
-                                <br/>                      
-                            </pre>
-                            <div className='row'>
+
+                  <div style={{"marginLeft":"200px"}}>
+                      <Nav />
+                  </div>
+                  <div>
+                      <div className="col-md-4 "    style={{"height":"500px","width":"300px","backgroundColor":"white",opacity:"0.6"}}>
+                          <img className="profilePic" src={require("../images/phoenix.png")} alt="Profile"  />
+                      </div>
+                      <div className="userDetails">
+                          <div style={{"fontSize":"30px"}}>Profile Details
+                              <hr/>
+                          </div>
+
+                          <div className="formFormat" >
+                              <br/>
+                              <label className="col-md-4" style={{"textAlign":"Right"}}>Email Address</label> <input type='text' className="adminField" id='username' value={localStorage.getItem("username")} onChange={e => this.setState({ username: e.target.value })} />
+                              <br/>
+                              <label className="col-md-4" style={{"textAlign":"Right"}}>Password</label><input type='text' className="adminField" id='password' value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
+                              <br/>
+                              <label className="col-md-4" style={{"textAlign":"Right"}}>First Name</label><input type='text'  className="adminField" id='first_name' value={this.state.first_name} onChange={e => this.setState({ first_name: e.target.value })}/>
+                              <br/>
+                              <label className="col-md-4" style={{"textAlign":"Right"}}>Last Name </label> <input type='text'  className="adminField" id='last_name' value={this.state.last_name} onChange={e => this.setState({ last_name: e.target.value })}/>
+                              <br/>
+                              <label className="col-md-4" style={{"textAlign":"Right"}}> Address </label><input type='text'  className="adminField" id='address' value={this.state.address} onChange={e => this.setState({ address: e.target.value })}/>
+                              <br/>
+                              <label className="col-md-4" style={{"textAlign":"Right"}}>City  </label> <input type='text'  className="adminField" id='city' value={this.state.city} onChange={e => this.setState({ city: e.target.value })}/>
+                              <br/>
+                              <label className="col-md-4" style={{"textAlign":"Right"}}>State  </label><input type='text'  className="adminField" id='state' value={this.state.state} onChange={e => this.setState({ state: e.target.value })}/>
+                              <br/>
+                          </div>
+                          <div className='row' style={{"opacity":"1"}}>
                               <button className='update-info' onClick={this.updateInfo}>Update Information</button>
                               <button className='cancel-update-info' onClick={()=>{this.props.history.push('/about');}}>Cancel</button><br/>
                               <button onClick={()=>{this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>
-                              <button onClick={()=>{this.props.route("/AdminProfile")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Admin Profile</button>              
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                              <button onClick={()=>{this.props.route("/AdminProfile")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Admin Profile</button>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
           </div>
       );
     }
-    else {
+      else {
             return(
-              <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
+                <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
 
-              <img src={require("../images/phoenix.png")}/>                            
-              
-              <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
-                    <div>
-                      <img src={this.state.image} alt="Profile" />
-                    </div>
-                    <div className="row about1">
-                        <div className="center-block">
-                            <pre>
-                                <br/>
-                                Email Address           : <input type='text' id='username' value={localStorage.getItem("username")} onChange={e => this.setState({ username: e.target.value })} />
-                                <br/>
-                                Password                : <input type='text' id='password' value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
-                                <br/>
-                                First Name              : <input type='text' id='first_name' value={this.state.first_name} onChange={e => this.setState({ first_name: e.target.value })}/>
-                                <br/>
-                                Last Name               : <input type='text' id='last_name' value={this.state.last_name} onChange={e => this.setState({ last_name: e.target.value })}/>
-                                <br/>
-                                Address                 : <input type='text' id='address' value={this.state.address} onChange={e => this.setState({ address: e.target.value })}/>
-                                <br/>
-                                City                    : <input type='text' id='city' value={this.state.city} onChange={e => this.setState({ city: e.target.value })}/>
-                                <br/>
-                                State                   : <input type='text' id='state' value={this.state.state} onChange={e => this.setState({ state: e.target.value })}/>
-                                <br/>                      
-                            </pre>
-                            <div className='row'>
-                              <button className='update-info' onClick={this.updateInfo}>Update Information</button>
-                              <button className='cancel-update-info' onClick={()=>{this.props.history.push('/about');}}>Cancel</button>
-                              <button onClick={()=>{this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>                              
+                    <img src={require("../images/phoenix.png")}/>
+
+                    <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
+
+                        <div style={{"marginLeft":"200px"}}>
+                            <Nav />
+                        </div>
+                        <div>
+                            <div className="col-md-4 "    style={{"height":"500px","width":"300px","backgroundColor":"white"}}>
+                                <img className="profilePic" src={require("../images/phoenix.png")} alt="Profile"  />
+                            </div>
+                            <div className="userDetails">
+                                <div style={{"fontSize":"30px"}}>Profile Details
+                                    <hr/>
+                                </div>
+
+                                <div className="formFormat" >
+                                    <br/>
+                                    <label className="col-md-4" style={{"textAlign":"Right"}}>Email Address</label> <input type='text' className="adminField" id='username' value={localStorage.getItem("username")} onChange={e => this.setState({ username: e.target.value })} />
+                                    <br/>
+                                    <label className="col-md-4" style={{"textAlign":"Right"}}>Password</label><input type='text' className="adminField" id='password' value={this.state.password} onChange={e => this.setState({ password: e.target.value })} />
+                                    <br/>
+                                    <label className="col-md-4" style={{"textAlign":"Right"}}>First Name</label><input type='text'  className="adminField" id='first_name' value={this.state.first_name} onChange={e => this.setState({ first_name: e.target.value })}/>
+                                    <br/>
+                                    <label className="col-md-4" style={{"textAlign":"Right"}}>Last Name </label> <input type='text'  className="adminField" id='last_name' value={this.state.last_name} onChange={e => this.setState({ last_name: e.target.value })}/>
+                                    <br/>
+                                    <label className="col-md-4" style={{"textAlign":"Right"}}> Address </label><input type='text'  className="adminField" id='address' value={this.state.address} onChange={e => this.setState({ address: e.target.value })}/>
+                                    <br/>
+                                    <label className="col-md-4" style={{"textAlign":"Right"}}>City  </label> <input type='text'  className="adminField" id='city' value={this.state.city} onChange={e => this.setState({ city: e.target.value })}/>
+                                    <br/>
+                                    <label className="col-md-4" style={{"textAlign":"Right"}}>State  </label><input type='text'  className="adminField" id='state' value={this.state.state} onChange={e => this.setState({ state: e.target.value })}/>
+                                    <br/>
+                                </div>
+                                <div className='row' style={{"opacity":"1"}}>
+                                    <button className='update-info' onClick={this.updateInfo}>Update Information</button>
+                                    <button className='cancel-update-info' onClick={()=>{this.props.history.push('/about');}}>Cancel</button><br/>
+                                    <button onClick={()=>{this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-          </div>
       );
     }
   }

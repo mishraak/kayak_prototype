@@ -27,7 +27,7 @@ class FilterFlight extends Component {
                 <Range allowCross={false}  min={0} max={23} step={1} defaultValue={[0, 23]} onChange={this.handleTime.bind(this)} style={{marginLeft:"10px"}}/>
                 <br/>
                 <select className="filterPrice" onChange={this.priceSelected.bind(this)} style={{marginTop:"10px"}}>
-                    <option value="" disabled selected>Price</option>
+
                     <option>Any</option>
                     <option>0-50</option>
                     <option>0-100</option>

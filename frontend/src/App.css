@@ -50,6 +50,31 @@
 
 }
 
+.adminField{
+    height: 30px;
+    width: 180px;
+    margin-top:5px;
+}
+.formFormat{
+    color: black;
+    font-size:20px;
+}
+.profilePic{
+    height:200px;
+    width:200px;
+    margin-top:30px
+}
+.userDetails{
+    opacity: 0.6;
+    background-color: white;
+    height:500px;
+    width:600px;
+    margin-left:400px;
+}
+.formFormat{
+    opacity: 1;
+}
+
 .panel {
     width: 750px;
     margin-top: 15px;
@@ -141,6 +166,32 @@
     width:150px;
     height:150px;
     background-color:green;
+  }
+
+  .resultBlock{
+      width:75%;
+      height:100px;
+      background-color: white;
+      padding-top: 20px;
+      margin-bottom: 10px;
+      opacity:0.7;
+  }
+  .flightIcon{
+      height:50px;
+      width:80px;
+
+      margin-left:40px;
+
+  }
+  .flightData{
+      width: 600px;
+      height:50px;
+
+  }
+  .flightPrice{
+      width: 100px;
+      height:50px;
+
   }
 
 

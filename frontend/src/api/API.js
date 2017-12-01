@@ -58,12 +58,12 @@ export const getflights = (searchCriteria) =>
     axios.post(api + '/search/flights/',searchCriteria)
 
         .then(res => {
-            console.log('response from server chck', res.data);
+            console.log('response from server chck', JSON.stringify(res.data));
             return res;
         })
         .catch(error => {
             console.log("This is error");
-            return error;
+            return [];
         });
 
 export const getReturnFlights = (searchCriteria) =>
@@ -76,7 +76,7 @@ export const getReturnFlights = (searchCriteria) =>
         })
         .catch(error => {
             console.log("This is error");
-            return error;
+            return [];
         });
 
 
@@ -88,7 +88,7 @@ export const getCars = (searchCriteria) =>
         })
         .catch(error => {
             console.log("This is error");
-            return error;
+            return [];
         });
 
 export const getHotels = (searchCriteria) =>

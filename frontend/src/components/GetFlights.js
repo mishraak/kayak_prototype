@@ -183,32 +183,25 @@ class GetFlights extends Component {
                 if (flight.display === true) {
                     return (
 
-                        <tr className="row" key={flight}  >
+                        <div className={"resultBlock"} key= {flight.flight_id} style={{"display":"flex", "flexDirection":"row"}}>
+                            <div className={"flightIcon"}>
+                               <figure>
+                                <img src={require("../images/CX.png")} alt={"flight"} style={{"height":"30px","width":"60px"}}/>
+                                   <figcaption>{flight.flight_id}</figcaption></figure>
+                            </div>
+                            <div className={"flightData"}  style={{"display":"flex", "flexDirection":"row","padding-left":"150px","padding-right":"150px"}}>
+                                <div>{flight.arrival} <img src={require("../images/smallMark.PNG")} style={{"height":"20px"}}/> {flight.departure}</div><br/>
+                                <div> {flight.origin}  <img src={require("../images/smallMark.PNG")} style={{"height":"20px","opacity":"0"}}/> {flight.destination}</div>
+                            </div>
+                            <div className={"flightPrice"}>
 
-                            <td >
-                                {flight.flight_id}
-                            </td>
-                            <td >
-                                {flight.arrival}
-                            </td>
-                            <td >
-                                {flight.departure}
-                            </td>
-                            <td >
-                                {flight.origin}
-                            </td>
-                            <td >
-                                {flight.destination}
-                            </td>
-                            <td >
-                                {flight.class_name}
-                            </td>
-                            <td >
                                 <b>${flight.prices}</b>
                                 {this.props.isLoggedIn?<Book details={[flight]}/>:""}
+                            </div>
 
-                            </td>
-                        </tr>
+                        </div>
+
+
                     )
                 }
             });
@@ -233,44 +226,10 @@ return(
                             <div className="table-responsive">
                                 <h4 className="text-center">Total {this.state.flights.length} flight(s) found</h4>
                                 {this.props.searchCriteria.toDate!==''?<button onClick={()=>this.setReturn()}>Return Flight</button>:''}
-                                <table className="table table-striped">
 
-
-                                    <tbody>
-                                    <tr className="row"   >
-                                        <td >
-                                            Flight
-                                        </td>
-                                        <td >
-                                            Departure time
-                                        </td>
-                                        <td >
-                                            Arrival time
-                                        </td>
-                                        <td >
-                                            Origin
-                                        </td>
-                                        <td >
-                                            Destination
-                                        </td>
-                                        <td >
-                                            Class
-                                        </td>
-                                        <td >
-                                            Price
-                                        </td>
-
-                                    </tr>
                                     {searchRes}
 
 
-
-
-                                    </tbody>
-                                </table>
-
-
-                                {/*{this.props.searchCriteria.toDate!==''?this.returnWayFlights():''}*/}
 
                             </div>
 
