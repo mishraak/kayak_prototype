@@ -38,6 +38,7 @@ class GetFlights extends Component {
     }
 
     componentDidMount(){
+        this.totalTime=(new Date).getTime();
         API.log({page:"SearchFlights"});
     }
 
@@ -60,6 +61,31 @@ class GetFlights extends Component {
             });
             this.setState({flights:tempStore});
         }
+    }
+
+    componentWillUnmount() {
+        var node= {
+            username: localStorage.getItem("username"),
+            data: {
+                pageName: "GetCars",
+                timeSpent: ((new Date).getTime()-this.totalTime)/1000
+            },
+            next: null
+        };
+
+        if(!localStorage.getItem("trackUser")){
+            localStorage.setItem("trackUser",JSON.stringify(node));
+        }
+        else{
+            var linkedList=JSON.parse(localStorage.getItem("trackUser"));
+            var curr=linkedList;
+            while(curr.next!==null){
+                curr=curr.next;
+            }
+            curr.next=node;
+            localStorage.setItem("trackUser",JSON.stringify(linkedList));
+        }
+
     }
 
     handleRange(range){
