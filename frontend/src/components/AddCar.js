@@ -6,7 +6,7 @@ class AddCar extends Component{
             car_name:"Prius",            
             car_type:"Sedan",
             price:"200",
-            departure:"2017-11-23 23:27:39",
+            location:"SFO",
             details:"excellent condition"
     };
 

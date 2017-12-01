@@ -123,13 +123,15 @@ function handle_request(msg, callback){
             var  car_name=    msg.data.car_name,
                  car_type=   msg.data.car_type,
                  price=       msg.data.price,
-                 details=      msg.data.details;
+                 details=      msg.data.details,
+                 location=msg.data.location;
 
-           var addCars = "INSERT INTO KAYAK.CARS ( car_name, car_type, price, details) VALUES (" +                                                      
+           var addCars = "INSERT INTO KAYAK.CARS ( car_name, car_type, price, details,location) VALUES (" +
                                                         "\"" + car_name + "\"," + 
                                                         "\"" + car_type + "\"," + 
-                                                        "\"" + price + "\"," + 
-                                                        "\"" + details + "\");";
+                                                        "\"" + price + "\"," +
+                                                       "\"" + details + "\"," +
+                                                       "\"" + location + "\");";
                                                   
 
            try {

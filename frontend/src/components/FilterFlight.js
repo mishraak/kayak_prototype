@@ -41,6 +41,7 @@ class FilterFlight extends Component {
                     {this.state.arrstart}:00hrs -{this.state.arrend}:00 hrs</div>
                 <Range allowCross={false}  min={0} max={23} step={1} defaultValue={[0, 23]} onChange={this.handleArrTime.bind(this)} style={{marginLeft:"10px"}}/>
                 <br/>
+                <h4 style={{color:"white"}}>Filter by Price</h4>
                 <select className="filterPrice" onChange={this.priceSelected.bind(this)} style={{marginTop:"10px"}}>
 
                     <option>Any</option>
