@@ -213,33 +213,38 @@ class Analytics extends Component {
                 labels: ['Air India', 'United', 'Delta', 'Ethihad', 'SouthWest', 'Emirates', 'Air China', 'British','Lufthansa'],
                 datasets:[
                     {
-                        label:'Airports',
+                        label:'October',
                         data:[
                             190,
                             156,
                             142,
                             123,
-                            77,
                             90,
+                            77,
                             50,
                             40,
                             30,
                             40,
 
                         ],
-                        backgroundColor:[
-                            'rgba(255, 99, 132, 0.6)',
-                            'rgba(54, 162, 235, 0.6)',
-                            'rgba(255, 206, 86, 0.6)',
-                            'rgba(75, 192, 192, 0.6)',
-                            'rgba(153, 102, 255, 0.6)',
-                            'rgba(255, 159, 64, 0.6)',
-                            'rgba(255, 192, 64, 0.6)',
-                            'rgba(153, 102, 255, 0.6)',
-                            'rgba(255, 159, 55, 0.6)',
-                            'rgba(255, 192, 64, 0.6)',
-                            'rgba(255, 99, 132, 0.6)'
-                        ]
+                        backgroundColor:'#EC932F',
+                    },
+                    {
+                      label:'November',
+                      data:[
+                        140,
+                        157,
+                        132,
+                        130,
+                        77,
+                        60,
+                        40,
+                        30,
+                        20,
+                        20,
+      
+                      ],
+                      backgroundColor:'#71B37C',
                     }
                 ]
             },
@@ -329,7 +334,7 @@ class Analytics extends Component {
                 labels: ['Enterprise', 'Hertz', 'National', 'Avis', 'Budget'],
                 datasets:[
                     {
-                        label:'Airports',
+                        label:'October',
                         data:[
                             56,
                             48,
@@ -337,14 +342,18 @@ class Analytics extends Component {
                             26,
                             20
                         ],
-                        backgroundColor:[
-                            'rgba(255, 99, 132, 0.6)',
-                            'rgba(54, 162, 235, 0.6)',
-                            'rgba(255, 206, 86, 0.6)',
-                            'rgba(75, 192, 192, 0.6)',
-                            'rgba(153, 102, 255, 0.6)',
-                            'rgba(255, 99, 132, 0.6)'
-                        ]
+                        backgroundColor:'#EC932F'
+                    },
+                    {
+                      label:'November',
+                      data:[
+                        45,
+                        40,
+                        41,
+                        12,
+                        14
+                      ],
+                      backgroundColor:'#71B37C'
                     }
                 ]
             },
@@ -444,7 +453,7 @@ class Analytics extends Component {
                 labels: ['Bellagio', 'Mandalay', 'Aria', 'Monte Carlo', 'Marriott', 'Flamingo', 'Wynn', 'Four Seasons','Trump International'],
                 datasets:[
                     {
-                        label:'Hot Revenue in San Jose',
+                        label:'October',
                         data:[
                             190,
                             156,
@@ -456,21 +465,24 @@ class Analytics extends Component {
                             40,
                             30,
                             40,
-
                         ],
-                        backgroundColor:[
-                            'rgba(255, 99, 132, 0.6)',
-                            'rgba(54, 162, 235, 0.6)',
-                            'rgba(255, 206, 86, 0.6)',
-                            'rgba(75, 192, 192, 0.6)',
-                            'rgba(153, 102, 255, 0.6)',
-                            'rgba(255, 159, 64, 0.6)',
-                            'rgba(255, 192, 64, 0.6)',
-                            'rgba(153, 102, 255, 0.6)',
-                            'rgba(255, 159, 55, 0.6)',
-                            'rgba(255, 192, 64, 0.6)',
-                            'rgba(255, 99, 132, 0.6)'
-                        ]
+                        backgroundColor:'#EC932F'
+                    },
+                    {
+                      label:'November',
+                      data:[
+                        240,
+                        216,
+                        222,
+                        143,
+                        120,
+                        130,
+                        100,
+                        80,
+                        60,
+                        50,
+                      ],
+                      backgroundColor:'#71B37C'
                     }
                 ]
             },
