@@ -123,15 +123,33 @@ handleAddCar(payload) {
          });
  }
 
-handleSignup(payload) {            
+handleSignup(payload) {
+    var states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
+        "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+        "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+        "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+        "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
+    try {
+
+        if (/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(payload.zip_code) && /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(payload.email) && states.indexOf(payload.state) > -1) {
+            alert(true);
+        }
+        else {
+            //alert(false)
+            throw "malformed_state";
+        }
+    }
+    catch(err){
+        console.log("Exception caught",err);
+    }
         
-     API.handleSignup(payload)
-            .then(function (response) {
-                console.log(response);                                                                                           
-            })
-            .catch(function (error) {
-              console.log(error);              
-            })
+     // API.handleSignup(payload)
+     //        .then(function (response) {
+     //            console.log(response);
+     //        })
+     //        .catch(function (error) {
+     //          console.log(error);
+     //        })
     
     //this.props.history.push("/"); 
 
