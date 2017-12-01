@@ -24,10 +24,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flights.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="flights.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/flights.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1581">
+            <state relative-caret-position="-391">
               <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
               <folding />
             </state>
@@ -74,7 +74,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/login.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
@@ -168,7 +168,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="22" />
     <option name="width" value="1440" />
     <option name="height" value="878" />
@@ -254,15 +254,15 @@
       <workItem from="1511388780951" duration="6815000" />
       <workItem from="1511494660133" duration="1135000" />
       <workItem from="1511496806137" duration="2058000" />
-      <workItem from="1512157887679" duration="1472000" />
+      <workItem from="1512157887679" duration="2064000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47900000" />
+    <option name="totallyTimeSpent" value="48492000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22254759" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -696,14 +696,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/flights.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1581">
-          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -712,6 +704,14 @@
             <marker date="1512120406588" expanded="true" signature="715:716" ph="{...}" />
             <marker date="1512120406588" expanded="true" signature="5484:5486" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/flights.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-391">
+          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

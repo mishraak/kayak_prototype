@@ -271,7 +271,7 @@ function handle_request(msg, callback){
        break;
        case 'getallflights':
            console.log(msg.data);
-           var getFlights="select f.flight_id,date_format(arrival, '%h:%i') arrival,date_format(departure, '%h:%i') departure,class_name,prices,origin,destination from flights f join classes c on f.flight_id=c.flight_id where c.class_name='"+msg.data.class+"' and origin='"+msg.data.origin+"' and destination='"+msg.data.destination+"' and DATE(departure)='"+msg.data.fromDate+"'";
+           var getFlights="select f.airline,f.flight_id,date_format(arrival, '%h:%i') arrival,date_format(departure, '%h:%i') departure,class_name,prices,origin,destination from flights f join classes c on f.flight_id=c.flight_id where c.class_name='"+msg.data.class+"' and origin='"+msg.data.origin+"' and destination='"+msg.data.destination+"' and DATE(departure)='"+msg.data.fromDate+"'";
 
            try {
 
@@ -453,6 +453,15 @@ function handle_request(msg, callback){
                        callback(null,results);
                    }
                }, book);
+
+               mongo.connect(mongoURL,function (){
+                   let conn=mongo.collection("billing");
+                   conn.insertOne({bookingType:msg.data.type,amount:msg.data.amount,time:new Date(),name:msg.data.name}, function (err, doc) {
+                       if (err) console.log("error-",err);
+                       console.log("doc-",doc);
+                       callback(null,"done");
+                   })
+               });
            }
            catch (err){
                console.log(err);
