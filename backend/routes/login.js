@@ -13,17 +13,9 @@ var GroupData = require('../models/group_names');
 var GroupRawData = require('../models/group_rawdata');
 var kafka = require('./kafka/client');
 
-var storage = multer.diskStorage({
-    destination:function(req,file,cb){
-        console.log(file);
-        cb(null,path.join(__dirname,'../images/'));
-    },
-    filename:function(req,file,cb){
-        cb(null,Date.now()+file.originalname);
-    }
-});
 
-var upload = multer({storage:storage});
+
+var upload = multer({storage: multer.memoryStorage(), limits: {fileSize: 12*1000*1000}});
 
 router.post('/signup',(req,res,next)=>{
     console.log('signup');    
@@ -104,11 +96,11 @@ router.post('/logPageClick',(req,res,next)=>{
         kafka.make_request('login_topic',{data: req.body, type:"logPageClick"}, function(err,results){
             console.log(results);
             if(err){
-                res.status(404);
+                res.status(500).send("error");
             }
             else
             {
-                res.status(200);
+                res.status(200).send("success");
             }
         });
 
@@ -215,6 +207,32 @@ router.post('/doLogin',(req,res,next)=>{
     })(req, res);
 });
 
+router.post('/uploadProfilePic' ,upload.any(),function (req, res) {
+
+    try {
+
+        console.log("body in upload",req.body);
+        console.log("multer file",req.files);
+        console.log("multer buffer",req.files[0].buffer);
+        kafka.make_request('login_topic', {files:req.files[0],userId:req.body.userId,type:"uploadProfilePic"}, function (err, results) {
+            console.log('in result');
+            //console.log(results);
+            if (err) {
+                console.log(err);
+                res.status(500).send(results);
+            }
+            else {
+                res.status(201).send(results);
+            }
+        });
+
+
+    }
+    catch(err){
+        console.log(err);
+    }
+
+});
 
 
 module.exports = router;

@@ -21,8 +21,11 @@ export default class FormDialog extends React.Component {
     };
 
     componentDidMount(){
-        API.log({page:"BookFlight"});
+        this.totalTime=(new Date).getTime();
     }
+
+
+
     handleRequestClose = (event) => {
         this.setState({ open: false });
         console.log("action",event.target.innerHTML);

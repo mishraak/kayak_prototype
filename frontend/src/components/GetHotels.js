@@ -37,30 +37,29 @@ class GetHotels extends Component {
 
     }
 
-    insertActivity(){
+    componentWillUnmount() {
         var node= {
             username: localStorage.getItem("username"),
             data: {
-                pageName: 'SearchHotels',
-                timeSpent: this.totalTime-(new Date).getTime()
+                pageName: "SearchHotels",
+                timeSpent: ((new Date).getTime()-this.totalTime)/1000
             },
             next: null
         };
+
         if(!localStorage.getItem("trackUser")){
-            localStorage.setItem("trackUser",node);
+            localStorage.setItem("trackUser",JSON.stringify(node));
         }
         else{
-            var linkedList=localStorage.getItem("trackUser");
+            var linkedList=JSON.parse(localStorage.getItem("trackUser"));
             var curr=linkedList;
             while(curr.next!==null){
-                linkedList=linkedList.next;
+                curr=curr.next;
             }
             curr.next=node;
-            localStorage.setItem("trackUser",linkedList);
-
+            localStorage.setItem("trackUser",JSON.stringify(linkedList));
         }
 
-        //API.insertActivity(linkedList);
     }
 
 

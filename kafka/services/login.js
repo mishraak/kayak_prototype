@@ -5,6 +5,7 @@ const winston = require('winston');
 require('winston-mongodb').MongoDB;
 var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/logSystem";
+var fs=require("fs");
 
 const reqLogger = new (winston.Logger)({
       transports: [
@@ -47,17 +48,40 @@ function handle_request(msg, callback){
            try {
                var user="select email, image, password, first_name, last_name, address, city, state from USERS where email='"+msg.data+"'";
                console.log(msg.data);
+
+               cache.get(user, (err, resCache) => {
+                   if (resCache !== null) {
+                       //If it does, return it in the callback
+                       console.log("fetched from resCache");
+                       return callback(null, resCache);
+                   }
+                   /*
+                   At this point, we know that the data we want does not exist in the cache
+                   So, we query it from our database
+                   */
+                   mysql.fetchData(function (err, results) {
+                       if (err) {
+                           console.log(err);
+                           res.status(500).json({message: "An error occured"});
+                       }
+                       else {
+                           fs.readFile("./public/uploads/a@a.com.jpg",  function (err, trex) {
+                               console.log("File Read",trex.length);
+                               //callback(null,trex);
+                               results[0].image=trex;
+                               cache.setex(user, 10,JSON.stringify(results), () => {
+
+                                   //At this point, our data is successfully stored in the redis cache
+                                   // We now return the results through the callback
+                                   callback(null, results);
+                               });
+                           });
+                       }
+
+                   }, user);
+               });
                
-               mysql.fetchData(function (err, results) {
-                   if (err) {
-                       console.log(err);
-                       res.status(500).json({message: "An error occured"});
-                   }
-                   else {
-                       console.log("adgad",results);
-                       callback(null,results);
-                   }
-               }, user);
+
            }
            catch (err){
                console.log(err);
@@ -496,6 +520,31 @@ function handle_request(msg, callback){
                });
            });
            break;
+       case 'uploadProfilePic':
+           try {
+
+
+               var buffer = new Buffer(msg.files.buffer);
+
+               fs.open("./public/uploads/a@a.com.jpg", 'w', function(err, fd) {
+                   if (err) {
+                       console.log(err);
+                   }
+
+                   fs.write(fd, buffer, 0, buffer.length, null, function(err) {
+                       if (err) throw 'error writing file: ' + err;
+                       fs.close(fd, function() {
+                           console.log('file written');
+                       })
+                   });
+               });
+               callback(null,"success");
+               // console.log(msg.file.value);
+
+           }
+           catch(err){
+               console.log(err);
+           }
 
 
    }

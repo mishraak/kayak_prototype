@@ -32,7 +32,7 @@ class GetCars extends Component {
         var node= {
             username: localStorage.getItem("username"),
             data: {
-                pageName: "GetCars",
+                pageName: "SearchCars",
                 timeSpent: ((new Date).getTime()-this.totalTime)/1000
             },
             next: null
@@ -211,7 +211,7 @@ class GetCars extends Component {
             searchRes = this.state.Cars.map((car) => {
                 if (car.display === true) {
                     return (
-                        <tr className="row"   >
+                        <tr className="row"   key={car.car_id}>
 
                             <td >
                                 {car.car_name}

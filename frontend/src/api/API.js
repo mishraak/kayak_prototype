@@ -198,6 +198,18 @@ export const insertActivity = (node) =>
             return error;
         });
 
+export const uploadFile = (payload) =>
+    axios.post(api + '/users/uploadProfilePic', payload,{withCredentials:true})
+        .then(res => {
+            console.log('response from server fileupload', res.data.message);
+
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in fileupload API");
+            return error;
+        });
+
 
 // export const getmyfiles = () =>
 //     fetch(`${api}/files/myfiles`, {

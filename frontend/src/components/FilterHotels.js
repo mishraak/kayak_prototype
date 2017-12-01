@@ -11,9 +11,9 @@ class FilterHotels extends Component {
     render() {
         return (
             <div>
-
+                <h4 style={{color:"white"}}>Filter by Stars</h4>
                 <select className="filterPrice"  onChange={this.valueSelected.bind(this)}>
-                    <option value="" disabled selected>Stars</option>
+
                     <option>Any</option>
                     <option>1</option>
                     <option>2</option>
@@ -21,10 +21,12 @@ class FilterHotels extends Component {
                     <option>4</option>
                     <option>5</option>
                 </select>
-            <br/>
 
+                <br/>
+
+                <h4 style={{color:"white"}}>Filter by Price</h4>
                 <select className="filterPrice" onChange={this.priceSelected.bind(this)}>
-                    <option value="" disabled selected>Price</option>
+
                     <option>Any</option>
                     <option>0-50</option>
                     <option>0-100</option>

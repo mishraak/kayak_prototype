@@ -31,8 +31,9 @@ export default class FormDialog extends React.Component {
     };
 
     componentDidMount(){
-        API.log({page:"BookCar"});
+        this.totalTime=(new Date).getTime();
     }
+
 
     render() {
         return (

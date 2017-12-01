@@ -54,13 +54,14 @@ class FilterCar extends Component {
     render() {
         return (
             <div>
-
-                    <div className="checkBox" style={{"display":"flex", "flexDirection":"row"}}><div className="checkBoxName">Small</div><input type="checkbox" onClick={this.handleCheck.bind(this,"Small")} className="checks" value="Small"/></div>
-                    <div className="checkBox" style={{"display":"flex", "flexDirection":"row"}}><div className="checkBoxName">Medium</div><input type="checkbox" onClick={this.handleCheck.bind(this,"Medium")} className="checks" value="Medium"/></div>
-                    <div className="checkBox" style={{"display":"flex", "flexDirection":"row"}}><div className="checkBoxName">Large</div><input type="checkbox" onClick={this.handleCheck.bind(this,"Large")} className="checks" value="Large"/></div>
-                    <div className="checkBox" style={{"display":"flex", "flexDirection":"row"}}><div className="checkBoxName">SUV</div><input type="checkbox" onClick={this.handleCheck.bind(this,"SUV")} className="checks" value="SUV"/></div>
-                    <div className="checkBox" style={{"display":"flex", "flexDirection":"row"}}><div className="checkBoxName">Van</div><input type="checkbox" onClick={this.handleCheck.bind(this,"Van")} className="checks" value="Van"/></div>
-
+                <h4 style={{color:"white"}}>Filter by Car Type</h4>
+                <div className="checkBox" style={{"display":"flex", "flexDirection":"row"}}><div className="checkBoxName">Small</div><input type="checkbox" onClick={this.handleCheck.bind(this,"Small")} className="checks" value="Small"/></div>
+                <div className="checkBox" style={{"display":"flex", "flexDirection":"row"}}><div className="checkBoxName">Medium</div><input type="checkbox" onClick={this.handleCheck.bind(this,"Medium")} className="checks" value="Medium"/></div>
+                <div className="checkBox" style={{"display":"flex", "flexDirection":"row"}}><div className="checkBoxName">Large</div><input type="checkbox" onClick={this.handleCheck.bind(this,"Large")} className="checks" value="Large"/></div>
+                <div className="checkBox" style={{"display":"flex", "flexDirection":"row"}}><div className="checkBoxName">SUV</div><input type="checkbox" onClick={this.handleCheck.bind(this,"SUV")} className="checks" value="SUV"/></div>
+                <div className="checkBox" style={{"display":"flex", "flexDirection":"row"}}><div className="checkBoxName">Van</div><input type="checkbox" onClick={this.handleCheck.bind(this,"Van")} className="checks" value="Van"/></div>
+                <br/>
+                <h4 style={{color:"white"}}>Filter by Price</h4>
                 <select className="filterPrice" onChange={this.priceSelected.bind(this)}>
                     <option>Any</option>
                     <option>0-50</option>

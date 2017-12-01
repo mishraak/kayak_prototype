@@ -32,6 +32,34 @@ componentWillMount(){
          this.setState({isLoggedIn:true});
      }
  }
+componentDidMount(){
+        this.totalTime=(new Date).getTime();
+        API.log({page:"HomePage"});
+    }
+componentWillUnmount(){
+        var node= {
+            username: localStorage.getItem("username"),
+            data: {
+                pageName: "HomePage",
+                timeSpent: ((new Date).getTime()-this.totalTime)/1000
+            },
+            next: null
+        };
+
+        if(!localStorage.getItem("trackUser")){
+            localStorage.setItem("trackUser",JSON.stringify(node));
+        }
+        else{
+            var linkedList=JSON.parse(localStorage.getItem("trackUser"));
+            var curr=linkedList;
+            while(curr.next!==null){
+                curr=curr.next;
+            }
+            curr.next=node;
+            localStorage.setItem("trackUser",JSON.stringify(linkedList));
+        }
+
+}
 
 handleAddFlight(payload) {            
         
@@ -148,7 +176,6 @@ handleSignup(payload) {
             }
             var today = new Date(Date.now());
             today.toISOString().substring(0, 10);
-            alert(new Date(today));
             if(new Date(criteria.fromDate+" 23:59:59")<new Date(today)){
                 alert("you cannot book for past");
                 return false;
@@ -208,7 +235,7 @@ handleSignup(payload) {
                     <SignUp route={this.props.history.push} handleSignup={this.handleSignup.bind(this)}/>
                 )}/>
                 <Route exact path="/about" render={() => (
-                    <About route={this.props.history.push}/>
+                    <About route={this.props.history.push} isLoggedIn={this.state.isLoggedIn}/>
                 )}/>
                 <Route exact path="/myBookings"  render={() => (
                    <MyBookings route={this.props.history.push}/>

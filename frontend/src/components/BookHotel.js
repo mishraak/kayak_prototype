@@ -32,7 +32,7 @@ export default class FormDialog extends React.Component {
     };
 
     componentDidMount(){
-        API.log({page:"BookHotel"});
+        this.totalTime=(new Date).getTime();
     }
 
     render() {

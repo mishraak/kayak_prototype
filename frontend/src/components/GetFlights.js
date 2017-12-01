@@ -42,14 +42,35 @@ class GetFlights extends Component {
         API.log({page:"SearchFlights"});
     }
 
-    handleTimeFilter(timeRange){
+    handleDepartureFilter(timeRange){
         let modifySearch = this.state.flights;
         console.log(timeRange);
         let tempStore=[];
         if(modifySearch!=null){
             let index = modifySearch.findIndex((res)=>{
                 //alert(res.departure.split(":")[0]);
-                if(parseInt(res.departure.split(":")[0])>= timeRange[0] && parseInt(res.arrival.split(":")[0])<timeRange[1]){
+                if(parseInt(res.departure.split(":")[0])>= timeRange[0] && parseInt(res.departure.split(":")[0])<timeRange[1]){
+                    res.display=true;
+                    tempStore.push(res);
+                }else{
+                    res.display=false;
+                    tempStore.push(res);
+                }
+
+
+            });
+            this.setState({flights:tempStore});
+        }
+    }
+
+    handleArrivalFilter(timeRange){
+        let modifySearch = this.state.flights;
+        console.log(timeRange);
+        let tempStore=[];
+        if(modifySearch!=null){
+            let index = modifySearch.findIndex((res)=>{
+                //alert(res.departure.split(":")[0]);
+                if(parseInt(res.arrival.split(":")[0])>= timeRange[0] && parseInt(res.arrival.split(":")[0])<timeRange[1]){
                     res.display=true;
                     tempStore.push(res);
                 }else{
@@ -67,7 +88,7 @@ class GetFlights extends Component {
         var node= {
             username: localStorage.getItem("username"),
             data: {
-                pageName: "GetCars",
+                pageName: "SearchFlights",
                 timeSpent: ((new Date).getTime()-this.totalTime)/1000
             },
             next: null
@@ -169,7 +190,7 @@ class GetFlights extends Component {
     }
 
     setReturn(){
-        alert(JSON.stringify(returnFlights));
+        //alert(JSON.stringify(returnFlights));
         this.setState({flights:returnFlights});
     }
 
@@ -189,8 +210,8 @@ class GetFlights extends Component {
                                 <img src={require("../images/CX.png")} alt={"flight"} style={{"height":"30px","width":"60px"}}/>
                                    <figcaption>{flight.flight_id}</figcaption></figure>
                             </div>
-                            <div className={"flightData"}  style={{"display":"flex", "flexDirection":"row","padding-left":"150px","padding-right":"150px"}}>
-                                <div>{flight.arrival} <img src={require("../images/smallMark.PNG")} style={{"height":"20px"}}/> {flight.departure}</div><br/>
+                            <div className={"flightData"}  style={{"display":"flex", "flexDirection":"row","paddingLeft":"150px","paddingRight":"150px"}}>
+                                <div>{flight.departure} <img src={require("../images/smallMark.PNG")} style={{"height":"20px"}}/> {flight.arrival}</div><br/>
                                 <div> {flight.origin}  <img src={require("../images/smallMark.PNG")} style={{"height":"20px","opacity":"0"}}/> {flight.destination}</div>
                             </div>
                             <div className={"flightPrice"}>
@@ -220,7 +241,7 @@ return(
 
                     <div className="row">
                         <div className="col-md-2">
-                            <FilterFlight priceFilter={this.handleRange.bind(this)} rangeVal={this.handleTimeFilter.bind(this)} />
+                            <FilterFlight priceFilter={this.handleRange.bind(this)} dep={this.handleDepartureFilter.bind(this)} arr={this.handleArrivalFilter.bind(this)} />
                         </div>
                         <div className="col-md-10">
                             <div className="table-responsive">

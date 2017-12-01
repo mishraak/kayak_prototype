@@ -5,12 +5,20 @@ import 'rc-slider/assets/index.css';
 class FilterFlight extends Component {
 
     state={
-        start:0,
-        end:0
+        depstart:0,
+        depend:0,
+        arrstart:0,
+        arrend:0
     };
-    handleTime(val){
-        this.setState({start:val[0],end:val[1]});
-        this.props.rangeVal(val);
+    handleDepTime(val){
+        this.setState({depstart:val[0],depend:val[1]});
+        this.props.dep(val);
+
+    }
+
+    handleArrTime(val){
+        this.setState({arrstart:val[0],arrend:val[1]});
+        this.props.arr(val);
 
     }
 
@@ -22,9 +30,16 @@ class FilterFlight extends Component {
     render() {
         return (
             <div>
+                <h4 style={{color:"white"}}>Filter by Time</h4>
                 <div className="timeFilter">
-                  Dptr:{this.state.start}:00   -  Arvl:{this.state.end}:00 hrs</div>
-                <Range allowCross={false}  min={0} max={23} step={1} defaultValue={[0, 23]} onChange={this.handleTime.bind(this)} style={{marginLeft:"10px"}}/>
+                    <h5 style={{color:"white"}}>Departure</h5>
+                  {this.state.depstart}:00hrs -{this.state.depend}:00 hrs</div>
+                <Range allowCross={false}  min={0} max={23} step={1} defaultValue={[0, 23]} onChange={this.handleDepTime.bind(this)} style={{marginLeft:"10px"}}/>
+                <br/>
+                <div className="timeFilter">
+                    <h5 style={{color:"white"}}>Arrival</h5>
+                    {this.state.arrstart}:00hrs -{this.state.arrend}:00 hrs</div>
+                <Range allowCross={false}  min={0} max={23} step={1} defaultValue={[0, 23]} onChange={this.handleArrTime.bind(this)} style={{marginLeft:"10px"}}/>
                 <br/>
                 <select className="filterPrice" onChange={this.priceSelected.bind(this)} style={{marginTop:"10px"}}>
 
