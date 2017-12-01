@@ -22,8 +22,8 @@ class Chart extends Component{
             <div className="col-lg-6">
               <Doughnut
                 data={this.state.chartBookingData}
-                width={100}
-                height={100}
+                width={70}
+                height={50}
                 options={{
                   title:{display:this.props.displayTitle,
                   text:'Different Types of Bookings(%)',
@@ -35,8 +35,8 @@ class Chart extends Component{
             <div className="col-lg-6">
               <Doughnut
                 data={this.state.chartRevenueDataData}
-                width={100}
-                height={100}
+                width={70}
+                height={50}
                 options={{
                   title:{display:this.props.displayTitle,
                   text:'Revenue From Different Booking Types(%)',

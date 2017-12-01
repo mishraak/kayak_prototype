@@ -3,6 +3,7 @@ import Nav from './Nav';
 import * as API from '../api/API';
 import BookCar from './BookCar';
 import FilterCar from './FilterCar';
+import {insertActivity} from "../api/API";
 
 
 class GetCars extends Component {
@@ -22,15 +23,43 @@ class GetCars extends Component {
     }
 
     componentDidMount(){
+        this.totalTime=(new Date).getTime();
         API.log({page:"SearchCars"});
     };
+
+
+    componentWillUnmount() {
+        var node= {
+            username: localStorage.getItem("username"),
+            data: {
+                pageName: "GetCars",
+                timeSpent: ((new Date).getTime()-this.totalTime)/1000
+            },
+            next: null
+        };
+
+        if(!localStorage.getItem("trackUser")){
+            localStorage.setItem("trackUser",JSON.stringify(node));
+        }
+        else{
+            var linkedList=JSON.parse(localStorage.getItem("trackUser"));
+            var curr=linkedList;
+            while(curr.next!==null){
+                curr=curr.next;
+            }
+            curr.next=node;
+            localStorage.setItem("trackUser",JSON.stringify(linkedList));
+        }
+
+    }
+
 
     handleRange(range){
         let modifySearch =this.state.Cars;// this.state.displayResults;
         let tempStore=[];
         localStorage.removeItem("range");
         localStorage.setItem("range",range);
-        if(modifySearch!=null){
+        if(modifySearch!==null){
             let index = modifySearch.findIndex((res)=>{
                 switch(range){
                     case 'Any':
@@ -212,7 +241,7 @@ class GetCars extends Component {
 
             <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
 
-                <img src={require("../images/phoenix.png")}/>
+                <img src={require("../images/phoenix.png")} />
                 <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
                     <div style={{"marginLeft":"200px"}}>
                         <Nav  isLoggedIn={this.props.isLoggedIn} route={this.props.route} handleLogin={this.props.handleLogin}/>

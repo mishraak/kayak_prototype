@@ -32,7 +32,7 @@ class GetCars extends Component {
             username: localStorage.getItem("username"),
             data: {
                 pageName: 'MyBookings',
-                timeSpent: (new Date).getTime()-this.totalTime
+                timeSpent: ((new Date).getTime()-this.totalTime)/1000
             },
             next: null
         };

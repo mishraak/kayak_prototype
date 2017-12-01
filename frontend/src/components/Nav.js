@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {insertActivity} from "../api/API";
 //import {Link} from 'react-router';
 //import styles from './app.css';
 
@@ -45,12 +46,12 @@ class Nav extends Component {
                  <nav className="navbar" style={{"textShadow":"none","fontSize":"13px","color":"white"}}>
                  <div className="container-fluid" style={{"backgroundColor":"none"}}>
                    <div className="navbar-header">
-                   <img src={require("../images/logo.png")} alt="Logo" style={{"marginTop":"10px"}}/>
+                   <img src={require("../images/logo.png")} onClick={()=>this.props.route("/")} alt="Logo" style={{"marginTop":"10px"}}/>
                    </div>
                    <ul className="nav navbar-nav" style={{"backgroundColor":"none"}}>
-                     <li className="active"><a href="#" style={{"color":"white"}}>Flights</a></li>
-                     <li ><a href="#" style={{"color":"white"}}>Hotels</a></li>
-                     <li  className="nav-item" ><a href="#" style={{"color":"white"}}>Cars</a></li>
+                     <li className="active"><a  style={{"color":"white"}}>Flights</a></li>
+                     <li ><a  style={{"color":"white"}}>Hotels</a></li>
+                     <li  className="nav-item" ><a  style={{"color":"white"}}>Cars</a></li>
                      <li>
                          {this.renderLogIn()}
                      </li>

@@ -43,7 +43,7 @@ class Analytics extends Component {
         var linkedList=JSON.parse(localStorage.getItem("trackUser"));
         var labels=[];
         var data=[];
-        while(linkedList.next!==null){
+        while(linkedList!==null){
             labels.push(linkedList.data.pageName);
             data.push(linkedList.data.timeSpent);
             linkedList=linkedList.next;
@@ -479,7 +479,7 @@ class Analytics extends Component {
             },
 
             revenueHotel:{
-                labels: ['Bellagio', 'Mandalay', 'Aria', 'Monte Carlo', 'Marriott', 'Flamingo', 'Wynn', 'Four Seasons','Trump International'],
+                labels: ['Bellagio', 'Mandalay', 'Aria', 'Monte Carlo', 'Marriott', 'Flamingo', 'Wynn', 'Four Seasons','Trump'],
                 datasets:[
                     {
                         label:'October',
