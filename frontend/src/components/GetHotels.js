@@ -32,7 +32,38 @@ class GetHotels extends Component {
 
     componentDidMount(){
         API.log({page:"SearchHotels"});
+        this.totalTime=(new Date).getTime();
+
+
     }
+
+    insertActivity(){
+        var node= {
+            username: localStorage.getItem("username"),
+            data: {
+                pageName: 'SearchHotels',
+                timeSpent: this.totalTime-(new Date).getTime()
+            },
+            next: null
+        };
+        if(!localStorage.getItem("trackUser")){
+            localStorage.setItem("trackUser",node);
+        }
+        else{
+            var linkedList=localStorage.getItem("trackUser");
+            var curr=linkedList;
+            while(curr.next!==null){
+                linkedList=linkedList.next;
+            }
+            curr.next=node;
+            localStorage.setItem("trackUser",linkedList);
+
+        }
+
+        //API.insertActivity(linkedList);
+    }
+
+
 
     handleRating(stars){
         localStorage.removeItem("stars");

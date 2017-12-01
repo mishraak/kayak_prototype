@@ -32,7 +32,25 @@ class UserChart extends Component{
                                 options={{
                                     title:{
                                         display:this.props.displayTitle,
-                                        text:'Most Popular Airports',
+                                        text:'Page clicks',
+                                        fontSize:15
+                                    },
+                                    legend:{
+                                        display:this.props.displayLegend,
+                                        position:this.props.legendPosition
+                                    }
+                                }}
+                            />
+                        </div>
+                        <div className="col-lg-6">
+                            <Line
+                                data={this.props.userTracking}
+                                width={70}
+                                height={50}
+                                options={{
+                                    title:{
+                                        display:this.props.displayTitle,
+                                        text:'User activity',
                                         fontSize:15
                                     },
                                     legend:{

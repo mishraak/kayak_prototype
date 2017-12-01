@@ -186,6 +186,18 @@ export const getPageClicks = () =>
             return error;
         });
 
+export const insertActivity = (node) =>
+
+    axios.post(api + '/users/insertActivity',node)
+        .then(res => {
+            console.log('response from getPageClick', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
 
 // export const getmyfiles = () =>
 //     fetch(`${api}/files/myfiles`, {

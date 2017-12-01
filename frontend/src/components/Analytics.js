@@ -28,13 +28,42 @@ class Analytics extends Component {
             hotelCompanyData:{},
             revenueHotel:{},
             selectChart:0 ,//Added by Divyank
-            pageClicksData:{}
+            pageClicksData:{},
+            userActivity:{}
         }
     }
 
     componentWillMount(){
         this.getChartData();
         this.getPageClicks();
+        this.getUserActivity();
+    }
+
+    getUserActivity(){
+        var linkedList=JSON.parse(localStorage.getItem("trackUser"));
+        var labels=[];
+        var data=[];
+        while(linkedList.next!==null){
+            labels.push(linkedList.data.pageName);
+            data.push(linkedList.data.timeSpent);
+            linkedList=linkedList.next;
+        }
+        this.setState({
+            // The Main Chart Data Goes here.
+            userActivity: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Time spent',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)'
+                        ]
+                    }
+                ]
+            }
+        })
+
     }
 
     getPageClicks(){
@@ -528,7 +557,7 @@ class Analytics extends Component {
     showUserChart(){
         return(
             <div>
-                <UserChart pageClicksData={this.state.pageClicksData}/>
+                <UserChart pageClicksData={this.state.pageClicksData} userTracking={this.state.userActivity}/>
             </div>
         )
     }

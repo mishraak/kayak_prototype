@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Nav from './Nav';
 import * as API from '../api/API';
 import BookCar from './BookCar';
+import {insertActivity} from "../api/API";
 
 
 class GetCars extends Component {
@@ -25,6 +26,33 @@ class GetCars extends Component {
         API.log({page:"MyBookings"});
     }
 
+    insertActivity(){
+        //localStorage.removeItem("trackUser");
+        var node= {
+            username: localStorage.getItem("username"),
+            data: {
+                pageName: 'MyBookings',
+                timeSpent: (new Date).getTime()-this.totalTime
+            },
+            next: null
+        };
+
+        if(!localStorage.getItem("trackUser")){
+            localStorage.setItem("trackUser",JSON.stringify(node));
+        }
+        else{
+            var linkedList=JSON.parse(localStorage.getItem("trackUser"));
+            var curr=linkedList;
+            while(curr.next!==null){
+                curr=curr.next;
+            }
+            curr.next=node;
+            localStorage.setItem("trackUser",JSON.stringify(linkedList));
+        }
+
+        //API.insertActivity(linkedList);
+    }
+
 
 
     render() {
@@ -34,7 +62,7 @@ class GetCars extends Component {
 
                 <img src={require("../images/phoenix.png")}/>
                 <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
-                    <button onClick={()=>{this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>
+                    <button onClick={()=>{this.insertActivity();this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>
                     <h3>My past bookings</h3>
                     <table className="table table-striped">
                         <tbody>
