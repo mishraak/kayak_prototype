@@ -64,7 +64,7 @@ class HotelChart extends Component{
           <div className="row">
             <div className="col-sm-2"></div>
             <div className="col-sm-4">
-              <Bar
+              <Pie
                 data={this.state.hotelCompanyData}
                 width={70}
                 height={70}
@@ -82,14 +82,14 @@ class HotelChart extends Component{
               />
             </div>
             <div className="col-sm-4">
-              <Pie
+              <Bar
                 data={this.state.revenueHotel}
                 width={70}
                 height={70}
                 options={{
                   title:{
                     display:this.props.displayTitle,
-                    text:'Airline wise revenue(K) ',
+                    text:'Hotel wise revenue(K) For Oct & Nov',
                     fontSize:15
                   },
                   legend:{

@@ -65,7 +65,7 @@ class CarChart extends Component{
           <div className="row">
             <div className="col-sm-2"></div>
             <div className="col-sm-4">
-              <Bar
+              <Pie
                 data={this.state.carCompanyData}
                 width={40}
                 height={40}
@@ -84,14 +84,14 @@ class CarChart extends Component{
             </div>
             
             <div className="col-sm-4">
-              <Pie
+              <Bar
                 data={this.state.revenueCarRental}
                 width={40}
                 height={40}
                 options={{
                   title:{
                     display:this.props.displayTitle,
-                    text:'Company wise revenue(K) ',
+                    text:'Company wise revenue(K) for Oct & Nov',
                     fontSize:15
                   },
                   legend:{

@@ -64,7 +64,7 @@ class FlightChart extends Component{
                     <div className="row">
                         <div className="col-sm-2"></div>
                         <div className="col-sm-4">
-                            <Bar
+                            <Pie
                                 data={this.state.airlineCompanyData}
                                 width={70}
                                 height={70}
@@ -82,14 +82,14 @@ class FlightChart extends Component{
                             />
                         </div>
                         <div className="col-sm-4">
-                          <Pie
+                          <Bar
                             data={this.state.revenueAirline}
                             width={70}
                             height={70}
                             options={{
                               title:{
                                 display:this.props.displayTitle,
-                                text:'Airline wise revenue(K) ',
+                                text:'Airline wise revenue(K) for Oct & Nov',
                                 fontSize:15
                               },
                               legend:{
