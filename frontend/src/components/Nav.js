@@ -16,8 +16,8 @@ class Nav extends Component {
             return(
                 <div>
 
-                        <input type="email" ref="email" placeholder="Email" onChange={e => this.setState({ email: e.target.value })} style={{"height":"30px","width":"270px","margin":"10px"}}/>
-                        <input type="password" ref ="password" placeholder="Password" onChange={e => this.setState({ password: e.target.value })} style={{"height":"30px","width":"270px","margin":"10px"}}/>
+                        <input type="email" ref="email" placeholder="Email" onChange={e => this.setState({ email: e.target.value })} style={{"height":"30px","width":"270px","margin":"10px",color:"black"}}/>
+                        <input type="password" ref ="password" placeholder="Password" onChange={e => this.setState({ password: e.target.value })} style={{"height":"30px","width":"270px","margin":"10px",color:"black"}}/>
 
                         <button onClick={()=>{this.props.handleLogin(this.state)}}  style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Login</button>                        
                         <button onClick={()=>this.props.route("/signup")} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Signup</button>

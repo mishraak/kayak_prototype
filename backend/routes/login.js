@@ -24,11 +24,11 @@ router.post('/signup',(req,res,next)=>{
             kafka.make_request('login_topic',{data: req.body, type:"signup"}, function(err,results){                
                 console.log(results);
                 if(err){
-                    res.status(404);
+                    res.status(404).send(err);
                 }
                 else
                 {
-                   res.status(200);                    
+                   res.status(200).send(results);
                 }
             });
 
@@ -175,7 +175,7 @@ router.post('/doLogin',(req,res,next)=>{
                 console.log("session initilized");
                 console.log("user");
                 console.log(user[0]);
-                
+
 
                 res.status(201).send(user[0]);
             }

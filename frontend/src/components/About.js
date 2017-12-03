@@ -34,6 +34,17 @@ class About extends Component {
       });
   };
 
+    deleteProfile(){
+        API.deleteProfile()
+            .then((res) => {
+                if(res.status===201){
+                    alert("successfully deleted profile \n Routing to homepage...");
+                    this.props.handleLogout();
+
+                }
+            })
+    }
+
     handleFileUpload = (event) => {
 
         const payload = new FormData();
@@ -107,7 +118,7 @@ class About extends Component {
               <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
 
                   <div style={{"marginLeft":"200px"}}>
-                      <Nav route={this.props.route} isLoggedIn={this.props.isLoggedIn}/>
+                      <Nav route={this.props.route} isLoggedIn={this.props.isLoggedIn} handleLogout={this.props.handleLogout}/>
                   </div>
                   <div>
                       <div className="col-md-4 "    style={{"height":"500px","width":"300px","backgroundColor":"white",opacity:"0.6"}}>
@@ -145,7 +156,7 @@ class About extends Component {
                           </div>
                           <div className='row' style={{"opacity":"1"}}>
                               <button className='update-info' onClick={this.updateInfo}>Update Information</button>
-                              <button className='cancel-update-info' onClick={()=>{this.props.history.push('/about');}}>Cancel</button><br/>
+                              <button className='cancel-update-info' onClick={()=>{this.props.route('/about');}}>Cancel</button><br/>
                               <button onClick={()=>{this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>
                               <button onClick={()=>{this.props.route("/AdminProfile")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Admin Profile</button>
 
@@ -165,11 +176,11 @@ class About extends Component {
                     <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
 
                         <div style={{"marginLeft":"200px"}}>
-                            <Nav />
+                            <Nav route={this.props.route} isLoggedIn={this.props.isLoggedIn} handleLogout={this.props.handleLogout}/>
                         </div>
                         <div>
                             <div className="col-md-4 "    style={{"height":"500px","width":"300px","backgroundColor":"white"}}>
-                                <img className="profilePic" src={require("../images/phoenix.png")} alt="Profile"  />
+                                <img className="profilePic" src={"data:image/jpeg;base64," + this.state.image} alt="Profile"  />
                                 <TextField
                                     className={'fileupload'}
                                     type="file"
@@ -201,8 +212,9 @@ class About extends Component {
                                 </div>
                                 <div className='row' style={{"opacity":"1"}}>
                                     <button className='update-info' onClick={this.updateInfo}>Update Information</button>
-                                    <button className='cancel-update-info' onClick={()=>{this.props.history.push('/about');}}>Cancel</button><br/>
+
                                     <button onClick={()=>{this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>
+                                    <button onClick={()=>this.deleteProfile()} style={{"height":"30px","margin":"10px","backgroundColor":"#ff1207","color":"white","textAlign":"center"}}>Delete profile</button>
                                 </div>
                             </div>
                         </div>

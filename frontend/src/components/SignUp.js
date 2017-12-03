@@ -27,8 +27,11 @@ class SignUp extends Component{
 
     renderSignup() {
         if(!this.props.isLoggedIn){
-            return(                
-                <div>                    
+            return(
+                <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
+                    <img src={require("../images/phoenix.png")}/>
+                    <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
+
                     <label>Email</label><input type="email" ref="email" value={this.state.email} onChange={e => this.setState({ email: e.target.value })} style={{"height":"30px","width":"270px","margin":"10px"}}/><br/>                    
                     <label>Password</label><input type="password" ref ="password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })} style={{"height":"30px","width":"270px","margin":"10px"}}/><br/>
                     <label>First name</label><input type="text" ref ="first_name" value={this.state.first_name} onChange={e => this.setState({ first_name: e.target.value })} style={{"height":"30px","width":"270px","margin":"10px"}}/> <br/>                    
@@ -44,6 +47,7 @@ class SignUp extends Component{
                     <input type="hidden" ref ="user_status" value="1" onChange={e => this.setState({ trip_id: e.target.value })} style={{"height":"30px","width":"270px","margin":"10px"}}/><br/>
                     <button onClick={()=>{this.props.handleSignup(this.state)}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Signup</button><br/>                                                   
                     <button onClick={()=>{this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>                                                   
+                </div>
                 </div>
             )
         }

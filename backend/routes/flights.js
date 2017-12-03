@@ -163,5 +163,95 @@ router.post('/userBookings',(req,res,next)=>{
 
 });
 
+router.post('/updateFlights',(req,res,next)=>{
+    kafka.make_request('login_topic',{"type":"updateFlights", data:req.body.data}, function(err,results){
+
+        console.log(results);
+        if(err){
+            res.json({success:false,msg:'Data is mismatched'});
+            console.log(err);
+            res.status(201).send("there is error");
+        }
+        else{
+            res.status(201).send(results);
+        }
+    });
+});
+
+router.post('/updateCars',(req,res,next)=>{
+    kafka.make_request('login_topic',{"type":"updateCars", data:req.body.data}, function(err,results){
+
+        console.log(results);
+        if(err){
+            res.json({success:false,msg:'Data is mismatched'});
+            console.log(err);
+            res.status(201).send("there is error");
+        }
+        else{
+            res.status(201).send(results);
+        }
+    });
+});
+
+router.post('/updateHotels',(req,res,next)=>{
+    kafka.make_request('login_topic',{"type":"updateHotels", data:req.body.data}, function(err,results){
+
+        console.log(results);
+        if(err){
+            res.json({success:false,msg:'Data is mismatched'});
+            console.log(err);
+            res.status(201).send("there is error");
+        }
+        else{
+            res.status(201).send(results);
+        }
+    });
+});
+
+router.post('/deleteProfile',(req,res,next)=>{
+    kafka.make_request('login_topic',{"type":"deleteProfile", email:req.body.data}, function(err,results){
+
+        console.log(results);
+        if(err){
+            res.json({success:false,msg:'Data is mismatched'});
+            console.log(err);
+            res.status(201).send("there is error in delteprofile");
+        }
+        else{
+            res.status(201).send(results);
+        }
+    });
+});
+
+router.post('/getUserBookingsbydate',(req,res,next)=>{
+    kafka.make_request('login_topic',{"type":"getUserBookingsbydate", date:req.body.date}, function(err,results){
+
+        console.log(results);
+        if(err){
+            res.json({success:false,msg:'Data is mismatched'});
+            console.log(err);
+            res.status(201).send("there is error in getUserBookingsbydate");
+        }
+        else{
+            res.status(201).send(results);
+        }
+    });
+});
+
+router.post('/getUserBookingsbyMonth',(req,res,next)=>{
+    kafka.make_request('login_topic',{"type":"getUserBookingsbyMonth", email:req.body.data}, function(err,results){
+
+        console.log(results);
+        if(err){
+            res.json({success:false,msg:'Data is mismatched'});
+            console.log(err);
+            res.status(201).send("there is error in getUserBookingsbyMonth");
+        }
+        else{
+            res.status(201).send(results);
+        }
+    });
+});
+
 
 module.exports = router;

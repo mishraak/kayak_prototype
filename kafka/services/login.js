@@ -68,7 +68,10 @@ function handle_request(msg, callback){
                            fs.readFile("./public/uploads/a@a.com.jpg",  function (err, trex) {
                                console.log("File Read",trex.length);
                                //callback(null,trex);
-                               results[0].image=trex;
+                               if(results.length>0){
+                                   results[0].image=trex;
+                               }
+
                                cache.setex(user, 10,JSON.stringify(results), () => {
 
                                    //At this point, our data is successfully stored in the redis cache
@@ -331,58 +334,77 @@ function handle_request(msg, callback){
            break;
        case 'signup':
             console.log("msg data is" + msg.data);
-           try {               
-                
-                  var  first_name=   msg.data.first_name,
-                       last_name=    msg.data.last_name,
-                       password=     msg.data.password,
-                       email=        msg.data.email,
-                       city=         msg.data.city,
-                       address=      msg.data.address,
-                       state=        msg.data.state,
-                       zip_code=     msg.data.zip_code,
-                       phone=        msg.data.phone,
-                       trip_id=      msg.data.trip_id,
-                       image=        msg.data.image,
-                       credit_card=  msg.data.credit_card,
-                       user_status=  msg.data.user_status;
+           var checkuser="select * from users where email='"+msg.data.email+"'";
 
-                  console.log("first_name " + first_name );              
-                  console.log("last_name " + last_name );
-                  console.log("password " + password );
+           try {
 
-
-                  var user = "INSERT INTO KAYAK.USERS ( first_name, last_name, email, address, city, state, zip_code, phone," +
-                                                        "trip_id, image, credit_card, user_status, password) VALUES (" +                                                      
-                                                        "\"" + first_name + "\"," + 
-                                                        "\"" + last_name + "\"," + 
-                                                        "\"" + email + "\"," + 
-                                                        "\"" + address + "\"," + 
-                                                        "\"" + city + "\"," + 
-                                                        "\"" + state + "\"," + 
-                                                               zip_code + "," +
-                                                               phone + "," +
-                                                               trip_id + "," +
-                                                        "\"" + image + "\"," + 
-                                                               credit_card + "," +
-                                                               user_status +  "," +
-                                                        "\"" + password + "\");";
-
-              console.log(user);                                                          
-              
-              mysql.fetchData(function (err, results) {
+               mysql.fetchData(function (err, results) {
                    if (err) {
                        console.log(err);
                        res.status(500).json({message: "An error occured"});
                    }
                    else {
-                       console.log("adgad",results);
-                       callback(null,results);
+                       if(results.length>0){
+                           callback(null,"duplicate user");
+                       }
+                       else{
+                           var  first_name=   msg.data.first_name,
+                               last_name=    msg.data.last_name,
+                               password=     msg.data.password,
+                               email=        msg.data.email,
+                               city=         msg.data.city,
+                               address=      msg.data.address,
+                               state=        msg.data.state,
+                               zip_code=     msg.data.zip_code,
+                               phone=        msg.data.phone,
+                               trip_id=      msg.data.trip_id,
+                               image=        msg.data.image,
+                               credit_card=  msg.data.credit_card,
+                               user_status=  msg.data.user_status;
+
+                           console.log("first_name " + first_name );
+                           console.log("last_name " + last_name );
+                           console.log("password " + password );
+
+
+                           var user = "INSERT INTO KAYAK.USERS ( first_name, last_name, email, address, city, state, zip_code, phone," +
+                               "trip_id, image, credit_card, user_status, password) VALUES (" +
+                               "\"" + first_name + "\"," +
+                               "\"" + last_name + "\"," +
+                               "\"" + email + "\"," +
+                               "\"" + address + "\"," +
+                               "\"" + city + "\"," +
+                               "\"" + state + "\"," +
+                               zip_code + "," +
+                               phone + "," +
+                               trip_id + "," +
+                               "\"" + image + "\"," +
+                               credit_card + "," +
+                               user_status +  "," +
+                               "\"" + password + "\");";
+
+                           console.log(user);
+
+                           mysql.fetchData(function (err, results) {
+                               if (err) {
+                                   console.log(err);
+                                   res.status(500).json({message: "An error occured"});
+                               }
+                               else {
+                                   console.log("adgad",results);
+                                   callback(null,results);
+                               }
+                           }, user);
+                       }
+
                    }
-               }, user);              
+               }, checkuser);
+                
+
            }
            catch (err){
                console.log(err);
+               //catch
            }
        break;
 
@@ -580,9 +602,209 @@ function handle_request(msg, callback){
                });
            });
            break;
+       case 'searchFlight':
 
+           console.log(msg);
+           console.log(msg.data);
+           var searchFlight="select f.airline,f.flight_id,date_format(arrival, '%h:%i') arrival,date_format(departure, '%h:%i') departure,class_name,prices,origin,destination from flights f join classes c on f.flight_id=c.flight_id where f.flight_id='"+msg.data.id+"'";
+
+           try {
+
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       callback(null,results);
+                   }
+               }, searchFlight);
+           }
+           catch (err){
+               console.log(err);
+           }
+
+           break;
+
+       case 'searchCar':
+
+           console.log(msg);
+           console.log(msg.data);
+           var searchCar="select * from cars where car_id='"+msg.data.id+"'";
+           try {
+
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       callback(null,results);
+                   }
+               }, searchCar);
+           }
+           catch (err){
+               console.log(err);
+           }
+
+           break;
+
+       case 'searchHotel':
+
+           console.log(msg);
+           console.log(msg.data);
+           var searchHotel="select * from hotels h join rooms r where r.hotel_id=h.hotel_id and h.hotel_id='"+msg.data.id+"'";
+           try {
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       callback(null,results);
+                   }
+               }, searchHotel);
+           }
+           catch (err){
+               console.log(err);
+           }
+
+           break;
+
+       case 'updateFlights':
+           console.log(msg.data);
+           try {
+               var user="UPDATE FLIGHTS" +
+                   " SET " +
+                   "departure=\"" + msg.data.departure + "\", "+
+                   "arrival=\"" + msg.data.arrival + "\", "+
+                   "origin=\"" + msg.data.origin + "\", "+
+                   "destination=\"" + msg.data.destination + "\""+
+                   "WHERE flight_id = \"" + msg.data.flight_id + "\";";
+
+
+               console.log(msg.user);
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       console.log("adgad",results);
+                       callback(null,results);
+                   }
+               }, user);
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
+       case 'updateCars':
+           console.log(msg.data);
+           try {
+               var user="UPDATE CARS" +
+                   " SET " +
+                   "car_name=\"" + msg.data.car_name + "\", "+
+                   "car_type=\"" + msg.data.car_type + "\", "+
+                   "price=\"" + msg.data.price + "\", "+
+                   "details=\"" + msg.data.details + "\""+
+                   "WHERE car_id = \"" + msg.data.car_id + "\";";
+
+
+               console.log(msg.user);
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       console.log("adgad",results);
+                       callback(null,results);
+                   }
+               }, user);
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
+       case 'updateHotels':
+           console.log(msg.data);
+           try {
+               var user="UPDATE HOTELS" +
+                   " SET " +
+                   "hotel_name=\"" + msg.data.hotel_name + "\", "+
+                   "address=\"" + msg.data.address + "\", "+
+                   "rooms=\"" + msg.data.rooms + "\", "+
+                   "stars=\"" + msg.data.stars + "\" "+
+                   "WHERE hotel_id = \"" + msg.data.hotel_id + "\";";
+
+
+               console.log(msg.user);
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       res.status(500).json({message: "An error occured"});
+                   }
+                   else {
+                       console.log("adgad",results);
+                       callback(null,results);
+                   }
+               }, user);
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
+       case 'deleteProfile':
+           console.log(msg.data);
+           try {
+               var deleteProfile="delete from users where email='"+msg.email+"'";
+
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       callback(err,null);
+                   }
+                   else {
+                       console.log("adgad",results);
+                       callback(null,results);
+                   }
+               }, deleteProfile);
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
+       case 'getUserBookingsbydate':
+           console.log(msg.data);
+           try {
+               var getUserBookingsbydate="select * from billing where date(billing_date)='"+msg.date+"'";
+
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       callback(err,null);
+                   }
+                   else {
+                       console.log("adgad",results);
+                       callback(null,results);
+                   }
+               }, getUserBookingsbydate);
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
 
    }
+
 }
 
 exports.handle_request = handle_request;

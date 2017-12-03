@@ -232,6 +232,101 @@ export const getMostPopularAirports = (payload) =>
             return error;
         });
 
+export const searchFlight = (id) =>
+    axios.post(api + '/charts/searchFlight',{id:id})
+        .then(res => {
+            console.log('response from server searchFlight', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in searchFlight API");
+            return error;
+        });
+
+export const searchCar = (id) =>
+    axios.post(api + '/charts/searchCar',{id:id})
+        .then(res => {
+            console.log('response from server searchCar', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in searchCar API");
+            return error;
+        });
+
+export const searchHotel = (id) =>
+    axios.post(api + '/charts/searchHotel',{id:id})
+        .then(res => {
+            console.log('response from server searchHotel', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in searchHotel API");
+            return error;
+        });
+
+export const updateFlights = (data) =>
+    axios.post(api + '/search/updateFlights',{data:data})
+        .then(res => {
+            console.log('response from server searchCar', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in searchCar API");
+            return error;
+        });
+export const updateHotels = (data) =>
+    axios.post(api + '/search/updateHotels',{data:data})
+        .then(res => {
+            console.log('response from server searchCar', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in searchCar API");
+            return error;
+        });
+
+export const updateCars = (data) =>
+    axios.post(api + '/search/updateCars',{data:data})
+        .then(res => {
+            console.log('response from server searchCar', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in searchCar API");
+            return error;
+        });
+
+export const deleteProfile = () =>
+    axios.post(api + '/search/deleteProfile',{data:localStorage.getItem("username")})
+        .then(res => {
+            console.log('response from server searchCar', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in searchCar API");
+            return error;
+        });
+export const getUserBookingsbydate = (date) =>
+    axios.post(api + '/search/getUserBookingsbydate',{date:date})
+        .then(res => {
+            console.log('response from server searchCar', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in searchCar API");
+            return error;
+        });
+export const getUserBookingsbyMonth = (month) =>
+    axios.post(api + '/search/getUserBookingsbyMonth',{month:month})
+        .then(res => {
+            console.log('response from server searchCar', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in searchCar API");
+            return error;
+        });
 // export const getmyfiles = () =>
 //     fetch(`${api}/files/myfiles`, {
 //         method: 'get',

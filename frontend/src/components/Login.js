@@ -17,6 +17,11 @@ import * as API from '../api/API'
 import MyBookings from './MyBookings'
 import AdminProfile from './AdminProfile'
 import Analytics from './Analytics'
+import SearchFlight from "./SearchFlight";
+import SearchCar from "./SearchCar";
+import SearchHotel from "./SearchHotel";
+import ModifyAccount from "./ModifyAccount";
+import FetchBills from "./FetchBills";
 
 
 class Login extends Component {
@@ -105,6 +110,8 @@ handleAddCar(payload) {
      localStorage.removeItem("username");
      localStorage.removeItem("user_status");
      this.setState({isLoggedIn:false});
+     this.props.history.push("/");
+
  }
 
  handleLogin(credentials){
@@ -132,7 +139,21 @@ handleSignup(payload) {
     try {
 
         if (/(^\d{5}$)|(^\d{5}-\d{4}$)/.test(payload.zip_code) && /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(payload.email) && states.indexOf(payload.state) > -1) {
-            alert(true);
+            //alert(true);
+            console.log("well formed state..calling api....");
+            API.handleSignup(payload)
+                .then(function (response) {
+                    console.log(response.data);
+                    if(response.data==="duplicate user"){
+                        alert("user already exists");
+                    }
+                    else{
+                        alert("signup successful");
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
         }
         else {
             //alert(false)
@@ -143,13 +164,7 @@ handleSignup(payload) {
         console.log("Exception caught",err);
     }
         
-     // API.handleSignup(payload)
-     //        .then(function (response) {
-     //            console.log(response);
-     //        })
-     //        .catch(function (error) {
-     //          console.log(error);
-     //        })
+
     
     //this.props.history.push("/"); 
 
@@ -253,7 +268,7 @@ handleSignup(payload) {
                     <SignUp route={this.props.history.push} handleSignup={this.handleSignup.bind(this)}/>
                 )}/>
                 <Route exact path="/about" render={() => (
-                    <About route={this.props.history.push} isLoggedIn={this.state.isLoggedIn}/>
+                    <About route={this.props.history.push} handleLogout={this.handleLogout.bind(this)} isLoggedIn={this.state.isLoggedIn}/>
                 )}/>
                 <Route exact path="/myBookings"  render={() => (
                    <MyBookings route={this.props.history.push}/>
@@ -272,6 +287,21 @@ handleSignup(payload) {
                 )}/>
                 <Route exact path="/Analytics" render={() => (
                 <Analytics route={this.props.history.push} handleAdminProfile={this.handleAdminProfile.bind(this)} />
+                )}/>
+                <Route exact path="/SearchFlight" render={() => (
+                    <SearchFlight route={this.props.history.push} handleAdminProfile={this.handleAdminProfile.bind(this)} />
+                )}/>
+                <Route exact path="/SearchCar" render={() => (
+                    <SearchCar route={this.props.history.push} handleAdminProfile={this.handleAdminProfile.bind(this)} />
+                )}/>
+                <Route exact path="/SearchHotel" render={() => (
+                    <SearchHotel route={this.props.history.push} handleAdminProfile={this.handleAdminProfile.bind(this)} />
+                )}/>
+                <Route exact path="/ModifyAccount" render={() => (
+                    <ModifyAccount route={this.props.history.push} handleAdminProfile={this.handleAdminProfile.bind(this)} />
+                )}/>
+                <Route exact path="/FetchBills" render={() => (
+                    <FetchBills route={this.props.history.push} handleAdminProfile={this.handleAdminProfile.bind(this)} />
                 )}/>
         </div>
 
