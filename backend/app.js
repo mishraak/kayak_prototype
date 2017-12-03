@@ -13,6 +13,7 @@ var mongoSessionURL = "mongodb://localhost:27017/Kayak";
 var expressSessions = require("express-session");
 var mongoStore = require("connect-mongo/es5")(expressSessions);
 var login=require("./routes/login");
+var charts=require("./routes/chart");
 
 
 mongoose.connect(config.database);
@@ -61,6 +62,7 @@ app.use(passport.session());
 app.use('/routes',routes);
 app.use('/search',flights);
 app.use('/users',login);
+app.use('/charts',charts);
 app.get('/',(req,res)=>{
     res.send("Invalid end point");
 });

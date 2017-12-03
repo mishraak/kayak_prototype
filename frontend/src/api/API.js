@@ -209,7 +209,28 @@ export const uploadFile = (payload) =>
             console.log("This is error in fileupload API");
             return error;
         });
+export const getMostPopularAirlines = (payload) =>
+    axios.get(api + '/charts/getMostPopularAirlines')
+        .then(res => {
+            console.log('response from server getMostPopularAirlines', res.data);
 
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in getMostPopularAirlines API");
+            return error;
+        });
+export const getMostPopularAirports = (payload) =>
+    axios.get(api + '/charts/getMostPopularAirports')
+        .then(res => {
+            console.log('response from server getMostPopularAirports', res.data);
+
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in getMostPopularAirlines API");
+            return error;
+        });
 
 // export const getmyfiles = () =>
 //     fetch(`${api}/files/myfiles`, {

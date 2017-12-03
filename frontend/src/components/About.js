@@ -48,8 +48,13 @@ class About extends Component {
                 this.setState({path:""});
 
                 if (res.status === 201) {
+                    API.handleAbout(localStorage.getItem("username"))
+                        .then((data) => {
+                            this.setState({
+                                image: new Buffer(data.data[0].image).toString('base64'),
+                            });
 
-
+                        });
                 }
             });
 

@@ -28,11 +28,11 @@ export default class FormDialog extends React.Component {
 
     handleRequestClose = (event) => {
         this.setState({ open: false });
-        alert(this.props.details[0].airline);
+        //alert(this.props.details[0].airline);
         console.log("action",event.target.innerHTML);
         if(event.target.innerHTML==="Confirm Booking"){
             console.log("book flight add",this.state.username);
-            API.book({amount:this.props.details[0].prices,name:this.props.details[0].airline,type:"Flight",email:window.localStorage.getItem("username")})
+            API.book({origin:this.props.details[0].origin,destination:this.props.details[0].destination,amount:this.props.details[0].prices,name:this.props.details[0].airline,type:"Flight",email:window.localStorage.getItem("username")})
         }
         //console.log(this.state.textFieldValue);
     };

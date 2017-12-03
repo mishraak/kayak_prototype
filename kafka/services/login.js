@@ -455,8 +455,8 @@ function handle_request(msg, callback){
                }, book);
 
                mongo.connect(mongoURL,function (){
-                   let conn=mongo.collection("billing");
-                   conn.insertOne({bookingType:msg.data.type,amount:msg.data.amount,time:new Date(),name:msg.data.name}, function (err, doc) {
+                   let conn=mongo.collection("flightBookings");
+                   conn.insertOne({origin:msg.data.origin,destination:msg.data.destination,bookingType:msg.data.type,amount:msg.data.amount,time:new Date(),name:msg.data.name}, function (err, doc) {
                        if (err) console.log("error-",err);
                        console.log("doc-",doc);
                        callback(null,"done");
@@ -556,6 +556,30 @@ function handle_request(msg, callback){
            catch(err){
                console.log(err);
            }
+           break;
+       case 'getMostPopularAirlines':
+
+           console.log(msg);
+           mongo.connect(mongoURL,function (){
+               mongo.collection("flightBookings").aggregate([{"$group" : {_id:"$name", count:{$sum:1}}}]).toArray(function(err, result) {
+                   if (err) throw err;
+                   console.log(result);
+                   callback(null,result);
+               });
+           });
+           break;
+
+       case 'getMostPopularAirports':
+
+           console.log(msg);
+           mongo.connect(mongoURL,function (){
+               mongo.collection("flightBookings").aggregate([{"$group" : {_id:"$origin", count:{$sum:1}}}]).toArray(function(err, result) {
+                   if (err) throw err;
+                   console.log(result);
+                   callback(null,result);
+               });
+           });
+           break;
 
 
    }

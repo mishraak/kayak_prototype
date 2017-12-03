@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GetFlights.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GetFlights.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/GetFlights.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="213" column="54" lean-forward="false" selection-start-line="213" selection-start-column="54" selection-end-line="213" selection-end-column="54" />
+            <state relative-caret-position="255">
+              <caret line="216" column="59" lean-forward="true" selection-start-line="216" selection-start-column="59" selection-end-line="216" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -49,16 +49,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
               <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Chart.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Chart.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="38" column="25" lean-forward="false" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -77,21 +67,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Analytics.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Analytics.js">
+      <file leaf-file-name="API.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/API.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-307">
-              <caret line="240" column="22" lean-forward="false" selection-start-line="240" selection-start-column="12" selection-end-line="240" selection-end-column="22" />
+            <state relative-caret-position="160">
+              <caret line="225" column="68" lean-forward="false" selection-start-line="225" selection-start-column="68" selection-end-line="225" selection-end-column="68" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookHotel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/BookHotel.js">
+      <file leaf-file-name="About.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/About.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="34" column="44" lean-forward="false" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+            <state relative-caret-position="134">
+              <caret line="50" column="52" lean-forward="true" selection-start-line="50" selection-start-column="52" selection-end-line="50" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Analytics.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/Analytics.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="87" column="48" lean-forward="false" selection-start-line="87" selection-start-column="48" selection-end-line="87" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -100,18 +100,18 @@
       <file leaf-file-name="Book.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Book.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="30" column="43" lean-forward="false" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+            <state relative-caret-position="102">
+              <caret line="30" column="10" lean-forward="false" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GetHotels.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/GetHotels.js">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2397">
-              <caret line="43" column="39" lean-forward="false" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
+            <state relative-caret-position="153">
+              <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -149,6 +149,9 @@
       <find>alert</find>
       <find>willmou</find>
       <find>revenueair</find>
+      <find>api</find>
+      <find>getpage</find>
+      <find>flightda</find>
     </findStrings>
     <replaceStrings>
       <replace>paddingRight</replace>
@@ -163,7 +166,6 @@
         <option value="$PROJECT_DIR$/src/components/UserChart.js" />
         <option value="$PROJECT_DIR$/src/components/Chart.js" />
         <option value="$PROJECT_DIR$/src/components/MyBookings.js" />
-        <option value="$PROJECT_DIR$/src/components/Analytics.js" />
         <option value="$PROJECT_DIR$/src/components/Nav.js" />
         <option value="$PROJECT_DIR$/src/components/AddHotel.js" />
         <option value="$PROJECT_DIR$/src/components/AddFlight.js" />
@@ -174,13 +176,14 @@
         <option value="$PROJECT_DIR$/src/components/BookHotel.js" />
         <option value="$PROJECT_DIR$/src/components/FilterCar.js" />
         <option value="$PROJECT_DIR$/src/components/FilterHotels.js" />
-        <option value="$PROJECT_DIR$/src/api/API.js" />
-        <option value="$PROJECT_DIR$/src/components/About.js" />
         <option value="$PROJECT_DIR$/src/components/FilterFlight.js" />
         <option value="$PROJECT_DIR$/src/components/AddCar.js" />
         <option value="$PROJECT_DIR$/src/components/Login.js" />
-        <option value="$PROJECT_DIR$/src/components/Book.js" />
         <option value="$PROJECT_DIR$/src/components/GetFlights.js" />
+        <option value="$PROJECT_DIR$/src/components/About.js" />
+        <option value="$PROJECT_DIR$/src/components/Book.js" />
+        <option value="$PROJECT_DIR$/src/api/API.js" />
+        <option value="$PROJECT_DIR$/src/components/Analytics.js" />
       </list>
     </option>
   </component>
@@ -291,12 +294,12 @@
       <option name="presentableId" value="Default" />
       <updated>1511563860507</updated>
       <workItem from="1511563862172" duration="5413000" />
-      <workItem from="1512158148526" duration="5941000" />
+      <workItem from="1512158148526" duration="11986000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97387000" />
+    <option name="totallyTimeSpent" value="103432000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -359,13 +362,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/FilterFlight.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
@@ -564,6 +560,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="34" column="69" lean-forward="false" selection-start-line="34" selection-start-column="69" selection-end-line="34" selection-end-column="69" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -666,24 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/API.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3417">
-          <caret line="201" column="45" lean-forward="false" selection-start-line="201" selection-start-column="45" selection-end-line="201" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/About.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="222" column="17" lean-forward="false" selection-start-line="222" selection-start-column="17" selection-end-line="222" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/FilterFlight.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -735,14 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Analytics.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-307">
-          <caret line="240" column="22" lean-forward="false" selection-start-line="240" selection-start-column="12" selection-end-line="240" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/AddCar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -767,18 +738,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Book.js">
+    <entry file="file://$PROJECT_DIR$/src/components/GetFlights.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="30" column="43" lean-forward="false" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+        <state relative-caret-position="255">
+          <caret line="216" column="59" lean-forward="true" selection-start-line="216" selection-start-column="59" selection-end-line="216" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/GetFlights.js">
+    <entry file="file://$PROJECT_DIR$/src/components/About.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="213" column="54" lean-forward="false" selection-start-line="213" selection-start-column="54" selection-end-line="213" selection-end-column="54" />
+        <state relative-caret-position="134">
+          <caret line="50" column="52" lean-forward="true" selection-start-line="50" selection-start-column="52" selection-end-line="50" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Book.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="30" column="10" lean-forward="false" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/API.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="225" column="68" lean-forward="false" selection-start-line="225" selection-start-column="68" selection-end-line="225" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Analytics.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="87" column="48" lean-forward="false" selection-start-line="87" selection-start-column="48" selection-end-line="87" selection-end-column="48" />
           <folding />
         </state>
       </provider>

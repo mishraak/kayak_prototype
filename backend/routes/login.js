@@ -175,31 +175,7 @@ router.post('/doLogin',(req,res,next)=>{
                 console.log("session initilized");
                 console.log("user");
                 console.log(user[0]);
-                var data={
-
-                           status: res.statusCode,
-                               requestUrl: req.url,
-                              requestMethod: req.method,
-                             remoteIp: req.connection.remoteAddress,
-                    username:req.session.user
-
-                    };
-                try {
-                    kafka.make_request('login_topic',{data: data, type:"log_login"}, function(err,results){
-                        console.log(results);
-                        if(err){
-                            res.status(404);
-                        }
-                        else
-                        {
-                            res.status(200);
-                        }
-                    });
-
-                }
-                catch (e){
-                    console.log(e);
-                }
+                
 
                 res.status(201).send(user[0]);
             }

@@ -37,6 +37,8 @@ class Analytics extends Component {
         this.getChartData();
         this.getPageClicks();
         this.getUserActivity();
+        this.getMostPopularAirlines();
+        this.getMostPopularAirports();
     }
 
     getUserActivity(){
@@ -64,6 +66,82 @@ class Analytics extends Component {
             }
         })
 
+    }
+
+    getMostPopularAirports(){
+        var labels=[];
+        var data=[];
+        API.getMostPopularAirports()
+            .then(res => {
+                res.data.map((val)=> {
+                    labels.push(val._id);
+                    data.push(val.count);
+                });
+            })
+            .then(
+                this.setState({
+                    // The Main Chart Data Goes here.
+                    flightData: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Airports',
+                                data: data,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)',
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)',
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)'
+                                ]
+                            }
+                        ]
+                    }
+                })
+
+            );
+    }
+
+    getMostPopularAirlines(){
+        var labels=[];
+        var data=[];
+        API.getMostPopularAirlines()
+            .then(res => {
+                res.data.map((val)=> {
+                    labels.push(val._id);
+                    data.push(val.count);
+                });
+            })
+            .then(
+                this.setState({
+                    // The Main Chart Data Goes here.
+                    airlineCompanyData: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Page clicks',
+                                data: data,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)',
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)',
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)'
+                                ]
+                            }
+                        ]
+                    }
+                })
+
+            );
     }
 
     getPageClicks(){
