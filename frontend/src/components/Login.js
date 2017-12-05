@@ -157,7 +157,7 @@ handleSignup(payload) {
         }
         else {
             //alert(false)
-            throw "malformed_state";
+            alert("not valid");
         }
     }
     catch(err){

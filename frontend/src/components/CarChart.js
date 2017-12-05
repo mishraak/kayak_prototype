@@ -32,7 +32,7 @@ class CarChart extends Component{
                 options={{
                   title:{
                     display:this.props.displayTitle,
-                    text:'Most Popular Cities for Car Rental',
+                    text:'Most Popular Cities for revenue',
                     fontSize:15
                   },
                   legend:{

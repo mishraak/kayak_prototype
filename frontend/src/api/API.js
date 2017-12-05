@@ -327,6 +327,27 @@ export const getUserBookingsbyMonth = (month) =>
             console.log("This is error in searchCar API");
             return error;
         });
+
+export const getBookingRevenue = () =>
+    axios.get(api + '/search/getBookingRevenue')
+        .then(res => {
+            console.log('response from server searchCar', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in searchCar API");
+            return error;
+        });
+export const getBookingCount = () =>
+    axios.get(api + '/search/getBookingCount')
+        .then(res => {
+            console.log('response from server searchCar', res.data);
+            return res;
+        })
+        .catch(error => {
+            console.log("This is error in searchCar API");
+            return error;
+        });
 // export const getmyfiles = () =>
 //     fetch(`${api}/files/myfiles`, {
 //         method: 'get',

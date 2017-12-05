@@ -39,6 +39,8 @@ class Analytics extends Component {
         this.getUserActivity();
         this.getMostPopularAirlines();
         this.getMostPopularAirports();
+        this.getBookingRevenue();
+        this.getBookingCount();
     }
 
     getUserActivity(){
@@ -66,6 +68,69 @@ class Analytics extends Component {
             }
         })
 
+    }
+
+    getBookingRevenue(){
+        var labels=[];
+        var data=[];
+        API.getBookingRevenue()
+            .then(res => {
+                res.data.map((val)=> {
+                    labels.push(val.booking_type);
+                    data.push(val.sum);
+                });
+            })
+            .then(
+                this.setState({
+                    // The Main Chart Data Goes here.
+                    chartRevenueDataData: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Page clicks',
+                                data: data,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)'
+                                ]
+                            }
+                        ]
+                    }
+                })
+
+            );
+    }
+    getBookingCount(){
+        var labels=[];
+        var data=[];
+        API.getBookingCount()
+            .then(res => {
+                res.data.map((val)=> {
+                    labels.push(val.booking_type);
+                    data.push(val.count);
+                });
+            })
+            .then(
+                this.setState({
+                    // The Main Chart Data Goes here.
+                    chartBookingData: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Page clicks',
+                                data: data,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(54, 162, 235, 0.6)',
+                                    'rgba(255, 206, 86, 0.6)'
+                                ]
+                            }
+                        ]
+                    }
+                })
+
+            );
     }
 
     getMostPopularAirports(){

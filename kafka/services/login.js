@@ -475,6 +475,9 @@ function handle_request(msg, callback){
                        callback(null,results);
                    }
                }, book);
+               var decrease="update flights set seat=seat-1";
+
+
 
                mongo.connect(mongoURL,function (){
                    let conn=mongo.collection("flightBookings");
@@ -784,7 +787,7 @@ function handle_request(msg, callback){
        case 'getUserBookingsbydate':
            console.log(msg.data);
            try {
-               var getUserBookingsbydate="select * from billing where date(billing_date)='"+msg.date+"'";
+               var getUserBookingsbydate="select sUBSTRING(billing_date, 1, 10) billing_date,booking_type,amount from billing where SUBSTRING(billing_date, 1, 10)='"+msg.date+"'";
 
 
                mysql.fetchData(function (err, results) {
@@ -797,6 +800,75 @@ function handle_request(msg, callback){
                        callback(null,results);
                    }
                }, getUserBookingsbydate);
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
+
+       case 'getUserBookingsbyMonth':
+           console.log(msg.data);
+           try {
+               var firstday = new Date(2017,msg.month-1,1);
+               var lastday = new Date(2017,msg.month,0);
+               var getUserBookingsbyMonth="select * from billing where date(billing_date)>='"+firstday.toISOString().substring(0, 10)+"' && date(billing_date)<='"+lastday.toISOString().substring(0, 10)+"'";
+
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       callback(err,null);
+                   }
+                   else {
+                       console.log("adgad",results);
+                       callback(null,results);
+                   }
+               }, getUserBookingsbyMonth);
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
+
+       case 'getBookingRevenue':
+           console.log(msg.data);
+           try {
+
+               var getBookingRevenue="select booking_type,sum(amount) sum from billing group by booking_type";
+
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       callback(err,null);
+                   }
+                   else {
+                       console.log("adgad",results);
+                       callback(null,results);
+                   }
+               }, getBookingRevenue);
+           }
+           catch (err){
+               console.log(err);
+           }
+           break;
+       case 'getBookingCount':
+           console.log(msg.data);
+           try {
+
+               var getBookingCount="select booking_type,count(*) count from billing group by booking_type";
+
+
+               mysql.fetchData(function (err, results) {
+                   if (err) {
+                       console.log(err);
+                       callback(err,null);
+                   }
+                   else {
+                       console.log("adgad",results);
+                       callback(null,results);
+                   }
+               }, getBookingCount);
            }
            catch (err){
                console.log(err);

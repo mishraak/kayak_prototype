@@ -60,11 +60,11 @@ class MyBookings extends Component {
 
             <div style={{"display":"flex", "flexDirection":"row","minwidth": "1000px"}}>
 
-                <img src={require("../images/phoenix.png")}/>
+                <img src={require("../images/phoenix.png")} style={{opacity:"0.5"}}/>
                 <div style={{"position":"absolute","zIndex":"10", "margin":"auto","width": "100%","padding": "10px"}}>
                     <button onClick={()=>{this.insertActivity();this.props.route("/")}} style={{"height":"30px","margin":"10px","backgroundColor":"#ff5d11","color":"white","textAlign":"center"}}>Homepage</button>
                     <h3>My past bookings</h3>
-                    <table className="table table-striped">
+                    <table className="table " >
                         <tbody>
                         <tr className="row"   >
 
@@ -85,13 +85,13 @@ class MyBookings extends Component {
 
                             <tr className="row" key={b.billing_id}  >
 
-                                <td >
+                                <td style={{color:"blue"}}>
                                     {b.billing_date}
                                 </td>
-                                <td >
+                                <td style={{color:"blue"}}>
                                     {b.booking_type}
                                 </td>
-                                <td >
+                                <td style={{color:"blue"}}>
                                     ${b.amount}
                                 </td>
                             </tr>

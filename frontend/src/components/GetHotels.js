@@ -114,7 +114,7 @@ class GetHotels extends Component {
                         tempStore.push(res);
                         break;
                     case '0-50':
-                        if(res.price >=0 && res.price<=50 && res.stars===parseInt(localStorage.getItem("stars"))){
+                        if(res.price >=0 && res.price<=50){
                             res.display=true;
                             tempStore.push(res);
                         }
@@ -124,7 +124,7 @@ class GetHotels extends Component {
                         }
                         break;
                     case '0-100':
-                        if(res.price >=0 && res.price<=100 && res.stars===parseInt(localStorage.getItem("stars"))){
+                        if(res.price >=0 && res.price<=100 ){
                             res.display=true;
                             tempStore.push(res);
                         }
@@ -134,7 +134,7 @@ class GetHotels extends Component {
                         }
                         break;
                     case '100-200':
-                        if(res.price >=100 && res.price<=200 && res.stars===parseInt(localStorage.getItem("stars"))){
+                        if(res.price >=100 && res.price<=200 ){
                             res.display=true;
                             tempStore.push(res);
                         }
@@ -144,7 +144,7 @@ class GetHotels extends Component {
                         }
                         break;
                     case '200-300':
-                        if(res.price >=200 && res.price<=300 && res.stars===parseInt(localStorage.getItem("stars"))){
+                        if(res.price >=200 && res.price<=300 ){
                             res.display=true;
                             tempStore.push(res);
                         }
@@ -154,7 +154,7 @@ class GetHotels extends Component {
                         }
                         break;
                     case '300-400':
-                        if(res.price >=300 && res.price<=400 && res.stars===parseInt(localStorage.getItem("stars")) ){
+                        if(res.price >=300 && res.price<=400  ){
                             res.display=true;
                             tempStore.push(res);
                         }
@@ -164,7 +164,7 @@ class GetHotels extends Component {
                         }
                         break;
                     case '400-500':
-                        if(res.price >=400 && res.price<=500 && res.stars===parseInt(localStorage.getItem("stars"))){
+                        if(res.price >=400 && res.price<=500 ){
                             res.display=true;
                             tempStore.push(res);
                         }

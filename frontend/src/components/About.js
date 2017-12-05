@@ -22,11 +22,17 @@ class About extends Component {
       .then((res) => {
         status = res.status;
         try{
+            if (status === 201) {
+                alert("updation successful");
+
+            }
           return res.json();
+
         }
         catch(err){window.alert(`Some Error: ${err}`);}
       }).then((json) => {
         if (status === 201) {
+            alert("updation successful");
             this.props.history.push('/about');
         } else {
             window.alert("Something went wrong while updating your Personal Information!!")

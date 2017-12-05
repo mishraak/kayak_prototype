@@ -71,7 +71,7 @@ class HotelChart extends Component{
                 options={{
                   title:{
                     display:this.props.displayTitle,
-                    text:'Most Popular Airlines',
+                    text:'Most Popular Hotels',
                     fontSize:15
                   },
                   legend:{
