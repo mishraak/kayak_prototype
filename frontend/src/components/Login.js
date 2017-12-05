@@ -22,6 +22,7 @@ import SearchCar from "./SearchCar";
 import SearchHotel from "./SearchHotel";
 import ModifyAccount from "./ModifyAccount";
 import FetchBills from "./FetchBills";
+import ReactiveGrid from "./ReactiveGrid";
 
 
 class Login extends Component {
@@ -303,6 +304,9 @@ handleSignup(payload) {
                 <Route exact path="/FetchBills" render={() => (
                     <FetchBills route={this.props.history.push} handleAdminProfile={this.handleAdminProfile.bind(this)} />
                 )}/>
+            <Route exact path="/ReactiveGrid" render={() => (
+                <ReactiveGrid route={this.props.history.push} handleAdminProfile={this.handleAdminProfile.bind(this)} />
+            )}/>
         </div>
 
 

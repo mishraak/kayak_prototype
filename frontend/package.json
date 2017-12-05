@@ -5,11 +5,14 @@
   "dependencies": {
     "axios": "^0.17.1",
     "chart.js": "^2.3.0",
+    "loadash": "^1.0.0",
     "material-ui": "^1.0.0-beta.10",
     "rc-slider": "^8.4.0",
     "react": "^16.1.1",
     "react-chartjs-2": "^2.6.4",
     "react-dom": "^16.1.1",
+    "react-grid-layout": "^0.16.0",
+    "react-highcharts": "^15.0.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17"
