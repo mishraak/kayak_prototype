@@ -40,7 +40,7 @@ componentWillMount(){
  }
 componentDidMount(){
         this.totalTime=(new Date).getTime();
-        API.log({page:"HomePage"});
+        //API.log({page:"HomePage"});
     }
 componentWillUnmount(){
         var node= {
