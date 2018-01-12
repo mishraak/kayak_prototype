@@ -1,44 +1,30 @@
-##### TODO
+# Kayak.com
 
-- Add static page for hotel profile just for the screenshot
-- Encrypt password while saving in the database
+<p align="center"><img src="https://github.com/mishraak/Kayak.com/blob/master/Screenshots/Home.png" width="40%" /></p>
 
+##INTRODUCTION
 
-##### Description
-
-The repository contains all code related to the Kayak prototype.
+Building a peer to peer application using Node JS and ReactJS, which will help you to make reservations for flights, cars and hotels.<br>
 
 
-#### Full documentation
-- Refer the /docs folder and wiki pages.
-
-#### Communication
-- Slack channel (private)
-- Canvas discussions.
-
-#### App Features and Scope.
-- High Level Features of the app to be listed here.
-- For detailed description we can use wiki pages.
+## Project Deliverables
 
 
-#### Dependencies.
-- Software dependencies to be listed here.
-- Challenges such as scalability, infrstructure limitations due to cost etc.
-- Assumptions made for the design can be listed here.(details in design documentaion wiki)
+##ARCHITECTURAL FLOW DIAGRAM
 
 
-#### Bugs
-- We will be using Github Issues for bugs.
+##DISTINCTIVENESS VS EXISTING SOLUTION
+
+This is one of the innovative solution for existing probem in this field. If the solutions are present in the market we sure require a little research to refine and come up with a robost one.
+
+##	Technology Stack
 
 
-#### License Information.
+##USER STORIES/ EXPERIENCE
 
-**MIT License**
+##FUTURE ENHANCEMENTS
 
-Copyright <2017> <cmpe273>
+##CONCLUSION
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
